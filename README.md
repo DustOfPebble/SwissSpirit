@@ -1,2 +1,2 @@
 # Rings
-Simple WatchFace 
+My first Pebble Time watchface for testing and prototyping ...

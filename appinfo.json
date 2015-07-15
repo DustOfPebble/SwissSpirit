@@ -1,0 +1,14 @@
+{
+    "appKeys": {},
+    "capabilities": [ "" ],
+    "companyName": "Dust in Cloud ",
+    "longName": "Rings",
+    "projectType": "native",
+    "resources": { "media": [] },
+    "sdkVersion": "3",
+    "shortName": "Rings",
+    "targetPlatforms": [ "basalt" ],
+    "uuid": "69fd27f9-5450-474d-8d89-524e03de7c60",
+    "versionLabel": "0.1",
+    "watchapp": { "watchface": true }
+}
