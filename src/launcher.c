@@ -9,20 +9,18 @@ static void handle_battery(BatteryChargeState charge_state)
 {
   static char battery_text[] = "100% charged";
 
-  if (charge_state.is_charging) {
-    snprintf(battery_text, sizeof(battery_text), "charging");
-  } else {
-    snprintf(battery_text, sizeof(battery_text), "%d%% charged", charge_state.charge_percent);
-  }
+  if (charge_state.is_charging) snprintf(battery_text, sizeof(battery_text), "charging");
+  else snprintf(battery_text, sizeof(battery_text), "%d%% charged", charge_state.charge_percent);
+  
   text_layer_set_text(s_battery_layer, battery_text);
 }
 
-static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed)
+static void Update_Time_View(struct tm* tick_time, TimeUnits units_changed)
 {
   // Needs to be static because it's used by the system later.
-  static char s_time_text[] = "00:00:00";
+  static char s_time_text[] = "00:00";
 
-  strftime(s_time_text, sizeof(s_time_text), "%T", tick_time);
+  strftime(s_time_text, sizeof(s_time_text), "%H:%M", tick_time);
   text_layer_set_text(s_time_layer, s_time_text);
 
   handle_battery(battery_state_service_peek());
@@ -30,7 +28,7 @@ static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed)
 
 static void handle_bluetooth(bool connected)
 {
-  text_layer_set_text(s_connection_layer, connected ? "connected" : "disconnected");
+  text_layer_set_text(s_connection_layer, connected ? "Connected" : "Disconnected");
 }
 
 static void main_window_load(Window *window)
@@ -39,9 +37,9 @@ static void main_window_load(Window *window)
   GRect bounds = layer_get_frame(window_layer);
 
   s_time_layer = text_layer_create(GRect(0, 25, bounds.size.w, 54));
-  text_layer_set_text_color(s_time_layer, GColorVividCerulean);
+  text_layer_set_text_color(s_time_layer, GColorIndigo);
   text_layer_set_background_color(s_time_layer, GColorClear);
-  text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_34_MEDIUM_NUMBERS));
+  text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
 
   s_connection_layer = text_layer_create(GRect(0, 90, bounds.size.w, 34));
@@ -62,9 +60,9 @@ static void main_window_load(Window *window)
   // (This is why it's a good idea to have a separate routine to do the update itself.)
   time_t now = time(NULL);
   struct tm *current_time = localtime(&now);
-  handle_second_tick(current_time, SECOND_UNIT);
+  Update_Time_View(current_time, MINUTE_UNIT);
 
-  tick_timer_service_subscribe(SECOND_UNIT, handle_second_tick);
+  tick_timer_service_subscribe(MINUTE_UNIT, Update_Time_View);
   battery_state_service_subscribe(handle_battery);
   bluetooth_connection_service_subscribe(handle_bluetooth);
 
@@ -86,11 +84,8 @@ static void main_window_unload(Window *window)
 static void init()
 {
   s_main_window = window_create();
-  window_set_background_color(s_main_window, GColorMintGreen);
-  window_set_window_handlers(s_main_window, (WindowHandlers) {
-    .load = main_window_load,
-    .unload = main_window_unload,
-  });
+  window_set_background_color(s_main_window, GColorRichBrilliantLavender);
+  window_set_window_handlers(s_main_window, (WindowHandlers) { .load = main_window_load, .unload = main_window_unload });
   window_stack_push(s_main_window, true);
 }
 
