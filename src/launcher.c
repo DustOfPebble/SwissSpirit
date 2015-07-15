@@ -98,5 +98,6 @@ int main(void)
 {
   init();
   app_event_loop();
+  vibes_double_pulse();
   deinit();
 }
