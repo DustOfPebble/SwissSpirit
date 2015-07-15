@@ -39,20 +39,20 @@ static void main_window_load(Window *window)
   GRect bounds = layer_get_frame(window_layer);
 
   s_time_layer = text_layer_create(GRect(0, 40, bounds.size.w, 34));
-  text_layer_set_text_color(s_time_layer, GColorWhite);
+  text_layer_set_text_color(s_time_layer, GColorVividCerulean);
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
 
   s_connection_layer = text_layer_create(GRect(0, 90, bounds.size.w, 34));
-  text_layer_set_text_color(s_connection_layer, GColorWhite);
+  text_layer_set_text_color(s_connection_layer, GColorBlueMoon);
   text_layer_set_background_color(s_connection_layer, GColorClear);
   text_layer_set_font(s_connection_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
   text_layer_set_text_alignment(s_connection_layer, GTextAlignmentCenter);
   handle_bluetooth(bluetooth_connection_service_peek());
 
   s_battery_layer = text_layer_create(GRect(0, 120, bounds.size.w, 34));
-  text_layer_set_text_color(s_battery_layer, GColorWhite);
+  text_layer_set_text_color(s_battery_layer, GColorJazzberryJam);
   text_layer_set_background_color(s_battery_layer, GColorClear);
   text_layer_set_font(s_battery_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
   text_layer_set_text_alignment(s_battery_layer, GTextAlignmentCenter);
@@ -86,7 +86,7 @@ static void main_window_unload(Window *window)
 static void init()
 {
   s_main_window = window_create();
-  window_set_background_color(s_main_window, GColorBlack);
+  window_set_background_color(s_main_window, GColorMintGreen);
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,
     .unload = main_window_unload,
