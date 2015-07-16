@@ -1,0 +1,9 @@
+#!/bin/sh
+
+Host=github.com
+User=DustOfPebble
+Repository=Rings
+
+echo "Pushing commit to http://$Host/$User/$Repository
+
+git push origin master < GitHub.Config
