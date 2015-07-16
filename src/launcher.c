@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include <RingsView.c>
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
@@ -34,6 +35,7 @@ static void handle_bluetooth(bool connected)
 static void main_window_load(Window *window)
 {
   Layer *window_layer = window_get_root_layer(window);
+  layer_set_update_proc(window_layer, DrawRings);
   GRect bounds = layer_get_frame(window_layer);
 
   s_time_layer = text_layer_create(GRect(0, 25, bounds.size.w, 54));
@@ -100,6 +102,5 @@ int main(void)
 {
   init();
   app_event_loop();
-  vibes_double_pulse();
   deinit();
 }
