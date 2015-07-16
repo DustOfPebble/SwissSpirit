@@ -94,6 +94,8 @@ static void deinit()
   window_destroy(s_main_window);
 }
 
+
+// Main Call ...
 int main(void)
 {
   init();
