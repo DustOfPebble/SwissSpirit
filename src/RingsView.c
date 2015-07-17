@@ -1,9 +1,8 @@
-//#include <RingsView.h>
 #include <pebble.h>
 
 
 // Called Function for rendering Background
-static void DrawRings(Layer *SelectedLayer, GContext* GraphicContext)
+void DrawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
   GRect Bounds = layer_get_bounds(SelectedLayer);
   uint16_t Radius = Bounds.size.w / 3;

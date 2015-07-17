@@ -1,5 +1,6 @@
 #include <pebble.h>
-#include <RingsView.c>
+
+#include "RingsView.h"
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
