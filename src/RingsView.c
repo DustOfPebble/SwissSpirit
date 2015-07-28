@@ -1,6 +1,5 @@
 #include <pebble.h>
 
-
 // Called Function for rendering Background
 void DrawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
@@ -19,6 +18,5 @@ void DrawRings(Layer *SelectedLayer, GContext* GraphicContext)
 
   graphics_context_set_stroke_color(GraphicContext, GColorIslamicGreen);
   graphics_draw_circle(GraphicContext, Center, Radius-5);		
-
 }
 

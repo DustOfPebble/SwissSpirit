@@ -36,7 +36,6 @@ static void handle_bluetooth(bool connected)
 static void main_window_load(Window *window)
 {
   Layer *window_layer = window_get_root_layer(window);
-  layer_set_update_proc(window_layer, DrawRings);
   GRect bounds = layer_get_frame(window_layer);
 
   s_time_layer = text_layer_create(GRect(0, 25, bounds.size.w, 54));
@@ -44,6 +43,7 @@ static void main_window_load(Window *window)
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
+  layer_set_update_proc(s_time_layer, DrawRings);
 
   s_connection_layer = text_layer_create(GRect(0, 90, bounds.size.w, 34));
   text_layer_set_text_color(s_connection_layer, GColorBlueMoon);
@@ -96,8 +96,7 @@ static void deinit()
 {
   window_destroy(s_main_window);
 }
-
-
+GC
 // Main Call ...
 int main(void)
 {
