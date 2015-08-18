@@ -46,11 +46,13 @@ void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 	
   GPoint RingCenter;
 // Drawing Hours Ring ...
-  RingCenter = getRingCenter(Hours/12.0, HoursRadius, ScreenCenter);		
+  RingCenter = getRingCenter(Hours/12.0, 0, ScreenCenter);		
+//  RingCenter = getRingCenter(Hours/12.0, HoursRadius, ScreenCenter);		
   drawRing(SelectedLayer, GraphicContext, Hours, 10, RingCenter);
 
 // Drawing Minutes Ring ...	
-  RingCenter = getRingCenter(Minutes/60.0, MinutesRadius, ScreenCenter);	
+  RingCenter = getRingCenter(Minutes/60.0, 0, ScreenCenter);	
+//  RingCenter = getRingCenter(Minutes/60.0, MinutesRadius, ScreenCenter);	
   drawRing(SelectedLayer, GraphicContext, Minutes, 10, RingCenter);
 }
 

@@ -12,14 +12,14 @@ void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
   Hours = TimeInfos->tm_hour;
   
   // Marking NeedleWindow as to be redrawn ...
-  layer_mark_dirty(GraphicArea);
+//  layer_mark_dirty(GraphicArea);
   APP_LOG(APP_LOG_LEVEL_INFO, "Updating Time View");
 }
 //#################################################################################
 void Loading(Window *window)
 {
   GraphicArea = window_get_root_layer(window);
-  layer_set_update_proc(GraphicArea, drawRings);
+ // layer_set_update_proc(GraphicArea, drawRings);
 }
 
 //#################################################################################
