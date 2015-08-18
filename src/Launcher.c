@@ -2,8 +2,8 @@
 
 #include "RingsView.h"
 
-static Window *NeedleWindow;
-static Layer *GraphicArea;
+Window *NeedleWindow;
+Layer *GraphicArea;
 
 void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
 {
@@ -17,7 +17,9 @@ void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
 //#################################################################################
 void Loading(Window *window)
 {
-  GraphicArea = window_get_root_layer(window);
+  Layer *RootLayer = window_get_root_layer(window);
+  GraphicArea = layer_create(layer_get_frame(RootLayer));
+  layer_add_child(RootLayer, GraphicArea);	
   layer_set_update_proc(GraphicArea, drawRings);
 }
 
@@ -25,6 +27,7 @@ void Loading(Window *window)
 void UnLoading(Window *window)
 {
   tick_timer_service_unsubscribe();
+  layer_destroy(GraphicArea);
 }
 
 //#################################################################################
@@ -35,7 +38,6 @@ int main(void)
   window_set_background_color(NeedleWindow, GColorRichBrilliantLavender);
   window_set_window_handlers(NeedleWindow, (WindowHandlers) { .load = Loading, .unload = UnLoading });
   window_stack_push(NeedleWindow, true);
-//  Update_Time_View(current_time, MINUTE_UNIT);
   tick_timer_service_subscribe(SECOND_UNIT, UpdateTimeView); // Forcing a redraw every second ...
   
 // Entering event loop until exit requested

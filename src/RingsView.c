@@ -4,67 +4,82 @@
 int Hours = 0;
 int Minutes = 0;
 
+static GFont Font;
+static  GRect Bounds;
+static GPoint ScreenCenter;
+static GSize MaxSize;
+static int MaxDimension;
+static int CircleRadius;
+static uint16_t MinutesRadius;
+static uint16_t HoursRadius;
+
+static GColor HoursColors[2];
+static GColor MinutesColors[2];
+
 // ################# Called Function for Calculating Ring Center  ################# 
 GPoint getRingCenter(float Angle, uint16_t Radius, GPoint ScreenCenter)
 {
-  APP_LOG(APP_LOG_LEVEL_INFO, "Angle/Radius: [%d,%d]",(int)Angle, Radius);
   GPoint Point =  (GPoint)
 	{ 
 	  .x = ( sin_lookup(TRIG_MAX_ANGLE * Angle)  * Radius / TRIG_MAX_RATIO) +  ScreenCenter.x ,
 	  .y = ( -cos_lookup(TRIG_MAX_ANGLE * Angle)  * Radius / TRIG_MAX_RATIO) +  ScreenCenter.y
         };	
 
- 
-  APP_LOG(APP_LOG_LEVEL_INFO, "Hours/Minutes: [%d,%d]",Hours, Minutes);
-  APP_LOG(APP_LOG_LEVEL_INFO, "x/y: [%d,%d]",Point.x,Point.y);
-
   return Point;
 }
 
 // ################# Called Function for rendering One ring  ################# 
-void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, uint16_t Radius, GPoint Center)
+void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, uint16_t Radius, GPoint Center, GColor Colors[])
 {
 // Converting Value to text...
  char Text[] = "00";
  snprintf(Text, sizeof(Text), "%d", Value);	
 
-
-
-// Drawing Text 
-  APP_LOG(APP_LOG_LEVEL_INFO, "Center: [%d,%d]", Center.x, Center.y);
- GFont Font =  fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD);
+// Calculating Text Frame Position/Size
  GRect Frame = GRect(Center.x - Radius, Center.y - Radius, 2 * Radius, 2 * Radius);
- graphics_draw_text(GraphicContext,Text,Font,Frame,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL); 
+ GSize Size =  graphics_text_layout_get_content_size(Text,Font,Frame,GTextOverflowModeWordWrap,GTextAlignmentCenter);
+ GRect Container = GRect( Center.x - Size.w * 0.5, Center.y - Size.h * 0.5, Size.w, Size.h);
 
-// Writing Surounding circle...
- graphics_draw_circle(GraphicContext, Center, Radius);		
+// Drawing Surounding circle...
+ graphics_context_set_fill_color(GraphicContext, Colors[1]); 
+ graphics_fill_circle(GraphicContext, Center, Radius);		
+
+// Wrtting inner Text
+ graphics_context_set_text_color(GraphicContext, Colors[0]);
+ graphics_draw_text(GraphicContext,Text,Font,Container,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL); 
 
 }
 
 // ################# Called Function for rendering Background ################# 
 void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
-// Getting and adapting screen geometry
-  GRect Bounds = layer_get_bounds(SelectedLayer);
-  uint16_t MinutesRadius = Bounds.size.w / 3;
-  uint16_t HoursRadius = Bounds.size.w / 4;
-  GPoint ScreenCenter = GPoint( Bounds.size.w / 2, Bounds.size.h /2);	
-  
-// Setting graphic properties
-  graphics_context_set_stroke_color(GraphicContext, GColorWindsorTan); 
-  graphics_context_set_stroke_width(GraphicContext, 3);
-  graphics_context_set_text_color(GraphicContext, GColorBlack);
-	
+// Getting and adapting to screen geometry on first call
+  Font =  fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+  Bounds = layer_get_bounds(SelectedLayer);
+  ScreenCenter = GPoint( Bounds.size.w / 2, Bounds.size.h /2);	
+  MaxSize =  graphics_text_layout_get_content_size("00",Font,Bounds,GTextOverflowModeWordWrap,GTextAlignmentCenter);
+
+  MaxDimension = ( MaxSize.w > MaxSize.h) ? MaxSize.w : MaxSize.h;  	
+  CircleRadius = MaxDimension * 0.5;	
+
+  MinutesRadius = (Bounds.size.w * 0.5) - CircleRadius;
+  MinutesColors[0] = GColorDukeBlue;
+  MinutesColors[1] = GColorPictonBlue;
+
+
+  HoursRadius = (Bounds.size.w * 0.5) - (3 * CircleRadius);
+  HoursColors[0] = GColorJazzberryJam;
+  HoursColors[1] = GColorLavenderIndigo;
+
+
   GPoint RingCenter;
 // Drawing Hours Ring ...
-//  RingCenter = getRingCenter((float)Hours/12.0, 0, ScreenCenter);		
   RingCenter = getRingCenter((float)Hours / 12.0 , HoursRadius, ScreenCenter);		
-  drawRing(SelectedLayer, GraphicContext, Hours, 10, RingCenter);
+  drawRing(SelectedLayer, GraphicContext, Hours, CircleRadius, RingCenter, HoursColors);
 
 // Drawing Minutes Ring ...	
-//  RingCenter = getRingCenter((float)Minutes/60.0, 0, ScreenCenter);	
   RingCenter = getRingCenter((float)Minutes / 60.0 , MinutesRadius, ScreenCenter);	
-  drawRing(SelectedLayer, GraphicContext, Minutes, 10, RingCenter);
+  drawRing(SelectedLayer, GraphicContext, Minutes, CircleRadius, RingCenter, MinutesColors);
 
 }
 
