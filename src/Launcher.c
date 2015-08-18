@@ -8,7 +8,8 @@ Layer *GraphicArea;
 void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
 {
   // Copying Hours and Minutes before asking for a redraw ..
-  Minutes = TimeInfos->tm_sec;
+  Secondes = TimeInfos->tm_sec;
+  Minutes = TimeInfos->tm_min;
   Hours = TimeInfos->tm_hour;
   
   // Marking NeedleWindow as to be redrawn ...
@@ -35,7 +36,7 @@ int main(void)
 {
 // Loading and Applying settings
   NeedleWindow = window_create();
-  window_set_background_color(NeedleWindow, GColorRichBrilliantLavender);
+  window_set_background_color(NeedleWindow, GColorMelon);
   window_set_window_handlers(NeedleWindow, (WindowHandlers) { .load = Loading, .unload = UnLoading });
   window_stack_push(NeedleWindow, true);
   tick_timer_service_subscribe(SECOND_UNIT, UpdateTimeView); // Forcing a redraw every second ...

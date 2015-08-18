@@ -2,6 +2,7 @@
 #ifndef RingsHeader 
 #define RingsHeader
 
+extern int Secondes;
 extern int Minutes;
 extern int Hours;
 
@@ -9,7 +10,7 @@ extern int Hours;
 GPoint getRingCenter(float Angle, uint16_t Radius, GPoint ScreenCenter);
 
 // Called Function for rendering One ring ...
-void drawRing(Layer *SelectedLayer, GContext* GraphicContex, int Value, uint16_t Radius, GPoint Center, GColor Colors[]);
+void drawRing(Layer *SelectedLayer, GContext* GraphicContex, int Value, int Radius, int CenterRadius, GPoint Center, GColor Colors[]);
 
 // Called Function for rendering screen
 void drawRings(Layer *SelectedLayer, GContext* GraphicContext);
