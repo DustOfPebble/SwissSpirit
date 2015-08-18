@@ -8,18 +8,17 @@ static Layer *GraphicArea;
 void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
 {
   // Copying Hours and Minutes before asking for a redraw ..
-  Minutes = TimeInfos->tm_min;
+  Minutes = TimeInfos->tm_sec;
   Hours = TimeInfos->tm_hour;
   
   // Marking NeedleWindow as to be redrawn ...
-//  layer_mark_dirty(GraphicArea);
-  APP_LOG(APP_LOG_LEVEL_INFO, "Updating Time View");
+  layer_mark_dirty(GraphicArea);
 }
 //#################################################################################
 void Loading(Window *window)
 {
   GraphicArea = window_get_root_layer(window);
- // layer_set_update_proc(GraphicArea, drawRings);
+  layer_set_update_proc(GraphicArea, drawRings);
 }
 
 //#################################################################################

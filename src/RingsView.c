@@ -7,11 +7,18 @@ int Minutes = 0;
 // ################# Called Function for Calculating Ring Center  ################# 
 GPoint getRingCenter(float Angle, uint16_t Radius, GPoint ScreenCenter)
 {
-   return (GPoint)
+  APP_LOG(APP_LOG_LEVEL_INFO, "Angle/Radius: [%d,%d]",(int)Angle, Radius);
+  GPoint Point =  (GPoint)
 	{ 
-	  .x = (int16_t)( sin_lookup(TRIG_MAX_ANGLE * Angle) * Radius ) + (int32_t) ScreenCenter.x ,
-	  .y = (int16_t)( -cos_lookup(TRIG_MAX_ANGLE *Angle) * Radius ) - (int32_t) ScreenCenter.y
+	  .x = ( sin_lookup(TRIG_MAX_ANGLE * Angle)  * Radius / TRIG_MAX_RATIO) +  ScreenCenter.x ,
+	  .y = ( -cos_lookup(TRIG_MAX_ANGLE * Angle)  * Radius / TRIG_MAX_RATIO) +  ScreenCenter.y
         };	
+
+ 
+  APP_LOG(APP_LOG_LEVEL_INFO, "Hours/Minutes: [%d,%d]",Hours, Minutes);
+  APP_LOG(APP_LOG_LEVEL_INFO, "x/y: [%d,%d]",Point.x,Point.y);
+
+  return Point;
 }
 
 // ################# Called Function for rendering One ring  ################# 
@@ -21,8 +28,13 @@ void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, uint16_
  char Text[] = "00";
  snprintf(Text, sizeof(Text), "%d", Value);	
 
+
+
 // Drawing Text 
- 
+  APP_LOG(APP_LOG_LEVEL_INFO, "Center: [%d,%d]", Center.x, Center.y);
+ GFont Font =  fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD);
+ GRect Frame = GRect(Center.x - Radius, Center.y - Radius, 2 * Radius, 2 * Radius);
+ graphics_draw_text(GraphicContext,Text,Font,Frame,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL); 
 
 // Writing Surounding circle...
  graphics_draw_circle(GraphicContext, Center, Radius);		
@@ -32,8 +44,6 @@ void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, uint16_
 // ################# Called Function for rendering Background ################# 
 void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
- APP_LOG(APP_LOG_LEVEL_INFO, "Drawing Rings!");
-
 // Getting and adapting screen geometry
   GRect Bounds = layer_get_bounds(SelectedLayer);
   uint16_t MinutesRadius = Bounds.size.w / 3;
@@ -43,17 +53,19 @@ void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 // Setting graphic properties
   graphics_context_set_stroke_color(GraphicContext, GColorWindsorTan); 
   graphics_context_set_stroke_width(GraphicContext, 3);
+  graphics_context_set_text_color(GraphicContext, GColorBlack);
 	
   GPoint RingCenter;
 // Drawing Hours Ring ...
-  RingCenter = getRingCenter(Hours/12.0, 0, ScreenCenter);		
-//  RingCenter = getRingCenter(Hours/12.0, HoursRadius, ScreenCenter);		
+//  RingCenter = getRingCenter((float)Hours/12.0, 0, ScreenCenter);		
+  RingCenter = getRingCenter((float)Hours / 12.0 , HoursRadius, ScreenCenter);		
   drawRing(SelectedLayer, GraphicContext, Hours, 10, RingCenter);
 
 // Drawing Minutes Ring ...	
-  RingCenter = getRingCenter(Minutes/60.0, 0, ScreenCenter);	
-//  RingCenter = getRingCenter(Minutes/60.0, MinutesRadius, ScreenCenter);	
+//  RingCenter = getRingCenter((float)Minutes/60.0, 0, ScreenCenter);	
+  RingCenter = getRingCenter((float)Minutes / 60.0 , MinutesRadius, ScreenCenter);	
   drawRing(SelectedLayer, GraphicContext, Minutes, 10, RingCenter);
+
 }
 
 
