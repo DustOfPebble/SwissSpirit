@@ -32,6 +32,8 @@ void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, uint16_
 // ################# Called Function for rendering Background ################# 
 void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
+ APP_LOG(APP_LOG_LEVEL_INFO, "Drawing Rings!");
+
 // Getting and adapting screen geometry
   GRect Bounds = layer_get_bounds(SelectedLayer);
   uint16_t MinutesRadius = Bounds.size.w / 3;

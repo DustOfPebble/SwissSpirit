@@ -13,6 +13,7 @@ void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
   
   // Marking NeedleWindow as to be redrawn ...
   layer_mark_dirty(GraphicArea);
+  APP_LOG(APP_LOG_LEVEL_INFO, "Updating Time View");
 }
 //#################################################################################
 void Loading(Window *window)
