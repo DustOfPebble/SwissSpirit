@@ -48,12 +48,15 @@ void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, int Rad
 
 // Drawing Background Circle Track
  graphics_context_set_stroke_color(GraphicContext, Colors[2]); 
- graphics_context_set_stroke_width(GraphicContext, Radius); 
+ graphics_context_set_stroke_width(GraphicContext, Radius * 0.5); 
  graphics_draw_circle(GraphicContext, ScreenCenter, CenterRadius);		
 
 // Drawing Surounding circle...
  graphics_context_set_fill_color(GraphicContext, Colors[1]); 
  graphics_fill_circle(GraphicContext, Center, Radius);		
+ graphics_context_set_stroke_width(GraphicContext, 1); 
+ graphics_context_set_stroke_color(GraphicContext, Colors[2]); 
+ graphics_draw_circle(GraphicContext, Center, Radius);		
 
 // Wrtting inner Text
  graphics_context_set_text_color(GraphicContext, Colors[0]);
@@ -65,7 +68,7 @@ void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, int Rad
 void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
 // Getting and adapting to screen geometry on first call
-  Font =  fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD);
+  Font =  fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
   Bounds = layer_get_bounds(SelectedLayer);
   ScreenCenter = GPoint( Bounds.size.w / 2, Bounds.size.h /2);	
   MaxSize =  graphics_text_layout_get_content_size("00",Font,Bounds,GTextOverflowModeWordWrap,GTextAlignmentCenter);
