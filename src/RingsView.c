@@ -68,7 +68,7 @@ void drawRing(Layer *SelectedLayer, GContext* GraphicContext, int Value, int Rad
 void drawRings(Layer *SelectedLayer, GContext* GraphicContext)
 {
 // Getting and adapting to screen geometry on first call
-  Font =  fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+  Font =  fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD);
   Bounds = layer_get_bounds(SelectedLayer);
   ScreenCenter = GPoint( Bounds.size.w / 2, Bounds.size.h /2);	
   MaxSize =  graphics_text_layout_get_content_size("00",Font,Bounds,GTextOverflowModeWordWrap,GTextAlignmentCenter);
