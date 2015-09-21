@@ -1,6 +1,7 @@
 #include <pebble.h>
 
 #include "RingsView.h"
+  
 
 Window *NeedleWindow;
 Layer *GraphicArea;

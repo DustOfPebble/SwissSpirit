@@ -1,14 +1,27 @@
 {
-    "appKeys": {},
-    "capabilities": [ "" ],
+    "appKeys": {
+        "HeartRateFiltered": 1,
+        "HeartRateUpdate": 2,
+        "MessageType": 0
+    },
+    "capabilities": [
+        ""
+    ],
     "companyName": "Dust in Cloud ",
-    "longName": "Rings",
+    "longName": "Heart Spy Watch",
     "projectType": "native",
-    "resources": { "media": [] },
+    "resources": {
+        "media": []
+    },
     "sdkVersion": "3",
-    "shortName": "Rings",
-    "targetPlatforms": [ "basalt" ],
-    "uuid": "69fd27f9-5450-474d-8d89-524e03de7c60",
-    "versionLabel": "0.2",
-    "watchapp": { "watchface": true }
+    "shortName": "HeartSpy",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "e603e869-8eff-40c3-9957-6c6f6087fd57",
+    "versionLabel": "0.1",
+    "watchapp": {
+        "onlyShownOnCommunication": true,
+        "watchface": false
+    }
 }
