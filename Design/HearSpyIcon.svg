@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg4916"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="HearSpyIcon.svg">
+  <defs
+     id="defs4918">
+    <linearGradient
+       id="linearGradient5059">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop5061" />
+      <stop
+         id="stop5067"
+         offset="0.76300067"
+         style="stop-color:#96ff7e;stop-opacity:0.76521736;" />
+      <stop
+         style="stop-color:#6afd49;stop-opacity:0;"
+         offset="1"
+         id="stop5063" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5033">
+      <stop
+         style="stop-color:#6afd49;stop-opacity:1;"
+         offset="0"
+         id="stop5035" />
+      <stop
+         style="stop-color:#6afd49;stop-opacity:0;"
+         offset="1"
+         id="stop5037" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4999">
+      <stop
+         style="stop-color:#800000;stop-opacity:1;"
+         offset="0"
+         id="stop5001" />
+      <stop
+         style="stop-color:#eb0000;stop-opacity:0.48695651;"
+         offset="1"
+         id="stop5003" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4977">
+      <stop
+         style="stop-color:#69ff49;stop-opacity:1;"
+         offset="0"
+         id="stop4979" />
+      <stop
+         style="stop-color:#9eff90;stop-opacity:0;"
+         offset="1"
+         id="stop4981" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4977"
+       id="linearGradient4983"
+       x1="413.54605"
+       y1="548.6001"
+       x2="236.21906"
+       y2="547.41925"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2133736,0,0,1.359169,-67.971718,-206.22482)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4999"
+       id="linearGradient5027"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(592.26788,-32.82751)"
+       x1="-23.255817"
+       y1="415.37997"
+       x2="-40.616547"
+       y2="617.44135" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5033"
+       id="radialGradient5057"
+       cx="591.71124"
+       cy="538.02429"
+       fx="591.71124"
+       fy="538.02429"
+       r="5.5664277"
+       gradientTransform="matrix(1,0,0,1.1999999,0,-107.60481)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5059"
+       id="radialGradient5065"
+       cx="591.71124"
+       cy="538.02429"
+       fx="591.71124"
+       fy="538.02429"
+       r="5.5664277"
+       gradientTransform="matrix(0.99999615,0,0,1.1999999,0.00228095,-107.60481)"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="filter5069">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.930781"
+         id="feGaussianBlur5071" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2703063"
+     inkscape:cx="254.68201"
+     inkscape:cy="459.79684"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1030"
+     inkscape:window-height="851"
+     inkscape:window-x="289"
+     inkscape:window-y="40"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata4921">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#00aa88;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect4926"
+       width="289.45422"
+       height="287.22766"
+       x="216.34142"
+       y="406.46506"
+       ry="54.550991"
+       inkscape:export-filename="/home/xavier/Androids.Projects/HeartSpy/app/src/main/res/drawable/icon_heartspy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g5011"
+       transform="translate(-310.60665,47.871276)"
+       inkscape:export-filename="/home/xavier/Androids.Projects/HeartSpy/app/src/main/res/drawable/icon_heartspy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         style="fill:#800000;stroke:none"
+         d="m 669.08971,429.47894 c 36.64703,-41.66835 115.91843,-52.19742 116.89497,20.03914 0.97655,72.23656 -52.14211,132.85933 -141.38725,165.87954 -32.46759,-15.96436 -86.37334,-60.78889 -86.83627,-140.27397 -0.46294,-79.48507 75.93828,-110.16409 111.32855,-45.64471 z"
+         id="path5007"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="czczc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4992"
+         d="m 618.17413,394.60999 c -26.33528,0.18886 -51.76493,22.35171 -58.625,59.5 14.28295,29.48633 60.39589,51.09375 115.09375,51.09375 50.25769,0 93.26705,-18.23059 111,-44.0625 0.26099,-3.83757 0.39658,-7.68566 0.34375,-11.59375 -0.97654,-72.23656 -80.25922,-61.73085 -116.90625,-20.0625 -13.27135,-24.19477 -32.31664,-35.00831 -50.90625,-34.875 z"
+         style="fill:url(#linearGradient5027);stroke:none" />
+      <path
+         sodipodi:nodetypes="czczc"
+         inkscape:connector-curvature="0"
+         id="path5009"
+         d="m 668.52795,428.36566 c 36.64703,-41.66835 115.91843,-52.19742 116.89497,20.03914 0.97655,72.23656 -52.14211,132.85933 -141.38725,165.87954 -32.46759,-15.96436 -86.37334,-60.78889 -86.83627,-140.27397 -0.46294,-79.48507 75.93828,-110.16409 111.32855,-45.64471 z"
+         style="fill:none;stroke:#550000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <path
+       style="fill:none;stroke:url(#linearGradient4983);stroke-width:8.98942757000000015;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter5069)"
+       d="m 219.75532,561.35661 c 0,0 92.95247,-1.2779 110.76815,-1.51313 12.56216,-0.23525 19.97785,-99.38709 28.36745,-99.86745 8.3896,-0.4804 14.69467,158.91243 22.96413,158.88001 8.26943,-0.0324 6.58313,-61.79123 18.91163,-62.03885 12.32852,-0.24764 32.41994,0 32.41994,0"
+       id="path4973"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cczzzc"
+       inkscape:export-filename="/home/xavier/Androids.Projects/HeartSpy/app/src/main/res/drawable/icon_heartspy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       transform="matrix(4.7249999,0,0,3.8958335,-2360.7849,-1540.3553)"
+       d="m 597.27767,538.02429 a 5.5664277,6.6797128 0 1 1 -11.13286,0 5.5664277,6.6797128 0 1 1 11.13286,0 z"
+       sodipodi:ry="6.6797128"
+       sodipodi:rx="5.5664277"
+       sodipodi:cy="538.02429"
+       sodipodi:cx="591.71124"
+       id="path5031"
+       style="fill:url(#radialGradient5057);fill-opacity:1;stroke:none"
+       sodipodi:type="arc"
+       inkscape:transform-center-x="54.968471"
+       inkscape:transform-center-y="-7.3755164"
+       inkscape:export-filename="/home/xavier/Androids.Projects/HeartSpy/app/src/main/res/drawable/icon_heartspy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g4965"
+       transform="matrix(0.99620118,0,0,0.99615738,2.6740384,2.8626889)"
+       style="fill:#93ac9d;stroke:#93ac9d"
+       inkscape:export-filename="/home/xavier/Androids.Projects/HeartSpy/app/src/main/res/drawable/icon_heartspy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4928"
+         d="m 287.59093,405.15659 0,288.34095 0,-1.11329"
+         style="fill:#93ac9d;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4930"
+         d="m 360.70448,405.15659 c 0,289.45423 0,288.34094 0,288.34094"
+         style="fill:#93ac9d;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4932"
+         d="m 433.81805,405.15659 c 0,286.11437 0,288.34094 0,288.34094"
+         style="fill:#93ac9d;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4934"
+         d="m 214.47739,477.71353 c 289.45423,0 290.56752,0 290.56752,0"
+         style="fill:#93ac9d;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         style="fill:#93ac9d;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 214.47739,550.27044 c 289.45423,0 290.56752,0 290.56752,0"
+         id="path4940"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4942"
+         d="m 214.47739,622.82733 c 289.45423,0 290.56752,0 290.56752,0"
+         style="fill:#93ac9d;stroke:#93ac9d;stroke-width:2.22900009;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient5065);fill-opacity:1;stroke:none"
+       id="path5029"
+       sodipodi:cx="591.71124"
+       sodipodi:cy="538.02429"
+       sodipodi:rx="5.5664277"
+       sodipodi:ry="6.6797128"
+       d="m 597.27767,538.02429 a 5.5664277,6.6797128 0 1 1 -11.13286,0 5.5664277,6.6797128 0 1 1 11.13286,0 z"
+       transform="matrix(2.4,0,0,1.9895834,-986.43051,-513.56362)"
+       inkscape:export-filename="/home/xavier/Androids.Projects/HeartSpy/app/src/main/res/drawable/icon_heartspy.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
