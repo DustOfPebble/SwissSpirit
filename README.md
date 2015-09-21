@@ -1,2 +1,2 @@
-# Rings
-My first Pebble Time watchface for testing and prototyping ...
+# Heart Spy Watch
+Just a simple Peeble time to display Heart Rate from Android Companion App (with same name)
