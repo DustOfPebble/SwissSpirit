@@ -1,7 +1,7 @@
 #include <pebble.h>
 
 #include "Constants.h"
-#include "RingsView.h"
+#include "HeartView.h"
   
 
 Window *NeedleWindow;

@@ -1,5 +1,5 @@
 #include <pebble.h>
-#include "RingsView.h"
+#include "HeartView.h"
 
 int Hours = 0;
 int Minutes = 0;
