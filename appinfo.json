@@ -10,9 +10,14 @@
     "companyName": "Dust in Cloud ",
     "longName": "Heart Spy Watch",
     "projectType": "native",
-    "resources": {
-        "media": []
-    },
+	"resources": {
+		"media": [
+		{
+			"type": "raw",
+			"name": "HEARTBEAT",
+			"file": "HeartBeat.pdc"
+		}
+	]},
     "sdkVersion": "3",
     "shortName": "HeartSpy",
     "targetPlatforms": [

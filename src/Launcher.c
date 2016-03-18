@@ -1,51 +1,58 @@
 #include <pebble.h>
 
+#include "Globals.h"
+
 #include "Constants.h"
 #include "HeartView.h"
-  
 
-Window *NeedleWindow;
-Layer *GraphicArea;
+// Milliseconds between frames
+#define DELTA 100
 
-void UpdateTimeView(struct tm* TimeInfos, TimeUnits Unit)
-{
-  // Copying Hours and Minutes before asking for a redraw ..
-  Secondes = TimeInfos->tm_sec;
-  Minutes = TimeInfos->tm_min;
-  Hours = TimeInfos->tm_hour;
-  
-  // Marking NeedleWindow as to be redrawn ...
-  layer_mark_dirty(GraphicArea);
-}
-//#################################################################################
-void Loading(Window *window)
-{
-  Layer *RootLayer = window_get_root_layer(window);
-  GraphicArea = layer_create(layer_get_frame(RootLayer));
-  layer_add_child(RootLayer, GraphicArea);	
-  layer_set_update_proc(GraphicArea, drawRings);
-}
+Window *window = NULL;
+Layer *layer = NULL;
+GPath *heartObject = NULL;
+GDrawCommandSequence *heartVector = NULL;
 
 //#################################################################################
-void UnLoading(Window *window)
-{
-  tick_timer_service_unsubscribe();
-  layer_destroy(GraphicArea);
-}
+static void trigRedraw(void *context)
+ {
+  // Draw the next frame
+  layer_mark_dirty(layer);
 
+  // Continue the sequence
+  app_timer_register(DELTA, trigRedraw, NULL);
+}
+//#################################################################################
+void loading(Window *window)
+{
+  Layer *rootLayer = window_get_root_layer(window);
+  layer = layer_create(layer_get_frame(rootLayer));
+  layer_add_child(rootLayer, layer);	
+  layer_set_update_proc(layer, redraw);
+  
+  heartVector = gdraw_command_sequence_create_with_resource(RESOURCE_ID_HEARTBEAT);
+  
+  // Continue the sequence
+  app_timer_register(DELTA, trigRedraw, NULL);
+}
+//#################################################################################
+void unLoading(Window *window)
+{
+  gdraw_command_sequence_destroy(heartVector);
+  layer_destroy(layer);
+}
 //#################################################################################
 int main(void)
 {
 // Loading and Applying settings
-  NeedleWindow = window_create();
-  window_set_background_color(NeedleWindow, GColorMelon);
-  window_set_window_handlers(NeedleWindow, (WindowHandlers) { .load = Loading, .unload = UnLoading });
-  window_stack_push(NeedleWindow, true);
-  tick_timer_service_subscribe(SECOND_UNIT, UpdateTimeView); // Forcing a redraw every second ...
-  
+  window = window_create();
+  window_set_background_color(window, GColorWhite);
+  window_set_window_handlers(window, (WindowHandlers) { .load = loading, .unload = unLoading });
+  window_stack_push(window, true);
+   
 // Entering event loop until exit requested
   app_event_loop();
   
 // Exiting --> Clearing Memory
-   window_destroy(NeedleWindow);
+   window_destroy(window);
 }

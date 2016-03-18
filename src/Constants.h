@@ -1,7 +1,6 @@
 #pragma once
 #include <pebble.h>
 
-
 static const GPathInfo HeartContour = {
   22,
   (GPoint [])
