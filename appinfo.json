@@ -1,12 +1,6 @@
 {
-    "appKeys": {
-        "HeartRateFiltered": 1,
-        "HeartRateUpdate": 2,
-        "MessageType": 0
-    },
-    "capabilities": [
-        ""
-    ],
+    "appKeys": {"HeartRateUpdate": 0},
+    "capabilities": [""],
     "companyName": "Dust in Cloud ",
     "longName": "Heart Spy Watch",
     "projectType": "native",
@@ -20,9 +14,7 @@
 	]},
     "sdkVersion": "3",
     "shortName": "HeartSpy",
-    "targetPlatforms": [
-        "basalt"
-    ],
+    "targetPlatforms": [ "basalt" ],
     "uuid": "e603e869-8eff-40c3-9957-6c6f6087fd57",
     "versionLabel": "0.1",
     "watchapp": {
