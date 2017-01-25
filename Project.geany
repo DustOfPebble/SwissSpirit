@@ -28,13 +28,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=5
+current_page=4
 FILE_NAME_0=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FConstants.h;0;4
 FILE_NAME_1=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FGlobals.h;0;4
 FILE_NAME_2=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FHeartView.c;0;4
 FILE_NAME_3=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FHeartView.h;0;4
 FILE_NAME_4=1183;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FLauncher.c;0;4
-FILE_NAME_5=490;None;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2FUpdate.Images;0;4
 
 [VTE]
 last_dir=/home/xavier

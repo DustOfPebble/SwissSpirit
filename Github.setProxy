@@ -1,4 +1,4 @@
 echo "Setting HTTP Proxy to \"http://127.0.0.1:3128\""
 export https_proxy="http://127.0.0.1:3128";
 export http_proxy="http://127.0.0.1:3128";
-
+export GIT_PROXY_COMMAND='/usr/bin/connect -H 127.0.0.1:3128 $@'
