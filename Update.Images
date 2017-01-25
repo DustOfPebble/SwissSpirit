@@ -1,0 +1,9 @@
+#/bin/bash
+echo "Updating resources ..."
+
+./DrawCommands/SVG_to_PDC Design/Heart.svg -o resources/Heart.pdc
+./DrawCommands/SVG_to_PDC Design/Calls.svg -o resources/Calls.pdc
+./DrawCommands/SVG_to_PDC Design/PhoneLinked.svg -o resources/PhoneLinked.pdc
+./DrawCommands/SVG_to_PDC Design/PhoneUnLinked.svg -o resources/PhoneUnLinked.pdc
+./DrawCommands/SVG_to_PDC Design/Thermometer.svg -o resources/Thermometer.pdc
+./DrawCommands/SVG_to_PDC Design/TimeElapsed.svg -o resources/TimeElapsed.pdc

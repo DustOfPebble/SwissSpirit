@@ -228,8 +228,7 @@ def get_translate(group):
 
 
 def convert_color(rgb, a, truncate=True):
-    from pebble_image_routines import pebble_nearest_color_to_pebble_palette, pebble_truncate_color_to_pebble_palette, \
-        rgba32_triplet_to_argb8
+    from image_library import pebble_nearest_color_to_pebble_palette, pebble_truncate_color_to_pebble_palette, rgba32_triplet_to_argb8
 
     r, g, b = (rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF
     if truncate:
