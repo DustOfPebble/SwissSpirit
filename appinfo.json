@@ -1,5 +1,5 @@
 {
-    "appKeys": {"HeartRateUpdate": 0},
+    "appKeys": {"HeartBeatMeasure": 0},
     "capabilities": [""],
     "companyName": "Dust in Cloud ",
     "longName": "Heart Spy Watch",
@@ -8,9 +8,25 @@
 		"media": [
 		{
 			"type": "raw",
-			"name": "HEARTBEAT",
+			"name": "HEART_BEAT",
 			"file": "HeartBeat.pdc"
-		}
+		},
+		{
+			"type": "raw",
+			"name": "CALLS_MISSED",
+			"file": "CallsMissed.pdc"
+		},
+		{
+			"type": "raw",
+			"name": "TIME_ELAPSED",
+			"file": "TimeElapsed.pdc"
+		},
+		{
+			"type": "raw",
+			"name": "MESSAGES_UNREAD",
+			"file": "MessagesUnread.pdc"
+		},
+		
 	]},
     "sdkVersion": "3",
     "shortName": "HeartSpy",

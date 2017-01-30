@@ -2,6 +2,6 @@
 #include <pebble.h>
 
 typedef enum {
-  HeartRateUpdate = 0,  
+  HeartBeatMeasure = 0,  
   
 } AppKeys;

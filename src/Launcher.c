@@ -4,14 +4,18 @@
 
 #include "Constants.h"
 #include "HeartView.h"
+
 // Milliseconds between frames
 
 #define DELTA 100
 
 Window *window = NULL;
 Layer *layer = NULL;
-GPath *heartObject = NULL;
-GDrawCommandSequence *heartVector = NULL;
+
+GDrawCommandImage *icon_heart_beat = NULL;
+GDrawCommandImage *icon_calls_missed = NULL;
+GDrawCommandImage *icon_messages_unread = NULL;
+GDrawCommandImage *icon_time_elapsed = NULL;
 
 //#################################################################################
 static void trigRedraw(void *context)
@@ -20,10 +24,10 @@ static void trigRedraw(void *context)
 layer_mark_dirty(layer); 
 }
 //#################################################################################
-static void inbox_received_callback(DictionaryIterator *scanDictionnary, void *context)
+static void manage_phone_incomming_datas(DictionaryIterator *PhoneDatas, void *context)
 {
 // Does this message contain a temperature value?
-Tuple *isHeartRate = dict_find(scanDictionnary, HeartRateUpdate);
+Tuple *isHeartRate = dict_find(PhoneDatas, HeartBeatMeasure);
 if(isHeartRate)
 {
 // Start a beat sequence
@@ -38,7 +42,10 @@ layer = layer_create(layer_get_frame(rootLayer));
 layer_add_child(rootLayer, layer);	
 layer_set_update_proc(layer, redraw);
 
-heartVector = gdraw_command_sequence_create_with_resource(RESOURCE_ID_HEARTBEAT);
+icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
+icon_messages_unread = gdraw_command_image_create_with_resource(RESOURCE_ID_MESSAGES_UNREAD);
+icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
+icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
 
 // Continue the sequence
 app_timer_register(DELTA, trigRedraw, NULL);
@@ -46,7 +53,11 @@ app_timer_register(DELTA, trigRedraw, NULL);
 //#################################################################################
 void unLoading(Window *window)
 {
-gdraw_command_sequence_destroy(heartVector);
+	gdraw_command_image_destroy(icon_heart_beat);
+	gdraw_command_image_destroy(icon_messages_unread);
+	gdraw_command_image_destroy(icon_calls_missed);
+	gdraw_command_image_destroy(icon_time_elapsed);
+
 layer_destroy(layer);
 }
 //#################################################################################
@@ -59,8 +70,7 @@ window_set_window_handlers(window, (WindowHandlers) { .load = loading, .unload =
 window_stack_push(window, true);
 
 // Register to be notified about inbox received events
-app_message_register_inbox_received(inbox_received_callback);
-
+app_message_register_inbox_received(manage_phone_incomming_datas);
 
 // Entering event loop until exit requested
 app_event_loop();
