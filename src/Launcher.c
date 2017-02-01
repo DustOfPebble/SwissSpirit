@@ -10,7 +10,10 @@
 #define DELTA 100
 
 Window *window = NULL;
-Layer *layer = NULL;
+Layer *timeDisplay = NULL;
+Layer *dateDisplay = NULL;
+Layer *batteryDisplay = NULL;
+Layer *sharedDisplay = NULL;
 
 GDrawCommandImage *icon_heart_beat = NULL;
 GDrawCommandImage *icon_calls_missed = NULL;
@@ -37,15 +40,29 @@ app_timer_register(DELTA, trigRedraw, NULL);
 //#################################################################################
 void loading(Window *window)
 {
-Layer *rootLayer = window_get_root_layer(window);
-layer = layer_create(layer_get_frame(rootLayer));
-layer_add_child(rootLayer, layer);	
-layer_set_update_proc(layer, redraw);
-
+// Load graphic resources
 icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
 icon_messages_unread = gdraw_command_image_create_with_resource(RESOURCE_ID_MESSAGES_UNREAD);
 icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
+
+// Create Layers for content
+timeDisplay = layer_create(TimeFrame);
+dateDisplay = layer_create(DateFrame);
+batteryDisplay = layer_create(BatteryFrame);
+sharedDisplay = layer_create(SharedFrame);
+
+Layer *rootLayer = window_get_root_layer(window);
+layer_add_child(rootLayer, timeDisplay);
+layer_add_child(rootLayer, dateDisplay);
+layer_add_child(rootLayer, batteryDisplay);
+layer_add_child(rootLayer, sharedDisplay);
+
+layer_set_update_proc(timeDisplay, drawTime);
+layer_set_update_proc(dateDisplay, drawDate);
+layer_set_update_proc(batteryDisplay, drawBattery);
+layer_set_update_proc(sharedDisplay, drawShared);
+
 
 // Continue the sequence
 app_timer_register(DELTA, trigRedraw, NULL);

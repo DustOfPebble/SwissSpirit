@@ -2,12 +2,11 @@
 
 #include "Globals.h"
 #include "Constants.h"
-#include "HeartView.h"
+#include "SharedViews.h"
 
-static int framesIndex = 0;
 
 // ################# Called Function for rendering Background ################# 
-void redraw(Layer *surface, GContext* context)
+void drawShared(Layer *surface, GContext* context)
 {
   GDrawCommandFrame *frame = gdraw_command_sequence_get_frame_by_index(heartVector, framesIndex);
 

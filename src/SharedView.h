@@ -2,5 +2,5 @@
 #include "Globals.h"
 
 // Called Function for rendering screen
-void redraw(Layer *surface, GContext* context);
+void drawShared(Layer *surface, GContext* context);
 
