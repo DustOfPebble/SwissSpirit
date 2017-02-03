@@ -8,5 +8,7 @@ extern GDrawCommandImage *icon_time_elapsed
 extern GDrawCommandImage *icon_phone_lost
 extern GDrawCommandImage *icon_phone_linked
 
-
+extern int Secondes;
+extern int Minutes;
+extern int Hours;
 
