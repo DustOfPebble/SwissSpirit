@@ -23,10 +23,14 @@
 		},
 		{
 			"type": "raw",
-			"name": "MESSAGES_UNREAD",
-			"file": "MessagesUnread.pdc"
+			"name": "PHONE_LINKED",
+			"file": "PhoneLinked.pdc"
 		},
-		
+		{
+			"type": "raw",
+			"name": "PHONE_LOST",
+			"file": "PhoneLost.pdc"
+		}
 	]},
     "sdkVersion": "3",
     "shortName": "HeartSpy",

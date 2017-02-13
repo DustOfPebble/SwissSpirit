@@ -1,77 +1,84 @@
 #include <pebble.h>
 
-#include "Globals.h"
 #include "Constants.h"
+#include "Globals.h"
 
-#include "BasicView.h"
+#include "TimeViews.h"
+#include "BatteryView.h"
 #include "SharedView.h"
 
 Window *window = NULL;
-Layer *timeDisplay = NULL;
-Layer *dateDisplay = NULL;
+TextLayer *timeDisplay = NULL;
+TextLayer *dateDisplay = NULL;
 Layer *batteryDisplay = NULL;
 Layer *sharedDisplay = NULL;
 
 GDrawCommandImage *icon_heart_beat = NULL;
 GDrawCommandImage *icon_calls_missed = NULL;
-GDrawCommandImage *icon_messages_unread = NULL;
 GDrawCommandImage *icon_time_elapsed = NULL;
+GDrawCommandImage *icon_phone_linked = NULL;
+GDrawCommandImage *icon_phone_lost = NULL;
+
+GColor TextColor;
+GColor BackgroundColor;
 
 //#################################################################################
 static void manage_phone_incomming_datas(DictionaryIterator *PhoneDatas, void *context) {
 // Does this message contain a given value?
 	Tuple *isHeartRate = dict_find(PhoneDatas, HeartBeatMeasure);
-	if(isHeartRate)	{
+	if(isHeartRate)	{	}
+}
 
-	}
-}
-//#################################################################################
-void Uudate_Time(struct tm* TimeInfos, TimeUnits Unit) {
-  // Copying Hours and Minutes before asking for a redraw ..
-  Secondes = TimeInfos->tm_sec;
-  Minutes = TimeInfos->tm_min;
-  Hours = TimeInfos->tm_hour;
-  
-  // Marking NeedleWindow as to be redrawn ...
-  layer_mark_dirty(timeDisplay);
-}
 //#################################################################################
 void loading(Window *window) {
 	// Load graphic resources
 	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
-	icon_messages_unread = gdraw_command_image_create_with_resource(RESOURCE_ID_MESSAGES_UNREAD);
 	icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
+	icon_phone_linked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
+	icon_phone_lost = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LOST);
+
+	TextColor = GColorImperialPurple;
+	BackgroundColor = GColorElectricBlue;
 
 	// Create Layers for content
-	timeDisplay = layer_create(TimeFrame);
-	dateDisplay = layer_create(DateFrame);
+	timeDisplay = text_layer_create(TimeFrame);
+	text_layer_set_text_color(timeDisplay, TextColor);
+	text_layer_set_background_color(timeDisplay, BackgroundColor);
+	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter); 
+	text_layer_set_font(timeDisplay,fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+	
+	dateDisplay = text_layer_create(DateFrame);
 	batteryDisplay = layer_create(BatteryFrame);
 	sharedDisplay = layer_create(SharedFrame);
 
 	Layer *rootLayer = window_get_root_layer(window);
-	layer_add_child(rootLayer, timeDisplay);
-	layer_add_child(rootLayer, dateDisplay);
+	layer_add_child(rootLayer, text_layer_get_layer(timeDisplay));
+	layer_add_child(rootLayer, text_layer_get_layer(dateDisplay));
 	layer_add_child(rootLayer, batteryDisplay);
 	layer_add_child(rootLayer, sharedDisplay);
 
-	layer_set_update_proc(timeDisplay, drawTime);
-	layer_set_update_proc(dateDisplay, drawDate);
 	layer_set_update_proc(batteryDisplay, drawBattery);
 	layer_set_update_proc(sharedDisplay, drawShared);
 
-
-	// Forcing a redraw every second ...
-	tick_timer_service_subscribe(SECOND_UNIT, updateTime); 
+	// Update Time event ...
+	tick_timer_service_subscribe(MINUTE_UNIT, updateTime); 
+	
+	// Update Battery event ...
+	battery_state_service_subscribe(updateBattery); 
 }
 //#################################################################################
 void unLoading(Window *window) {
 	gdraw_command_image_destroy(icon_heart_beat);
-	gdraw_command_image_destroy(icon_messages_unread);
 	gdraw_command_image_destroy(icon_calls_missed);
 	gdraw_command_image_destroy(icon_time_elapsed);
+	gdraw_command_image_destroy(icon_phone_lost);
+	gdraw_command_image_destroy(icon_phone_linked);
 
-	layer_destroy(layer);
+	layer_destroy(text_layer_get_layer(timeDisplay));
+	layer_destroy(text_layer_get_layer(dateDisplay));
+	layer_destroy(batteryDisplay);
+	layer_destroy(sharedDisplay);
 }
 //#################################################################################
 int main(void) {
