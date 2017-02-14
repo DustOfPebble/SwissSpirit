@@ -16,5 +16,3 @@ extern GFont Font;
 
 extern GColor TextColor;
 extern GColor BackgroundColor;
-
-extern int BatteryLevel;
