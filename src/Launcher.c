@@ -49,7 +49,10 @@ void loading(Window *window) {
 	text_layer_set_font(timeDisplay,fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
 	
 	dateDisplay = text_layer_create(DateFrame);
+	
 	batteryDisplay = layer_create(BatteryFrame);
+	initLayoutBattery();
+	
 	sharedDisplay = layer_create(SharedFrame);
 
 	Layer *rootLayer = window_get_root_layer(window);

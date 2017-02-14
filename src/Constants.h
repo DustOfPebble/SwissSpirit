@@ -11,4 +11,3 @@ typedef enum {
 #define DateFrame GRect( 0, 47, 98, 46) 
 #define BatteryFrame GRect( 99, 47, 46, 46) 
 #define SharedFrame GRect( 0, 93, 144, 76) 
-
