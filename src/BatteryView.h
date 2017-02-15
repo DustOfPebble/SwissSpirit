@@ -1,10 +1,9 @@
 #include <pebble.h>
 #include "Globals.h"
 //#################################################################################
-int BatteryLevel;
-GRect BatteryValueBox;
-GColor GaugeBackground = GColorPastelYellow;
-GColor GaugeLevel = GColorMalachite;
+#define FULL "100%"
+#define BACK_WIDTH 6
+#define LEVEL_WIDTH 3
 //#################################################################################
 void initLayoutBattery(); 
 void updateBattery(BatteryChargeState batteryStatus);

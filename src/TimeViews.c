@@ -6,17 +6,9 @@
 
 //#################################################################################
 void updateTime(struct tm* TimeInfos, TimeUnits Unit) { 
-	// Converting Value to text...
-	char HoursText[] = "00";
-	snprintf(HoursText, sizeof(HoursText), "%d", TimeInfos->tm_hour);		
-	char MinutesText[] = "00";
-	snprintf(MinutesText, sizeof(MinutesText), "%d", TimeInfos->tm_min);		
-	
-	// Create Time stringto show
-	char TimeString[10];
-	strcpy (TimeString,HoursText);
-	strcat (TimeString,":");
-	strcat (TimeString,MinutesText);
+	// Create Time string to show
+	char TimeString[5] = "00:00";
+	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
 	
 	// Writting Time string
 	text_layer_set_text(timeDisplay, TimeString);
