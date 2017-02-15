@@ -7,6 +7,7 @@
 #include "BatteryView.h"
 #include "SharedView.h"
 
+//#################################################################################
 Window *window = NULL;
 TextLayer *timeDisplay = NULL;
 TextLayer *dateDisplay = NULL;
@@ -21,14 +22,12 @@ GDrawCommandImage *icon_phone_lost = NULL;
 
 GColor TextColor;
 GColor BackgroundColor;
-
 //#################################################################################
 static void manage_phone_incomming_datas(DictionaryIterator *PhoneDatas, void *context) {
 // Does this message contain a given value?
 	Tuple *isHeartRate = dict_find(PhoneDatas, HeartBeatMeasure);
 	if(isHeartRate)	{	}
 }
-
 //#################################################################################
 void loading(Window *window) {
 	// Load graphic resources

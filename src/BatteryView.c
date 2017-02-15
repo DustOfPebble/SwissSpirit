@@ -4,7 +4,7 @@
 #include "Constants.h"
 #include "BatteryView.h"
 
-
+//#################################################################################
 void initLayoutBattery() {
 	GFont Font = fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD)
 	GSize TextSize = graphics_draw_text("100%",Font,GTextOverflowModeWordWrap,GTextAlignmentCenter);
@@ -14,11 +14,12 @@ void initLayoutBattery() {
 	GaugeRadius = batteryDisplay.size.w / 2;
 	FrameCenter = grect_center_point(batteryDisplay);
 }
+//#################################################################################
 void updateBattery(BatteryChargeState batteryInfos) {
 	BatteryLevel = batteryInfos.charge_percent;
 	layer_mark_dirty(batteryDisplay);
 }
-
+//#################################################################################
 void drawBattery(Layer *frame, GContext* context) {
 
 	// Drawing Background Circle Track
@@ -38,3 +39,4 @@ void drawBattery(Layer *frame, GContext* context) {
 	graphics_draw_text(context,Text,Font,BatteryValueBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL); 
 
 }
+//#################################################################################
