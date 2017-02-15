@@ -64,7 +64,7 @@ void loading(Window *window) {
 	layer_set_update_proc(sharedDisplay, drawShared);
 
 	// Update Time event ...
-	tick_timer_service_subscribe(MINUTE_UNIT, updateTime); 
+	tick_timer_service_subscribe(SECOND_UNIT, updateTime); 
 	
 	// Update Battery event ...
 	battery_state_service_subscribe(updateBattery); 

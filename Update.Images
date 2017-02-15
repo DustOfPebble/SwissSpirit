@@ -7,3 +7,4 @@ echo "Updating resources ..."
 ./DrawCommands/SVG_to_PDC Design/PhoneLost.svg -o resources/PhoneLost.pdc
 ./DrawCommands/SVG_to_PDC Design/Thermometer.svg -o resources/Thermometer.pdc
 ./DrawCommands/SVG_to_PDC Design/TimeElapsed.svg -o resources/TimeElapsed.pdc
+./DrawCommands/SVG_to_PDC -s Design/Battery -o resources/Battery.pdc

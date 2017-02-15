@@ -4,52 +4,27 @@
 #include "Constants.h"
 #include "BatteryView.h"
 //#################################################################################
-int BatteryLevel;
-int GaugeRadius;
-GPoint FrameCenter;
-GRect BatteryValueBox;
-GColor GaugeBackground;
-GColor GaugeLevel;
-GFont BatteryFont;
+int SelectedIndicator;
+int MaxIndicator;
+GDrawCommandSequence *IndicatorCollection;
+GPoint DrawOffset;
 //#################################################################################
 void initLayoutBattery() {
-	BatteryFont = fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD);
 	GRect Bounds = layer_get_bounds(batteryDisplay);
-	GSize TextSize = graphics_text_layout_get_content_size(FULL,BatteryFont,Bounds,GTextOverflowModeWordWrap,GTextAlignmentCenter);
-
-	GPoint TextOrigin = GPoint( (Bounds.size.w - TextSize.w)/2, (Bounds.size.h - TextSize.h)/2 );
-	BatteryValueBox = GRect(TextOrigin.x,TextOrigin.y,TextSize.w, TextSize.h);
-	
-	GaugeRadius = (Bounds.size.w < Bounds.size.h) ? Bounds.size.w/2 : Bounds.size.h/2;
-	GaugeRadius = GaugeRadius - BACK_WIDTH;
-	FrameCenter = grect_center_point(&Bounds);
-	
-	GaugeBackground = GColorPastelYellow;
-	GaugeLevel = GColorMalachite;
+	IndicatorCollection = gdraw_command_sequence_create_with_resource(RESOURCE_ID_BATTERY_POWER);
+	GSize BatteryBox = gdraw_command_sequence_get_bounds_size(IndicatorCollection);
+	DrawOffset = GPoint((Bounds.size.w - BatteryBox.w)/2,(Bounds.size.h - BatteryBox.h)/2);
+	MaxIndicator = gdraw_command_sequence_get_num_frames(IndicatorCollection);
 }
 //#################################################################################
 void updateBattery(BatteryChargeState batteryInfos) {
-	BatteryLevel = batteryInfos.charge_percent;
+	SelectedIndicator = batteryInfos.charge_percent / 10;
+	if (SelectedIndicator > MaxIndicator)  SelectedIndicator = MaxIndicator;
 	layer_mark_dirty(batteryDisplay);
 }
 //#################################################################################
-void drawBattery(Layer *frame, GContext* context) {
-
-	// Drawing Background Circle Track
-	graphics_context_set_stroke_color(context, GaugeBackground); 
-	graphics_context_set_stroke_width(context, BACK_WIDTH); 
-	graphics_draw_circle(context, FrameCenter, GaugeRadius);		
-
-	// Drawing Gauge value circle...
-	graphics_context_set_stroke_width(context, LEVEL_WIDTH); 
-	graphics_context_set_stroke_color(context, GaugeLevel); 
-	graphics_draw_circle(context, FrameCenter, GaugeRadius);		
-
-	// Writing inner Text
-	char BatteryString[4] = FULL;
-	snprintf(BatteryString, sizeof(BatteryString), "%d%%", BatteryLevel);
-	graphics_context_set_text_color(context, TextColor);
-	graphics_draw_text(context,BatteryString,BatteryFont,BatteryValueBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL); 
-
+void drawBattery(Layer *frame, GContext* context) {	  
+   GDrawCommandFrame *Indicator = gdraw_command_sequence_get_frame_by_index(IndicatorCollection, SelectedIndicator);
+   gdraw_command_frame_draw(context, IndicatorCollection, Indicator, DrawOffset); 
 }
 //#################################################################################

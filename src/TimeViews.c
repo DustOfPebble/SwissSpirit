@@ -8,7 +8,8 @@
 void updateTime(struct tm* TimeInfos, TimeUnits Unit) { 
 	// Create Time string to show
 	char TimeString[5] = "00:00";
-	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
+//	snprintf(TimeString,sizeof(TimeString), "%.2d:%.2d", TimeInfos->tm_hour, TimeInfos->tm_min);
+
 	
 	// Writting Time string
 	text_layer_set_text(timeDisplay, TimeString);

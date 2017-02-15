@@ -30,6 +30,11 @@
 			"type": "raw",
 			"name": "PHONE_LOST",
 			"file": "PhoneLost.pdc"
+		},
+		{
+			"type": "raw",
+			"name": "BATTERY_POWER",
+			"file": "Battery.pdc"
 		}
 	]},
     "sdkVersion": "3",
