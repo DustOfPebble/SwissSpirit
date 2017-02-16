@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000002 70"
+   width="60"
+   height="54"
+   viewBox="0 0 60.000002 54"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Heart.svg">
+   sodipodi:docname="HeartBeat.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,14 +25,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.79296875"
-     inkscape:cx="979.96443"
-     inkscape:cy="265.16552"
+     inkscape:zoom="6.34375"
+     inkscape:cx="51.054318"
+     inkscape:cy="31.403465"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-width="1680"
+     inkscape:window-height="1001"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -53,10 +53,10 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-982.3622)">
+     transform="translate(0,-998.3622)">
     <path
-       style="fill:#c54646;fill-opacity:1;fill-rule:evenodd;stroke:#730000;stroke-width:4.50577021;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 35.396483,1003.1588 c -2.62229,-7.34229 -18.31608,-11.54529 -24.13806,0.435 -5.821984,11.9803 15.36222,32.2318 24.13806,37.6205 7.7271,-4.313 31.08138,-23.9162 24.35552,-37.1856 -6.72587,-13.26945 -20.05371,-8.34019 -24.35552,-0.8699 z"
+       style="fill:#ff5555;fill-opacity:1;fill-rule:evenodd;stroke:#550000;stroke-width:4.50577021;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 29.879242,1009.7794 c -2.62229,-7.3422 -18.31608,-11.54519 -24.1380607,0.435 -5.82198402,11.9803 15.3622207,32.2318 24.1380607,37.6205 7.7271,-4.313 31.08138,-23.9162 24.35552,-37.1856 -6.72587,-13.26935 -20.05371,-8.3401 -24.35552,-0.8699 z"
        id="path3093"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="czczc" />
