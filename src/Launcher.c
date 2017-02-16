@@ -48,9 +48,6 @@ void loading(Window *window) {
 	layer_add_child(rootLayer, batteryDisplay);
 	layer_set_update_proc(batteryDisplay, drawBattery);
 
-	layer_set_hidden(phoneDisplay,true);
-	layer_add_child(rootLayer, phoneDisplay);
-
 	layer_add_child(rootLayer, phoneDisplay);
 	layer_set_update_proc(phoneDisplay, drawPhoneLink);
 

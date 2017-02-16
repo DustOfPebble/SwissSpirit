@@ -28,16 +28,20 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=8
-FILE_NAME_0=965;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FBatteryView.c;0;4
-FILE_NAME_1=404;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FBatteryView.h;0;4
-FILE_NAME_2=205;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FConstants.h;0;4
-FILE_NAME_3=454;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FGlobals.h;0;4
-FILE_NAME_4=3754;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FLauncher.c;0;4
-FILE_NAME_5=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FSharedView.c;0;4
-FILE_NAME_6=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FSharedView.h;0;4
-FILE_NAME_7=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FTimeViews.h;0;4
-FILE_NAME_8=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FTimeViews.c;0;4
+current_page=9
+FILE_NAME_0=1442;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FBatteryView.c;0;4
+FILE_NAME_1=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FBatteryView.h;0;4
+FILE_NAME_2=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FConstants.h;0;4
+FILE_NAME_3=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FDataExchanger.c;0;4
+FILE_NAME_4=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FDataExchanger.h;0;4
+FILE_NAME_5=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FGlobals.h;0;4
+FILE_NAME_6=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FHeartBeatView.c;0;4
+FILE_NAME_7=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FHeartBeatView.h;0;4
+FILE_NAME_8=2280;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FLauncher.c;0;4
+FILE_NAME_9=1526;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FPhoneLinkView.c;0;4
+FILE_NAME_10=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FPhoneLinkView.h;0;4
+FILE_NAME_11=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FTimeViews.c;0;4
+FILE_NAME_12=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FTimeViews.h;0;4
 
 [VTE]
 last_dir=/home/xavier

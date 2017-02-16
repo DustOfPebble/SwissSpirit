@@ -26,13 +26,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.9714172"
-     inkscape:cx="28.82048"
+     inkscape:cx="9.5927486"
      inkscape:cy="16.79601"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1001"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,53 +54,9 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1017.3622)">
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#555555;stroke-width:1.10399997;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4983"
-       width="18.182745"
-       height="32.072342"
-       x="1.7332014"
-       y="1018.8358"
-       ry="2.5041101" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#555555;stroke-width:1.70299995;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 8.0466542,1021.8661 5.9346468,0.063"
-       id="path4987"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="fill:none;fill-opacity:1;stroke:#555555;stroke-width:0.93367887;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path4989"
-       sodipodi:type="arc"
-       sodipodi:cx="10.793009"
-       sodipodi:cy="1047.1515"
-       sodipodi:rx="1.9629395"
-       sodipodi:ry="1.8366538"
-       sodipodi:start="4.7136172"
-       sodipodi:end="4.6614794"
-       sodipodi:open="true"
-       d="m 10.79542,1045.3148 a 1.9629395,1.8366538 0 0 1 1.960392,1.815 1.9629395,1.8366538 0 0 1 -1.914047,1.8578 1.9629395,1.8366538 0 0 1 -2.0102879,-1.7666 1.9629395,1.8366538 0 0 1 1.8616429,-1.9038" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#0055aa;stroke-width:1.41421354px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 24.176579,1039.2839 c 2.659696,-1.781 2.253188,-6.288 0.02062,-7.7443"
-       id="path5043"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       sodipodi:nodetypes="cc"
-       inkscape:connector-curvature="0"
-       id="path5045"
-       d="m 26.544124,1042.8826 c 5.058108,-1.9442 6.747995,-11.1582 -0.358187,-15.0996"
-       style="fill:none;fill-rule:evenodd;stroke:#0055aa;stroke-width:1.41421354px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#0055aa;stroke-width:1.41421354px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 28.753834,1047.7124 c 7.42375,-4.3051 10.936289,-16.2037 0.08375,-24.4119"
-       id="path5047"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#aa0000;stroke-width:2.18393111;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 17.704739,1029.414 12.354914,12.4887"
+       d="m 14.026391,1028.5223 12.354914,12.4887"
        id="path5125"
        inkscape:connector-curvature="0"
        inkscape:transform-center-x="2.8333252"
@@ -108,7 +64,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path5129"
-       d="m 30.194275,1029.3861 -12.681484,12.2611"
+       d="m 26.515927,1028.4944 -12.681484,12.2611"
        style="fill:none;fill-rule:evenodd;stroke:#aa0000;stroke-width:2.19234395;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:transform-center-x="2.7959913"
        inkscape:transform-center-y="6.2025541" />
