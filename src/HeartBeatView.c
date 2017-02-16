@@ -2,11 +2,16 @@
 
 #include "Globals.h"
 #include "Constants.h"
-#include "SharedView.h"
 
-
-// ################# Called Function for rendering Background ################# 
-void drawShared(Layer *frame, GContext* context)
+#include "HeartBeatView.h"
+//#################################################################################
+GDrawCommandImage *icon_heart_beat;
+//#################################################################################
+void initLayoutHeartBeat(){
+	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
+}
+//#################################################################################
+void drawHeartMonitor(Layer *frame, GContext* context)
 {
 /* GDrawCommandFrame *frame = gdraw_command_sequence_get_frame_by_index(heartVector, framesIndex);
 

@@ -5,38 +5,23 @@
 
 #include "TimeViews.h"
 #include "BatteryView.h"
-#include "SharedView.h"
+#include "HeartBeatView.h"
+#include "PhoneLinkView.h"
 
+#include "DataExchanger.h"
 //#################################################################################
 Window *window = NULL;
 TextLayer *timeDisplay = NULL;
 TextLayer *dateDisplay = NULL;
-Layer *batteryDisplay = NULL;
-Layer *sharedDisplay = NULL;
 
-GDrawCommandImage *icon_heart_beat = NULL;
-GDrawCommandImage *icon_calls_missed = NULL;
-GDrawCommandImage *icon_time_elapsed = NULL;
-GDrawCommandImage *icon_phone_linked = NULL;
-GDrawCommandImage *icon_phone_lost = NULL;
+Layer *batteryDisplay = NULL;
+Layer *heartDisplay = NULL;
+Layer *phoneDisplay = NULL;
 
 GColor TextColor;
 GColor BackgroundColor;
 //#################################################################################
-static void manage_phone_incomming_datas(DictionaryIterator *PhoneDatas, void *context) {
-// Does this message contain a given value?
-	Tuple *isHeartRate = dict_find(PhoneDatas, HeartBeatMeasure);
-	if(isHeartRate)	{	}
-}
-//#################################################################################
 void loading(Window *window) {
-	// Load graphic resources --> should be moved into corresponding module
-	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
-	icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
-	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
-	icon_phone_linked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
-	icon_phone_lost = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LOST);
-
 	// Loading Basic shared colors Layers
 	TextColor = GColorImperialPurple;
 	BackgroundColor = GColorElectricBlue; // Not used 
@@ -51,16 +36,27 @@ void loading(Window *window) {
 	batteryDisplay = layer_create(BatteryFrame);
 	initLayoutBattery();
 	
-	sharedDisplay = layer_create(SharedFrame);
+	phoneDisplay = layer_create(SharedFrame);
+	initLayoutPhoneLink();
+	heartDisplay = layer_create(SharedFrame);
+	initLayoutHeartBeat();
 
 	Layer *rootLayer = window_get_root_layer(window);
 	layer_add_child(rootLayer, text_layer_get_layer(timeDisplay));
 	layer_add_child(rootLayer, text_layer_get_layer(dateDisplay));
-	layer_add_child(rootLayer, batteryDisplay);
-	layer_add_child(rootLayer, sharedDisplay);
 
+	layer_add_child(rootLayer, batteryDisplay);
 	layer_set_update_proc(batteryDisplay, drawBattery);
-	layer_set_update_proc(sharedDisplay, drawShared);
+
+	layer_set_hidden(phoneDisplay,true);
+	layer_add_child(rootLayer, phoneDisplay);
+
+	layer_add_child(rootLayer, phoneDisplay);
+	layer_set_update_proc(phoneDisplay, drawPhoneLink);
+
+	layer_set_hidden(heartDisplay,true); // Waiting for a Beat info to show...
+	layer_add_child(rootLayer, heartDisplay);
+	layer_set_update_proc(heartDisplay, drawHeartMonitor);
 
 	// Subscribe to events services
 	tick_timer_service_subscribe(MINUTE_UNIT, eventTimeCatcher); 
@@ -72,22 +68,16 @@ void loading(Window *window) {
 }
 //#################################################################################
 void unLoading(Window *window) {
-	// Destroy allocated graphic resources --> May be useless ...
-	gdraw_command_image_destroy(icon_heart_beat);
-	gdraw_command_image_destroy(icon_calls_missed);
-	gdraw_command_image_destroy(icon_time_elapsed);
-	gdraw_command_image_destroy(icon_phone_lost);
-	gdraw_command_image_destroy(icon_phone_linked);
-	
 	// UnSubscribe to events services
 	tick_timer_service_unsubscribe(); 
 	battery_state_service_unsubscribe();
 
-
+	// Destroy all Layers
 	layer_destroy(text_layer_get_layer(timeDisplay));
 	layer_destroy(text_layer_get_layer(dateDisplay));
 	layer_destroy(batteryDisplay);
-	layer_destroy(sharedDisplay);
+	layer_destroy(phoneDisplay);
+	layer_destroy(heartDisplay);
 }
 //#################################################################################
 int main(void) {
