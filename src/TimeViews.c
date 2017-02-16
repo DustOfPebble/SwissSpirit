@@ -30,7 +30,7 @@ void initLayoutDate(){
 void updateTime(struct tm* TimeInfos) { 
 	// Create strings to show
 	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
-	snprintf(DateString,sizeof(DateString), " %s\n% d %s", Days[TimeInfos->tm_wday],TimeInfos->tm_mday,Months[TimeInfos->tm_mon]);
+	snprintf(DateString,sizeof(DateString), " %s\n %d %s", Days[TimeInfos->tm_wday],TimeInfos->tm_mday,Months[TimeInfos->tm_mon]);
 
 	// Updating Layers
 	text_layer_set_text(timeDisplay, TimeString);
