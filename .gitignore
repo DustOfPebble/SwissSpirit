@@ -1,4 +1,3 @@
-resources/
+.lock-waf_linux2_build
 build/
 
-.lock-waf_linux2_build
