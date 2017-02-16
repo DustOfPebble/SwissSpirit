@@ -28,18 +28,16 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=560;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FBatteryView.c;0;4
-FILE_NAME_1=192;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FBatteryView.h;0;4
-FILE_NAME_2=262;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FConstants.h;0;4
-FILE_NAME_3=454;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FGlobals.h;0;4
-FILE_NAME_4=1962;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FLauncher.c;0;4
-FILE_NAME_5=85;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FSharedView.c;0;4
-FILE_NAME_6=0;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FSharedView.h;0;4
-FILE_NAME_7=603;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FTimeViews.c;0;4
-FILE_NAME_8=41;C++;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fsrc%2FTimeViews.h;0;4
-FILE_NAME_9=1;JSON;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2Fappinfo.json;0;4
-FILE_NAME_10=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FStudio%2FHeartSpyWatch%2FUpdate.Images;0;4
+current_page=8
+FILE_NAME_0=965;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FBatteryView.c;0;4
+FILE_NAME_1=404;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FBatteryView.h;0;4
+FILE_NAME_2=205;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FConstants.h;0;4
+FILE_NAME_3=454;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FGlobals.h;0;4
+FILE_NAME_4=3754;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FLauncher.c;0;4
+FILE_NAME_5=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FSharedView.c;0;4
+FILE_NAME_6=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FSharedView.h;0;4
+FILE_NAME_7=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FTimeViews.h;0;4
+FILE_NAME_8=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fxavier%2FPebble.Studio%2FHeartSpyWatch%2Fsrc%2FTimeViews.c;0;4
 
 [VTE]
 last_dir=/home/xavier

@@ -30,24 +30,23 @@ static void manage_phone_incomming_datas(DictionaryIterator *PhoneDatas, void *c
 }
 //#################################################################################
 void loading(Window *window) {
-	// Load graphic resources
+	// Load graphic resources --> should be moved into corresponding module
 	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
 	icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
 	icon_phone_linked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
 	icon_phone_lost = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LOST);
 
+	// Loading Basic shared colors Layers
 	TextColor = GColorImperialPurple;
-	BackgroundColor = GColorElectricBlue;
+	BackgroundColor = GColorElectricBlue; // Not used 
 
 	// Create Layers for content
 	timeDisplay = text_layer_create(TimeFrame);
-	text_layer_set_text_color(timeDisplay, TextColor);
-	text_layer_set_background_color(timeDisplay, BackgroundColor);
-	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter); 
-	text_layer_set_font(timeDisplay,fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+	initLayoutTime();	
 	
 	dateDisplay = text_layer_create(DateFrame);
+	initLayoutDate();	
 	
 	batteryDisplay = layer_create(BatteryFrame);
 	initLayoutBattery();
@@ -63,19 +62,27 @@ void loading(Window *window) {
 	layer_set_update_proc(batteryDisplay, drawBattery);
 	layer_set_update_proc(sharedDisplay, drawShared);
 
-	// Update Time event ...
-	tick_timer_service_subscribe(SECOND_UNIT, updateTime); 
-	
-	// Update Battery event ...
-	battery_state_service_subscribe(updateBattery); 
+	// Subscribe to events services
+	tick_timer_service_subscribe(MINUTE_UNIT, eventTimeCatcher); 
+	battery_state_service_subscribe(updateBattery);
+
+	// Force initial refresh on all layers 	
+	updateTime(get_time());
+	updateBattery(battery_state_service_peek()); 
 }
 //#################################################################################
 void unLoading(Window *window) {
+	// Destroy allocated graphic resources --> May be useless ...
 	gdraw_command_image_destroy(icon_heart_beat);
 	gdraw_command_image_destroy(icon_calls_missed);
 	gdraw_command_image_destroy(icon_time_elapsed);
 	gdraw_command_image_destroy(icon_phone_lost);
 	gdraw_command_image_destroy(icon_phone_linked);
+	
+	// UnSubscribe to events services
+	tick_timer_service_unsubscribe(); 
+	battery_state_service_unsubscribe();
+
 
 	layer_destroy(text_layer_get_layer(timeDisplay));
 	layer_destroy(text_layer_get_layer(dateDisplay));

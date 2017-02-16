@@ -26,13 +26,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="12.6875"
-     inkscape:cx="40.384465"
+     inkscape:cx="14.689883"
      inkscape:cy="31.112314"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-width="1680"
+     inkscape:window-height="1001"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -55,7 +55,7 @@
      id="layer1"
      transform="translate(0,-1012.3622)">
     <rect
-       style="fill:#d4d4d4;fill-opacity:1;fill-rule:evenodd;stroke:#d4d4d4;stroke-width:1.77191687;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:1.77191687;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect3259"
        width="8.0306406"
        height="3.8252938"
@@ -64,12 +64,12 @@
        ry="1.2751006" />
     <rect
        ry="1.0764872"
-       y="1029.1213"
-       x="1.9437041"
+       y="1028.5697"
+       x="2.258975"
        height="21.050739"
-       width="24.171761"
+       width="23.383583"
        id="rect3318"
-       style="fill:#4bf5fb;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.79322886px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       style="fill:#00ffaa;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.79322886px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <rect
        ry="1.6428379"
        y="1018.2206"
@@ -77,6 +77,6 @@
        height="32.125744"
        width="23.988783"
        id="rect3316"
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#d6d6d6;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
   </g>
 </svg>
