@@ -10,6 +10,13 @@ GDrawCommandImage *icon_phone_lost;
 
 GDrawCommandImage *icon_calls_missed;
 GDrawCommandImage *icon_time_elapsed;
+
+bool isPhoneConnected;
+//#################################################################################
+void updatePhoneLink(bool connected) {
+	isPhoneConnected = connected;
+	layer_mark_dirty(phoneDisplay);
+}	
 //#################################################################################
 void initLayoutPhoneLink() {
 	icon_phone_linked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
@@ -19,8 +26,7 @@ void initLayoutPhoneLink() {
 	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
 }
 //#################################################################################
-void drawPhoneLink(Layer *frame, GContext* context)
-{
+void drawPhoneLink(Layer *frame, GContext* context) {
 /* GDrawCommandFrame *frame = gdraw_command_sequence_get_frame_by_index(heartVector, framesIndex);
 
   // If another frame was found, draw it

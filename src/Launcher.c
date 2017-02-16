@@ -61,10 +61,12 @@ void loading(Window *window) {
 	// Subscribe to events services
 	tick_timer_service_subscribe(MINUTE_UNIT, eventTimeCatcher); 
 	battery_state_service_subscribe(updateBattery);
+	connection_service_subscribe((ConnectionHandlers) { .pebble_app_connection_handler = updatePhoneLink });
 
 	// Force initial refresh on all layers 	
 	updateTime(get_time());
 	updateBattery(battery_state_service_peek()); 
+	updatePhoneLink(connection_service_peek_pebble_app_connection());
 }
 //#################################################################################
 void unLoading(Window *window) {

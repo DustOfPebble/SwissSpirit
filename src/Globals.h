@@ -10,7 +10,8 @@ extern GDrawCommandImage *icon_phone_linked;
 extern TextLayer *timeDisplay;
 extern TextLayer *dateDisplay;
 extern Layer *batteryDisplay;
-extern Layer *sharedDisplay;
+extern Layer *phoneDisplay;
+extern Layer *heartDisplay;
 
 extern GFont Font;
 
