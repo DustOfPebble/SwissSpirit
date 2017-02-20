@@ -1,10 +1,10 @@
 #/bin/bash
 echo "Updating resources ..."
 
-./DrawCommands/SVG_to_PDC Design/HeartBeat.svg -o resources/HeartBeat.pdc
-./DrawCommands/SVG_to_PDC Design/CallsMissed.svg -o resources/CallsMissed.pdc
-./DrawCommands/SVG_to_PDC Design/PhoneLinked.svg -o resources/PhoneLinked.pdc
-./DrawCommands/SVG_to_PDC Design/PhoneLost.svg -o resources/PhoneLost.pdc
-./DrawCommands/SVG_to_PDC Design/Thermometer.svg -o resources/Thermometer.pdc
-./DrawCommands/SVG_to_PDC Design/TimeElapsed.svg -o resources/TimeElapsed.pdc
-./DrawCommands/SVG_to_PDC -s Design/Battery -o resources/Battery.pdc
+./DrawCommands/SVG_to_PDC -p Design/HeartBeat.svg -o resources/HeartBeat.pdc
+./DrawCommands/SVG_to_PDC -p Design/CallsMissed.svg -o resources/CallsMissed.pdc
+./DrawCommands/SVG_to_PDC -p Design/PhoneLinked.svg -o resources/PhoneLinked.pdc
+./DrawCommands/SVG_to_PDC -p Design/PhoneLost.svg -o resources/PhoneLost.pdc
+./DrawCommands/SVG_to_PDC -p Design/Thermometer.svg -o resources/Thermometer.pdc
+./DrawCommands/SVG_to_PDC -p Design/TimeElapsed.svg -o resources/TimeElapsed.pdc
+./DrawCommands/SVG_to_PDC -p -s Design/Battery -o resources/Battery.pdc
