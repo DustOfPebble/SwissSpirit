@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Battery.08.svg">
+   sodipodi:docname="Battery.00.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,18 +25,24 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="12.6875"
-     inkscape:cx="-12.344599"
-     inkscape:cy="30.954679"
+     inkscape:zoom="22.627417"
+     inkscape:cx="20.758971"
+     inkscape:cy="17.588116"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1001"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     units="px" />
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:object-nodes="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3195" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -54,29 +60,10 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1012.3622)">
-    <rect
-       ry="0.49158636"
-       y="1023.21"
-       x="2.4166105"
-       height="26.567982"
-       width="23.147129"
-       id="rect3318"
-       style="fill:#00ffaa;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.79322886px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <rect
-       ry="1.6428379"
-       y="1018.2206"
-       x="2.0351653"
-       height="32.125744"
-       width="23.988783"
-       id="rect3316"
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:2.00000018;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
-    <rect
-       style="fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:#aaaaaa;stroke-width:1.75825512;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect3259"
-       width="8.0443029"
-       height="3.7601376"
-       x="10.007401"
-       y="1014.5447"
-       ry="1.2533818" />
+    <path
+       style="fill:#ff0000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 1,1046.3622 0,2 1,2 3,1 18,0 3,-1 1,-2 0,-2 z"
+       id="path3203"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

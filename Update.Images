@@ -1,10 +1,33 @@
 #/bin/bash
 echo "Updating resources ..."
 
-./DrawCommands/SVG_to_PDC -p Design/HeartBeat.svg -o resources/HeartBeat.pdc
-./DrawCommands/SVG_to_PDC -p Design/CallsMissed.svg -o resources/CallsMissed.pdc
-./DrawCommands/SVG_to_PDC -p Design/PhoneLinked.svg -o resources/PhoneLinked.pdc
-./DrawCommands/SVG_to_PDC -p Design/PhoneLost.svg -o resources/PhoneLost.pdc
-./DrawCommands/SVG_to_PDC -p Design/Thermometer.svg -o resources/Thermometer.pdc
-./DrawCommands/SVG_to_PDC -p Design/TimeElapsed.svg -o resources/TimeElapsed.pdc
-./DrawCommands/SVG_to_PDC -p -s Design/Battery -o resources/Battery.pdc
+function makeFrame() {
+FILE=$SVG_DIRECTORY/$1.svg
+TARGET=$RESOURCES/$1.pdc
+
+echo "Processing Frame $FILE ..." 
+./DrawCommands/SVG_to_PDC -p $FILE -o $TARGET
+
+}
+
+
+function makeSequence() {
+DIRECTORY=$SVG_DIRECTORY/$1
+TARGET=$RESOURCES/$1.pdc
+
+echo "Processing Sequence directory $DIRECTORY ..." 
+./DrawCommands/SVG_to_PDC -p -s $DIRECTORY -o $TARGET
+
+}
+
+SVG_DIRECTORY=Design
+RESOURCES=resources
+
+makeFrame HeartBeat
+makeFrame CallsMissed
+makeFrame PhoneLinked
+makeFrame PhoneLost
+makeFrame Thermometer
+makeFrame TimeElapsed
+makeFrame Battery
+makeSequence Levels
