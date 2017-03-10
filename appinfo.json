@@ -24,7 +24,7 @@
 		{
 			"type": "raw",
 			"name": "PHONE_LINKED",
-			"file": "phoneLinked.png"
+			"file": "PhoneLinked.pdc"
 		},
 		{
 			"type": "raw",
@@ -33,8 +33,13 @@
 		},
 		{
 			"type": "raw",
-			"name": "BATTERY_POWER",
+			"name": "BATTERY",
 			"file": "Battery.pdc"
+		},
+		{
+			"type": "raw",
+			"name": "BATTERY_LEVELS",
+			"file": "Levels.pdc"
 		}
 	]},
     "sdkVersion": "3",
