@@ -11,7 +11,7 @@
 #define VALUE_FONT FONT_KEY_GOTHIC_24_BOLD
 
 typedef enum {
-  HeartBeatMeasure = 1,  
+  HeartBeatMeasure = 0,  
   
 } AppKeys;
 
