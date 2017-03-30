@@ -49,6 +49,6 @@
     "versionLabel": "0.1",
     "watchapp": {
         "onlyShownOnCommunication": true,
-        "watchface": true
+        "watchface": false
     }
 }
