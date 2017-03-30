@@ -9,8 +9,9 @@
 #define TIME_FONT FONT_KEY_BITHAM_42_BOLD
 #define DATE_FONT FONT_KEY_GOTHIC_18_BOLD
 #define VALUE_FONT FONT_KEY_GOTHIC_24_BOLD
+
 typedef enum {
-  HeartBeatMeasure = 0,  
+  HeartBeatMeasure = 1,  
   
 } AppKeys;
 
