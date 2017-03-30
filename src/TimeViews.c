@@ -33,6 +33,9 @@ void updateTime(struct tm* TimeInfos) {
 	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
 	snprintf(DateString,sizeof(DateString), " %s\n %d %s", Days[TimeInfos->tm_wday],TimeInfos->tm_mday,Months[TimeInfos->tm_mon]);
 
+    APP_LOG(APP_LOG_LEVEL_ERROR, "Triggered by Time events");
+
+
 	// Updating Layers
 	text_layer_set_text(timeDisplay, TimeString);
 	layer_mark_dirty(text_layer_get_layer(timeDisplay));
