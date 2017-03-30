@@ -1,5 +1,6 @@
 #include <pebble.h>
 
 #include "Constants.h"
+#include "PhoneLinkView.h"
 
-void manage_phone_incomming_datas(DictionaryIterator *PhoneDatas, void *context);
+void incomming_datas(DictionaryIterator *PhoneDatas, void *context);
