@@ -47,7 +47,7 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 	// Converting Value to text...
  char Text[] = "     ";
  snprintf(Text, sizeof(Text), "%d bpm", lastValue);	
- GFont Font =  fonts_get_system_font(TIME_FONT);
+ GFont Font =  fonts_get_system_font(VALUE_FONT);
  GRect Bounds = layer_get_bounds(frame);
  GPoint Center = GPoint( Bounds.size.w / 2, Bounds.size.h /2);	
 
