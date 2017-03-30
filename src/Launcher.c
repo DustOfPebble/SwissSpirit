@@ -87,7 +87,8 @@ int main(void) {
 	window_stack_push(window, true);
 
 	// Register to be notified about inbox received events
-	app_message_register_inbox_received(incomming_datas);
+	app_message_register_inbox_received(received);
+  app_message_register_inbox_dropped(dropped);  
   app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
 
 	// Entering event loop until exit requested

@@ -1,4 +1,5 @@
 {
+    "appKeys": { "HeartBeatMeasure": 0 },
     "capabilities": [""],
     "companyName": "Dust in Cloud ",
     "longName": "Heart Spy Watch",

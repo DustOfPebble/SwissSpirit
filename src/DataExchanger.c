@@ -1,9 +1,13 @@
 #include "DataExchanger.h"
 //#################################################################################
-void incomming_datas(DictionaryIterator *PhoneDatas, void *context) {
+void received(DictionaryIterator *PhoneDatas, void *context) {
 // Does this message contain a given value?
 	Tuple *isHeartRate = dict_find(PhoneDatas, HeartBeatMeasure);
 	if(isHeartRate)	{ updateDemo(isHeartRate->value->int32);}
+}
 
-	updateDemo(254);
+void dropped(AppMessageResult reason, void *context) {
+  // A message was received, but had to be dropped
+  APP_LOG(APP_LOG_LEVEL_ERROR, "Message dropped. Reason: %d", (int)reason);
+  updateDemo(254);
 }
