@@ -9,13 +9,14 @@ void received_done(DictionaryIterator *PhoneDatas, void *context) {
 	  updateDemo(contains->value->int32);
   }
 
-  Tuple *item = dict_read_first(PhoneDatas);
-  while (item)
+/*
+    Tuple *item = dict_read_first(PhoneDatas);
+	while (item)
 	{
 		APP_LOG(APP_LOG_LEVEL_DEBUG, "Found key[%d] with playload of %d bytes",(int) item->key, (int)item->length);
 		item = dict_read_next(PhoneDatas);
 	}
-
+*/
 }
 
 void received_dropped(AppMessageResult reason, void *context) {

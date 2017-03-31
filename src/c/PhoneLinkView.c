@@ -22,6 +22,7 @@ void updatePhoneLink(bool connected) {
 //#################################################################################
 void updateDemo(int32_t value) {
 	lastValue = (int)value;
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "Value catched [%d] ",(int) lastValue);
 	layer_mark_dirty(phoneDisplay);
 }
 //#################################################################################
@@ -45,8 +46,12 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 	if (!isPhoneConnected) gdraw_command_image_draw(context, icon_phone_lost, Origin);
 
 	// Converting Value to text...
- char Text[] = "     ";
+ char Text[] = "       ";
  snprintf(Text, sizeof(Text), "%d bpm", lastValue);
+ APP_LOG(APP_LOG_LEVEL_DEBUG, "showing value [%d] ", lastValue);
+ APP_LOG(APP_LOG_LEVEL_DEBUG, "showing text [%s] ", Text);
+
+
  GFont Font =  fonts_get_system_font(VALUE_FONT);
  GRect Bounds = layer_get_bounds(frame);
  GPoint Center = GPoint( Bounds.size.w / 2, Bounds.size.h /2);
