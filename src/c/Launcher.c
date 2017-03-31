@@ -60,8 +60,6 @@ void loading(Window *window) {
 	layer_add_child(rootLayer, heartDisplay);
 	layer_set_update_proc(heartDisplay, drawHeartMonitor);
 
-	updateViewSelector();
-
 	// Subscribe to events services
 	tick_timer_service_subscribe(SECOND_UNIT, eventTimeCatcher);
 	battery_state_service_subscribe(updateBattery);
@@ -90,6 +88,7 @@ int main(void) {
 	// Shared vars initilization
 	SecondsSinceSensorUpdate = -1; // Unknown
 	SecondsSinceDisconnection = -1; // Unknown
+	SecondsSinceConnection = -1; // Unknown
 	isPhoneConnected=false; // Not Connected by default
 
 	// Loading and Applying settings
