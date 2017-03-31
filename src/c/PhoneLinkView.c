@@ -37,7 +37,7 @@ void initLayoutPhoneLink() {
 
 	GRect LayerBox = layer_get_bounds(phoneDisplay);
 	GSize Box = gdraw_command_image_get_bounds_size(icon_phone_linked);
-	Origin = GPoint(Box.w/3,(LayerBox.size.h - Box.h)/2);
+	Origin = GPoint(LayerBox.size.w/10,(LayerBox.size.h - Box.h)/2);
 
 	icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);

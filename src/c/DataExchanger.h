@@ -3,7 +3,7 @@
 #include "Constants.h"
 #include "utils.h"
 #include "HeartBeatView.h"
-#include  "ViewSelector.h"
+#include "ViewSelector.h"
 
 void received_done(DictionaryIterator *PhoneDatas, void *context);
 void received_dropped(AppMessageResult reason, void *context);

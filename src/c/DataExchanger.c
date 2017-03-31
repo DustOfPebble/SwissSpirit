@@ -1,19 +1,14 @@
 #include "DataExchanger.h"
 
-tm* TimeStampsUpdate;
 //#################################################################################
 void received_done(DictionaryIterator *PhoneDatas, void *context) {
 //  APP_LOG(APP_LOG_LEVEL_DEBUG, "Message received !");
   Tuple *Element = dict_find(PhoneDatas, SensorValue);
   if(Element) {
 //	  APP_LOG(APP_LOG_LEVEL_DEBUG, "searched key:SensorValue[%d] has value %ds",(int) SensorValue, (int)Element->value->int32);
-	  if (SecondsSinceSensorUpdate == -1) TimeStampsUpdate = get_time();
-	  SecondsSinceSensorUpdate = elapsed_seconds(TimeStampsUpdate);
-	  TimeStampsUpdate = get_time();
-
   	  updateHeartBeat(Element->value->int32);
+  	  updateHeartBeatHistory();
   	  updateViewSelector();
-
   }
 
 /*

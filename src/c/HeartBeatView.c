@@ -1,34 +1,34 @@
-#include <pebble.h>
-
-#include "Globals.h"
-#include "Constants.h"
-
 #include "HeartBeatView.h"
 //#################################################################################
 GDrawCommandImage *icon_heart_beat;
 
 int storedValue;
 static GPoint Origin;
+tm* TimeStampsUpdate;
 //#################################################################################
 void initLayoutHeartBeat(){
 	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
 
 	GRect LayerBox = layer_get_bounds(phoneDisplay);
 	GSize Box = gdraw_command_image_get_bounds_size(icon_heart_beat);
-	Origin = GPoint(Box.w/3,(LayerBox.size.h - Box.h)/2);
+	Origin = GPoint(LayerBox.size.w/10,(LayerBox.size.h - Box.h)/2);
 
 	storedValue = 0;
 }
 //#################################################################################
 void updateHeartBeat(int32_t value) {
 	storedValue = (int)value;
+	TimeStampsUpdate = get_time();
 	layer_mark_dirty(heartDisplay);
+}
+//#################################################################################
+void updateHeartBeatHistory() {
+	SecondsSinceSensorUpdate = elapsed_seconds(TimeStampsUpdate);
 }
 //#################################################################################
 void drawHeartMonitor(Layer *frame, GContext* context)
 {
 	gdraw_command_image_draw(context, icon_heart_beat, Origin);
-
 
 // Converting Value to text...
  char Text[] = "       ";

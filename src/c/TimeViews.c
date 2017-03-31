@@ -38,5 +38,6 @@ void updateTime(struct tm* TimeInfos) {
 void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
 	updateTime(TimeInfos);
 	updatePhoneLinkHistory();
+	updateHeartBeatHistory();
 	updateViewSelector();
 }
