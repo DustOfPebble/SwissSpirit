@@ -6,6 +6,7 @@
     "pebble": {
         "displayName": "Heart Spy Watch",
         "enableMultiJS": true,
+        "messageKeys": [ ],
         "projectType": "native",
         "resources": {
             "media": [
@@ -32,6 +33,11 @@
                 {
                     "file": "data/CallsMissed.pdc",
                     "name": "CALLS_MISSED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/PhoneLost.pdc",
+                    "name": "PHONE_LOST",
                     "type": "raw"
                 },
                 {
