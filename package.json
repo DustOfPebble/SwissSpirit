@@ -6,9 +6,6 @@
     "pebble": {
         "displayName": "Heart Spy Watch",
         "enableMultiJS": true,
-        "messageKeys": [
-            "HeartBeatMeasure"
-        ],
         "projectType": "native",
         "resources": {
             "media": [
