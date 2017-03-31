@@ -30,11 +30,6 @@
                     "type": "raw"
                 },
                 {
-                    "file": "data/PhoneLost.pdc",
-                    "name": "PHONE_LOST",
-                    "type": "raw"
-                },
-                {
                     "file": "data/CallsMissed.pdc",
                     "name": "CALLS_MISSED",
                     "type": "raw"
