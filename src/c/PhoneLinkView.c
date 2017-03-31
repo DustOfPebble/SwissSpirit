@@ -14,8 +14,8 @@ GDrawCommandImage *icon_calls_missed;
 GDrawCommandImage *icon_time_elapsed;
 
 static GPoint Origin;
-tm* TimeStampsConnected;
-tm* TimeStampsStartConnected;
+tm* TimeStampsConnected = NULL;
+tm* TimeStampsStartConnected = NULL;
 //#################################################################################
 void updatePhoneLinkHistory() {
 	if (isPhoneConnected) TimeStampsConnected = get_time();
@@ -24,8 +24,8 @@ void updatePhoneLinkHistory() {
 }
 //#################################################################################
 void updatePhoneLink(bool connected) {
+	if (!isPhoneConnected || connected) TimeStampsStartConnected = get_time();
 	isPhoneConnected = connected;
-	if (isPhoneConnected) TimeStampsStartConnected = get_time();
 	updatePhoneLinkHistory();
 	updateViewSelector();
 	layer_mark_dirty(phoneDisplay);
@@ -41,6 +41,9 @@ void initLayoutPhoneLink() {
 
 	icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
+	
+	TimeStampsConnected = get_time();
+	TimeStampsStartConnected = get_time();
 }
 //#################################################################################
 void drawPhoneLink(Layer *frame, GContext* context) {

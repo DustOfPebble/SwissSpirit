@@ -22,6 +22,7 @@ Layer *phoneDisplay = NULL;
 
 GColor TextColor;
 GColor BackgroundColor;
+
 int SecondsSinceSensorUpdate;
 int SecondsSinceDisconnection;
 int SecondsSinceConnection;
@@ -44,6 +45,7 @@ void loading(Window *window) {
 
 	phoneDisplay = layer_create(SharedFrame);
 	initLayoutPhoneLink();
+
 	heartDisplay = layer_create(SharedFrame);
 	initLayoutHeartBeat();
 
@@ -66,9 +68,10 @@ void loading(Window *window) {
 	connection_service_subscribe((ConnectionHandlers) { .pebble_app_connection_handler = updatePhoneLink });
 
 	// Force initial refresh on all layers
-	updateTime(get_time());
 	updateBattery(battery_state_service_peek());
 	updatePhoneLink(connection_service_peek_pebble_app_connection());
+	updateTime(get_time());
+	
 }
 //#################################################################################
 void unLoading(Window *window) {

@@ -8,6 +8,8 @@ void updateViewSelector(){
 	 * - Sensor lost --> wait 30 seconds until showing back phoneDisplay
 	 */
 
+APP_LOG(APP_LOG_LEVEL_DEBUG, "Connected since:%d s Disconnected since:%d s SensorUpdate sinc %d s.",SecondsSinceConnection, SecondsSinceDisconnection, SecondsSinceSensorUpdate);
+
 	if (SecondsSinceDisconnection > 0)	{
 		layer_set_hidden(heartDisplay,true);
 		layer_set_hidden(phoneDisplay,false);
