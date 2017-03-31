@@ -18,23 +18,20 @@ tm* get_time(){
 //#################################################################################
 void initLayoutTime(){
 	text_layer_set_text_color(timeDisplay, TextColor);
-	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter); 
-	text_layer_set_font(timeDisplay,fonts_get_system_font(TIME_FONT));	
+	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter);
+	text_layer_set_font(timeDisplay,fonts_get_system_font(TIME_FONT));
 }
 //#################################################################################
 void initLayoutDate(){
 	text_layer_set_text_color(dateDisplay, TextColor);
-	text_layer_set_text_alignment(dateDisplay,GTextAlignmentLeft); 
-	text_layer_set_font(dateDisplay,fonts_get_system_font(DATE_FONT));	
+	text_layer_set_text_alignment(dateDisplay,GTextAlignmentLeft);
+	text_layer_set_font(dateDisplay,fonts_get_system_font(DATE_FONT));
 }
 //#################################################################################
-void updateTime(struct tm* TimeInfos) { 
+void updateTime(struct tm* TimeInfos) {
 	// Create strings to show
 	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
 	snprintf(DateString,sizeof(DateString), " %s\n %d %s", Days[TimeInfos->tm_wday],TimeInfos->tm_mday,Months[TimeInfos->tm_mon]);
-
-    APP_LOG(APP_LOG_LEVEL_ERROR, "Triggered by Time events");
-
 
 	// Updating Layers
 	text_layer_set_text(timeDisplay, TimeString);
@@ -44,6 +41,7 @@ void updateTime(struct tm* TimeInfos) {
 	layer_mark_dirty(text_layer_get_layer(dateDisplay));
 }
 //#################################################################################
-void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) { 
+void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
 	updateTime(TimeInfos);
+	send(TimeInfos->tm_min);
 }

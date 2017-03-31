@@ -24,18 +24,18 @@ GColor BackgroundColor;
 void loading(Window *window) {
 	// Loading Basic shared colors Layers
 	TextColor = GColorImperialPurple;
-	BackgroundColor = GColorElectricBlue; // Not used 
+	BackgroundColor = GColorElectricBlue; // Not used
 
 	// Create Layers for content
 	timeDisplay = text_layer_create(TimeFrame);
-	initLayoutTime();	
-	
+	initLayoutTime();
+
 	dateDisplay = text_layer_create(DateFrame);
-	initLayoutDate();	
-	
+	initLayoutDate();
+
 	batteryDisplay = layer_create(BatteryFrame);
 	initLayoutBattery();
-	
+
 	phoneDisplay = layer_create(SharedFrame);
 	initLayoutPhoneLink();
 	heartDisplay = layer_create(SharedFrame);
@@ -56,19 +56,19 @@ void loading(Window *window) {
 	layer_set_update_proc(heartDisplay, drawHeartMonitor);
 
 	// Subscribe to events services
-	tick_timer_service_subscribe(MINUTE_UNIT, eventTimeCatcher); 
+	tick_timer_service_subscribe(MINUTE_UNIT, eventTimeCatcher);
 	battery_state_service_subscribe(updateBattery);
 	connection_service_subscribe((ConnectionHandlers) { .pebble_app_connection_handler = updatePhoneLink });
 
-	// Force initial refresh on all layers 	
+	// Force initial refresh on all layers
 	updateTime(get_time());
-	updateBattery(battery_state_service_peek()); 
+	updateBattery(battery_state_service_peek());
 	updatePhoneLink(connection_service_peek_pebble_app_connection());
 }
 //#################################################################################
 void unLoading(Window *window) {
 	// UnSubscribe to events services
-	tick_timer_service_unsubscribe(); 
+	tick_timer_service_unsubscribe();
 	battery_state_service_unsubscribe();
 
 	// Destroy all Layers
@@ -87,9 +87,11 @@ int main(void) {
 	window_stack_push(window, true);
 
 	// Register to be notified about inbox received events
-	app_message_register_inbox_received(received);
-  app_message_register_inbox_dropped(dropped);  
-  app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
+	app_message_register_inbox_received(received_done);
+	app_message_register_inbox_dropped(received_dropped);
+	app_message_register_outbox_failed(sent_failed);
+	app_message_register_outbox_sent(sent_done);
+	app_message_open(100, 100);
 
 	// Entering event loop until exit requested
 	app_event_loop();

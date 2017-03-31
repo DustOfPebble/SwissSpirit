@@ -1,6 +1,8 @@
 #include <pebble.h>
 #include "Globals.h"
 
+#include "DataExchanger.h"
+
 tm* get_time();
 void initLayoutTime();
 void initLayoutDate();

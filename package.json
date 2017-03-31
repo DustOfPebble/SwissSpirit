@@ -1,0 +1,59 @@
+{
+    "author": "Dust in Cloud ",
+    "dependencies": {},
+    "keywords": [],
+    "name": "heartspy",
+    "pebble": {
+        "displayName": "Heart Spy Watch",
+        "enableMultiJS": true,
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "data/TimeElapsed.pdc",
+                    "name": "TIME_ELAPSED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/PhoneLost.pdc",
+                    "name": "PHONE_LOST",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/PhoneLinked.pdc",
+                    "name": "PHONE_LINKED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/Levels.pdc",
+                    "name": "BATTERY_LEVELS",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/HeartBeat.pdc",
+                    "name": "HEART_BEAT",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/CallsMissed.pdc",
+                    "name": "CALLS_MISSED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/Battery.pdc",
+                    "name": "BATTERY",
+                    "type": "raw"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "basalt"
+        ],
+        "uuid": "e603e869-8eff-40c3-9957-6c6f6087fd57",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "0.1.0"
+}

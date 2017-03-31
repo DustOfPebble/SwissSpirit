@@ -21,7 +21,7 @@ echo "Processing Sequence directory $DIRECTORY ..."
 }
 
 SVG_DIRECTORY=Design
-RESOURCES=resources
+RESOURCES=resources/data
 
 makeFrame HeartBeat
 makeFrame CallsMissed
