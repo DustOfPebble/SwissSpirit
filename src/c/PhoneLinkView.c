@@ -20,8 +20,8 @@ void updatePhoneLink(bool connected) {
 	layer_mark_dirty(phoneDisplay);
 }
 //#################################################################################
-void updateDemo(int value) {
-	lastValue = value;
+void updateDemo(int32_t value) {
+	lastValue = (int)value;
 	layer_mark_dirty(phoneDisplay);
 }
 //#################################################################################
@@ -46,17 +46,17 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 
 	// Converting Value to text...
  char Text[] = "     ";
- snprintf(Text, sizeof(Text), "%d bpm", lastValue);	
+ snprintf(Text, sizeof(Text), "%d bpm", lastValue);
  GFont Font =  fonts_get_system_font(VALUE_FONT);
  GRect Bounds = layer_get_bounds(frame);
- GPoint Center = GPoint( Bounds.size.w / 2, Bounds.size.h /2);	
+ GPoint Center = GPoint( Bounds.size.w / 2, Bounds.size.h /2);
 
 // Calculating Text Frame Position/Size
  GSize Size =  graphics_text_layout_get_content_size(Text,Font,Bounds,GTextOverflowModeWordWrap,GTextAlignmentCenter);
  GRect Container = GRect( Center.x - Size.w * 0.5, Center.y - Size.h * 0.5, Size.w, Size.h);
 
  graphics_context_set_text_color(context, GColorBlack);
- graphics_draw_text(context,Text,Font,Container,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL); 
+ graphics_draw_text(context,Text,Font,Container,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 
 }
 

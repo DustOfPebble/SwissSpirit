@@ -42,8 +42,5 @@ void updateTime(struct tm* TimeInfos) {
 }
 //#################################################################################
 void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
-	static int Counter;
-	Counter++;
 	updateTime(TimeInfos);
-//	send(Counter);
 }
