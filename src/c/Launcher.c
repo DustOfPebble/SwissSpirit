@@ -2,12 +2,14 @@
 
 #include "Constants.h"
 #include "Globals.h"
+#include "utils.h"
 
 #include "TimeViews.h"
 #include "BatteryView.h"
 #include "HeartBeatView.h"
 #include "PhoneLinkView.h"
 
+#include "ViewSelector.h"
 #include "DataExchanger.h"
 //#################################################################################
 Window *window = NULL;
@@ -20,6 +22,10 @@ Layer *phoneDisplay = NULL;
 
 GColor TextColor;
 GColor BackgroundColor;
+int SecondsSinceSensorUpdate;
+int SecondsSinceDisconnection;
+int SecondsSinceConnection;
+bool isPhoneConnected;
 //#################################################################################
 void loading(Window *window) {
 	// Loading Basic shared colors Layers
@@ -51,9 +57,10 @@ void loading(Window *window) {
 	layer_add_child(rootLayer, phoneDisplay);
 	layer_set_update_proc(phoneDisplay, drawPhoneLink);
 
-	layer_set_hidden(heartDisplay,true); // Waiting for a Beat info to show...
 	layer_add_child(rootLayer, heartDisplay);
 	layer_set_update_proc(heartDisplay, drawHeartMonitor);
+
+	updateViewSelector();
 
 	// Subscribe to events services
 	tick_timer_service_subscribe(SECOND_UNIT, eventTimeCatcher);
@@ -80,6 +87,11 @@ void unLoading(Window *window) {
 }
 //#################################################################################
 int main(void) {
+	// Shared vars initilization
+	SecondsSinceSensorUpdate = -1; // Unknown
+	SecondsSinceDisconnection = -1; // Unknown
+	isPhoneConnected=false; // Not Connected by default
+
 	// Loading and Applying settings
 	window = window_create();
 	window_set_background_color(window, GColorWhite);

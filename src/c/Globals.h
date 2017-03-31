@@ -15,3 +15,8 @@ extern GFont Font;
 
 extern GColor TextColor;
 extern GColor BackgroundColor;
+
+extern int SecondsSinceSensorUpdate;
+extern int SecondsSinceDisconnection;
+extern int SecondsSinceConnection;
+extern bool isPhoneConnected;

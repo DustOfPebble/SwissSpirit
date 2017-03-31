@@ -10,7 +10,7 @@ int maxIndex;
 GDrawCommandSequence *Levels;
 GDrawCommandImage *Container;
 
-GPoint Origin;
+static GPoint Origin;
 //#################################################################################
 void initLayoutBattery() {
 	GRect Bounds = layer_get_bounds(batteryDisplay);

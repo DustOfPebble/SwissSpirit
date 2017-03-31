@@ -1,6 +1,7 @@
 #include <pebble.h>
 #include "Globals.h"
 
+#include "PhoneLinkView.h"
 #include "DataExchanger.h"
 
 tm* get_time();

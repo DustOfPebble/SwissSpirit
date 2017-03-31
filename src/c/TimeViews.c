@@ -10,12 +10,6 @@ char DateString[40];
 const char *Days[] = {"Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"};
 const char *Months[] = {"Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"};
 //#################################################################################
-tm* get_time(){
-	time_t rawtime;
-	time(&rawtime);
-	return localtime(&rawtime);
-}
-//#################################################################################
 void initLayoutTime(){
 	text_layer_set_text_color(timeDisplay, TextColor);
 	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter);
@@ -43,4 +37,6 @@ void updateTime(struct tm* TimeInfos) {
 //#################################################################################
 void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
 	updateTime(TimeInfos);
+	updatePhoneLinkHistory();
+	updateViewSelector();
 }

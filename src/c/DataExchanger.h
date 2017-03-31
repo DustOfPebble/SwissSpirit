@@ -1,7 +1,9 @@
 #include <pebble.h>
 
 #include "Constants.h"
-#include "PhoneLinkView.h"
+#include "utils.h"
+#include "HeartBeatView.h"
+#include  "ViewSelector.h"
 
 void received_done(DictionaryIterator *PhoneDatas, void *context);
 void received_dropped(AppMessageResult reason, void *context);
