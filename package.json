@@ -15,11 +15,6 @@
                     "type": "raw"
                 },
                 {
-                    "file": "data/PhoneLost.pdc",
-                    "name": "PHONE_LOST",
-                    "type": "raw"
-                },
-                {
                     "file": "data/PhoneLinked.pdc",
                     "name": "PHONE_LINKED",
                     "type": "raw"
@@ -32,6 +27,11 @@
                 {
                     "file": "data/HeartBeat.pdc",
                     "name": "HEART_BEAT",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/PhoneLost.pdc",
+                    "name": "PHONE_LOST",
                     "type": "raw"
                 },
                 {
