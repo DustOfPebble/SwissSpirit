@@ -5,6 +5,14 @@ void received_done(DictionaryIterator *PhoneDatas, void *context) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "Message received !");
   Tuple *contains = dict_find(PhoneDatas, SensorValue);
   if(contains) { updateDemo(contains->value->int32);}
+
+  Tuple *item = dict_read_first(PhoneDatas);
+  while (item)
+	{
+		APP_LOG(APP_LOG_LEVEL_DEBUG, "Found key[%d] with playlaod of %d bytes",(int) item->key, (int)item->length);
+		item = dict_read_next(PhoneDatas);
+	}
+
 }
 
 void received_dropped(AppMessageResult reason, void *context) {
