@@ -7,10 +7,9 @@ tm* get_time(){
 	return localtime(&rawtime);
 }
 //#################################################################################
-int elapsed_seconds(tm* reference) {
-	time_t rawtime;
-	time(&rawtime);
-	time_t converted = mktime(reference);
-	return difftime(rawtime, converted);
+int elapsed_seconds(time_t past) {
+	time_t now;
+	time(&now);
+	return now - past;
 }
 //#################################################################################

@@ -13,7 +13,7 @@ GRect UnitContainer;
 char Unit[] = "b/m";
 
 int storedValue;
-tm* TimeStampsUpdate = NULL;
+time_t TimeStampsUpdate;
 //#################################################################################
 void initLayoutHeartBeat(){
 	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
@@ -31,7 +31,7 @@ void initLayoutHeartBeat(){
 	UnitContainer = GRect( x_offset, y_offset, TextSize.w, TextSize.h);
 
 	storedValue = 0;
-	TimeStampsUpdate = get_time();
+	TimeStampsUpdate = 0;
 }
 //#################################################################################
 void updateHeartBeatHistory() {
@@ -40,7 +40,7 @@ void updateHeartBeatHistory() {
 //#################################################################################
 void updateHeartBeat(int32_t value) {
 	storedValue = (int)value;
-	TimeStampsUpdate = get_time();
+	time(&TimeStampsUpdate);
 	updateHeartBeatHistory();
 	updateViewSelector();
 	layer_mark_dirty(heartDisplay);
