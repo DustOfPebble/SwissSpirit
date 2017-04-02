@@ -7,11 +7,16 @@
 
 #include "PhoneLinkView.h"
 //#################################################################################
-GDrawCommandImage *icon_phone_linked;
-GDrawCommandImage *icon_phone_lost;
+GDrawCommandImage *Phone;
+GDrawCommandImage *isLinked;
+GDrawCommandImage *isNotLinked;
 
-GDrawCommandImage *icon_calls_missed;
-GDrawCommandImage *icon_time_elapsed;
+GDrawCommandImage *calls_missed;
+
+GDrawCommandImage *Chrono;
+GDrawCommandSequence *ChronoElapsed;
+//static int index;
+static int maxIndex;
 
 static GPoint Origin;
 time_t TimeStampsLastConnected;
@@ -31,23 +36,34 @@ void updatePhoneLink(bool connectedState) {
 }
 //#################################################################################
 void initLayoutPhoneLink() {
-	icon_phone_linked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
-	icon_phone_lost = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LOST);
+	Phone = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE);
+	isLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
+	isNotLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_NOT_LINKED);
 
 	GRect LayerBox = layer_get_bounds(phoneDisplay);
-	GSize Box = gdraw_command_image_get_bounds_size(icon_phone_linked);
+	GSize Box = gdraw_command_image_get_bounds_size(Phone);
 	Origin = GPoint(LayerBox.size.w/10,(LayerBox.size.h - Box.h)/2);
 
-	icon_calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
-	icon_time_elapsed = gdraw_command_image_create_with_resource(RESOURCE_ID_TIME_ELAPSED);
+	calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 	
+	Chrono = gdraw_command_image_create_with_resource(RESOURCE_ID_CHRONO);
+	ChronoElapsed = gdraw_command_sequence_create_with_resource(RESOURCE_ID_CHRONO_ELAPSED);
+	maxIndex = gdraw_command_sequence_get_num_frames(ChronoElapsed);
+
 	time(&TimeStampsLastConnected);
 	time(&TimeStampsStartConnected);
 }
 //#################################################################################
 void drawPhoneLink(Layer *frame, GContext* context) {
-	gdraw_command_image_draw(context, icon_phone_linked, Origin);
-	if (!isPhoneConnected) gdraw_command_image_draw(context, icon_phone_lost, Origin);
+	gdraw_command_image_draw(context, Phone, Origin);
+	if (isPhoneConnected)
+	{
+		gdraw_command_image_draw(context, isLinked, Origin);
+	}
+	else
+	{
+		gdraw_command_image_draw(context, isNotLinked, Origin);
+	}
 }
 
 

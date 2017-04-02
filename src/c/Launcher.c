@@ -43,9 +43,11 @@ void loading(Window *window) {
 	initLayoutBattery();
 
 	phoneDisplay = layer_create(SharedFrame);
+	layer_set_hidden(phoneDisplay,false);
 	initLayoutPhoneLink();
 
 	heartDisplay = layer_create(SharedFrame);
+	layer_set_hidden(heartDisplay,true);
 	initLayoutHeartBeat();
 
 	Layer *rootLayer = window_get_root_layer(window);

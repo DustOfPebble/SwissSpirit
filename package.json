@@ -10,13 +10,33 @@
         "resources": {
             "media": [
                 {
-                    "file": "data/TimeElapsed.pdc",
-                    "name": "TIME_ELAPSED",
+                    "file": "data/Chrono.pdc",
+                    "name": "CHRONO",
                     "type": "raw"
                 },
                 {
-                    "file": "data/PhoneLinked.pdc",
+                    "file": "data/Elapsed.pdc",
+                    "name": "CHRONO_ELAPSED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/Phone.pdc",
+                    "name": "PHONE",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/isLinked.pdc",
                     "name": "PHONE_LINKED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/isNotLinked.pdc",
+                    "name": "PHONE_NOT_LINKED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/Battery.pdc",
+                    "name": "BATTERY",
                     "type": "raw"
                 },
                 {
@@ -25,23 +45,13 @@
                     "type": "raw"
                 },
                 {
-                    "file": "data/HeartBeat.pdc",
-                    "name": "HEART_BEAT",
+                    "file": "data/Heart.pdc",
+                    "name": "HEART",
                     "type": "raw"
                 },
                 {
                     "file": "data/CallsMissed.pdc",
                     "name": "CALLS_MISSED",
-                    "type": "raw"
-                },
-                {
-                    "file": "data/PhoneLost.pdc",
-                    "name": "PHONE_LOST",
-                    "type": "raw"
-                },
-                {
-                    "file": "data/Battery.pdc",
-                    "name": "BATTERY",
                     "type": "raw"
                 }
             ]

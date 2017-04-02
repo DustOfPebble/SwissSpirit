@@ -1,6 +1,6 @@
 #include "HeartBeatView.h"
 //#################################################################################
-GDrawCommandImage *icon_heart_beat;
+GDrawCommandImage *Heart;
 static GPoint Origin;
 GRect LayerBox;
 GSize IconBox;
@@ -16,13 +16,13 @@ static int32_t displayedValue;
 time_t TimeStampsUpdate;
 //#################################################################################
 void initLayoutHeartBeat(){
-	icon_heart_beat = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART_BEAT);
+	Heart = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART);
 
 	ValueFont = fonts_get_system_font(VALUE_FONT);
 	UnitFont = fonts_get_system_font(UNIT_FONT);
 
 	LayerBox = layer_get_bounds(phoneDisplay);
-	IconBox = gdraw_command_image_get_bounds_size(icon_heart_beat);
+	IconBox = gdraw_command_image_get_bounds_size(Heart);
 	Origin = GPoint(LayerBox.size.w/10,(LayerBox.size.h - IconBox.h)/2);
 
 	GSize TextSize =  graphics_text_layout_get_content_size(Unit,UnitFont,LayerBox,GTextOverflowModeWordWrap,GTextAlignmentCenter);
@@ -60,7 +60,7 @@ void drawHeartBeat(Layer *frame, GContext* context)
 	int y_offset = Origin.y; 
 	ValueContainer = GRect( x_offset, y_offset, TextSize.w, TextSize.h);
 	
-	gdraw_command_image_draw(context, icon_heart_beat, Origin);
+	gdraw_command_image_draw(context, Heart, Origin);
 	graphics_draw_text(context,Value,ValueFont,ValueContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 	graphics_draw_text(context,Unit,UnitFont,UnitContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 }

@@ -23,12 +23,13 @@ echo "Processing Sequence directory $DIRECTORY ..."
 SVG_DIRECTORY=Design
 RESOURCES=resources/data
 
-makeFrame HeartBeat
+makeFrame Heart
 makeFrame CallsMissed
-makeFrame PhoneLinked
-makeFrame PhoneLost
+makeFrame Phone
+makeFrame isLinked
+makeFrame isNotLinked
 makeFrame Thermometer
-makeFrame TimeElapsed
 makeFrame Battery
 makeSequence Levels
+makeFrame Chrono
 makeSequence Elapsed
