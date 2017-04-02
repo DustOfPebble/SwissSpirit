@@ -9,14 +9,15 @@ char TimeString[6];
 char DateString[40];
 const char *Days[] = {"Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"};
 const char *Months[] = {"Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"};
+time_t TimeStampsUpdateClock;
 //#################################################################################
-void initLayoutTime(){
+void initLayoutClock(){
+	time(&TimeStampsUpdateClock);
+	
 	text_layer_set_text_color(timeDisplay, TextColor);
 	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter);
 	text_layer_set_font(timeDisplay,fonts_get_system_font(TIME_FONT));
-}
-//#################################################################################
-void initLayoutDate(){
+	
 	text_layer_set_text_color(dateDisplay, TextColor);
 	text_layer_set_text_alignment(dateDisplay,GTextAlignmentLeft);
 	text_layer_set_font(dateDisplay,fonts_get_system_font(DATE_FONT));
@@ -36,7 +37,10 @@ void updateTime(struct tm* TimeInfos) {
 }
 //#################################################################################
 void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
-	updateTime(TimeInfos);
+	if (elapsed(TimeStampsUpdateClock) > UPDATE_CLOCK) {
+		updateTime(TimeInfos);
+		time(&TimeStampsUpdateClock);
+	}
 	updatePhoneLinkHistory();
 	updateHeartBeatHistory();
 	updateViewSelector();

@@ -9,13 +9,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="55"
-   height="54"
-   viewBox="0 0 55.000002 54"
+   width="30"
+   height="36"
+   viewBox="0 0 30.000001 36"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="HeartBeat.svg">
+   sodipodi:docname="Elapsed.08.svg"
+   style="shape-rendering:crispEdges">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +26,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="12.6875"
-     inkscape:cx="15.53539"
-     inkscape:cy="24.061247"
+     inkscape:zoom="25.375"
+     inkscape:cx="11.531272"
+     inkscape:cy="17.207128"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -37,16 +38,17 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      units="px"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
      inkscape:snap-bbox="true"
-     inkscape:object-nodes="true">
+     inkscape:object-paths="false"
+     inkscape:object-nodes="true"
+     inkscape:showpageshadow="false">
     <inkscape:grid
        type="xygrid"
-       id="grid4134"
-       empspacing="0"
-       spacingx="0.30000001"
-       spacingy="0.3"
-       empcolor="#b41b38"
-       empopacity="0.25098039" />
+       id="grid3203" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -56,7 +58,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -64,12 +66,22 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-998.3622)">
+     transform="translate(-0.23694575,-1015.9673)">
     <path
-       style="fill:#ff5555;fill-opacity:1;fill-rule:evenodd;stroke:#550000;stroke-width:2.00000024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 3.0000002,1005.8622 4.5000002,-4.5 4.5000006,-1.5 6,0 4.5,1.5 3.000001,3 1.5,3 1.5,-3 3,-3 4.5,-1.5 6.000001,0 4.5,1.5 3,1.5 3,4.5 1.5,7.5 -1.5,7.5 -3.976924,7.9992 -6.523076,8.5008 -6.000001,6 -8.676923,5.901 -7.823078,-5.901 -7.5,-7.5 -6.000002,-9 -3.0000004,-7.5 -1.5000001,-7.5 z"
-       id="path4136"
+       style="fill:#00aaff;fill-rule:evenodd;stroke:none;stroke-width:0.20000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       d="m 15.236946,1022.9673 0,14 6,-13 -4,-1 z"
+       id="path3806"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#00aaff;fill-rule:evenodd;stroke:none;stroke-width:0.20000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       d="m 15.236946,1022.9673 0,14 11,-9 -2,-2 -3,-2 -4,-1 z"
+       id="path3808"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccccccccccccccccc" />
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 3.2369457,1013.9673 23.0000003,25"
+       id="path3279"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

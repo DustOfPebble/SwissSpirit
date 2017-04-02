@@ -26,6 +26,7 @@ GColor BackgroundColor;
 int SecondsSinceSensorUpdate;
 int SecondsSinceDisconnection;
 int SecondsSinceConnection;
+int SecondsSinceTimeUpdate;
 bool isPhoneConnected;
 //#################################################################################
 void loading(Window *window) {
@@ -35,10 +36,8 @@ void loading(Window *window) {
 
 	// Create Layers for content
 	timeDisplay = text_layer_create(TimeFrame);
-	initLayoutTime();
-
 	dateDisplay = text_layer_create(DateFrame);
-	initLayoutDate();
+	initLayoutClock();
 
 	batteryDisplay = layer_create(BatteryFrame);
 	initLayoutBattery();
@@ -60,7 +59,7 @@ void loading(Window *window) {
 	layer_set_update_proc(phoneDisplay, drawPhoneLink);
 
 	layer_add_child(rootLayer, heartDisplay);
-	layer_set_update_proc(heartDisplay, drawHeartMonitor);
+	layer_set_update_proc(heartDisplay, drawHeartBeat);
 
 	// Subscribe to events services
 	tick_timer_service_subscribe(SECOND_UNIT, eventTimeCatcher);

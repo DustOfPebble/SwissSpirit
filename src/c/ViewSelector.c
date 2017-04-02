@@ -24,13 +24,13 @@ void updateViewSelector(){
 	}
 
 	// Wait 30 seconds of Phone connected history before displaying sensor
-	if ((SecondsSinceConnection > 15) && (SecondsSinceSensorUpdate < 2)) {
+	if ((SecondsSinceConnection > 15) && (SecondsSinceSensorUpdate < 5)) {
 		layer_set_hidden(heartDisplay,false);
 		layer_set_hidden(phoneDisplay,true);
 		return;
 	}
 
-	// None of previous case catch ==> Fallback mode = PhoneView
-		layer_set_hidden(heartDisplay,true);
-		layer_set_hidden(phoneDisplay,false);
+	// None of previous case catch ==> Fallback mode 
+	layer_set_hidden(heartDisplay,true);
+	layer_set_hidden(phoneDisplay,false);
 }

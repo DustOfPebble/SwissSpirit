@@ -4,4 +4,4 @@
 tm* get_time();
 
 // Returning Elapsed seconds between now and provided time;
-int elapsed_seconds(time_t past);
+int elapsed(time_t past);

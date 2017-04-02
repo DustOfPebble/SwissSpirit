@@ -7,7 +7,7 @@ tm* get_time(){
 	return localtime(&rawtime);
 }
 //#################################################################################
-int elapsed_seconds(time_t past) {
+int elapsed(time_t past) {
 	time_t now;
 	time(&now);
 	return now - past;

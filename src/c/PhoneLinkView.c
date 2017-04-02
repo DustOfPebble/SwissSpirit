@@ -19,15 +19,14 @@ time_t TimeStampsStartConnected;
 //#################################################################################
 void updatePhoneLinkHistory() {
 	if (isPhoneConnected) time(&TimeStampsLastConnected);
-	SecondsSinceDisconnection = elapsed_seconds(TimeStampsLastConnected);
-	SecondsSinceConnection = elapsed_seconds(TimeStampsStartConnected);
+	SecondsSinceDisconnection = elapsed(TimeStampsLastConnected);
+	SecondsSinceConnection = elapsed(TimeStampsStartConnected);
 }
 //#################################################################################
-void updatePhoneLink(bool connected) {
-	if (!isPhoneConnected && connected) time(&TimeStampsStartConnected);
-	isPhoneConnected = connected;
+void updatePhoneLink(bool connectedState) {
+	if (!isPhoneConnected && connectedState) time(&TimeStampsStartConnected);
+	isPhoneConnected = connectedState;
 	updatePhoneLinkHistory();
-	updateViewSelector();
 	layer_mark_dirty(phoneDisplay);
 }
 //#################################################################################

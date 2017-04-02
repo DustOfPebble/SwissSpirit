@@ -7,5 +7,5 @@
 void initLayoutHeartBeat();
 void updateHeartBeat(int32_t value);
 void updateHeartBeatHistory();
-void drawHeartMonitor(Layer *frame, GContext* context);
+void drawHeartBeat(Layer *frame, GContext* context);
 

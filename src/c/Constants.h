@@ -11,6 +11,8 @@
 #define VALUE_FONT FONT_KEY_BITHAM_30_BLACK
 #define UNIT_FONT FONT_KEY_GOTHIC_24_BOLD
 
+#define UPDATE_CLOCK 10
+
 typedef enum {
   SensorValue = 0,
 

@@ -31,3 +31,4 @@ makeFrame Thermometer
 makeFrame TimeElapsed
 makeFrame Battery
 makeSequence Levels
+makeSequence Elapsed
