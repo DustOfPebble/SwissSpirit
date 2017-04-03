@@ -10,20 +10,23 @@ char DateString[40];
 const char *Days[] = {"Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"};
 const char *Months[] = {"Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"};
 time_t TimeStampsUpdateClock;
+int DisplayedMinute;
 //#################################################################################
 void initLayoutClock(){
 	time(&TimeStampsUpdateClock);
-	
+	DisplayedMinute = -1; // Force update on first call...
+
 	text_layer_set_text_color(timeDisplay, TextColor);
 	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter);
 	text_layer_set_font(timeDisplay,fonts_get_system_font(TIME_FONT));
-	
+
 	text_layer_set_text_color(dateDisplay, TextColor);
 	text_layer_set_text_alignment(dateDisplay,GTextAlignmentLeft);
 	text_layer_set_font(dateDisplay,fonts_get_system_font(DATE_FONT));
 }
 //#################################################################################
 void updateTime(struct tm* TimeInfos) {
+
 	// Create strings to show
 	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
 	snprintf(DateString,sizeof(DateString), " %s\n %d %s", Days[TimeInfos->tm_wday],TimeInfos->tm_mday,Months[TimeInfos->tm_mon]);
@@ -37,11 +40,14 @@ void updateTime(struct tm* TimeInfos) {
 }
 //#################################################################################
 void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
-	if (elapsed(TimeStampsUpdateClock) > UPDATE_CLOCK) {
-		updateTime(TimeInfos);
-		time(&TimeStampsUpdateClock);
-	}
+	time(&TimeStampsUpdateClock);
+	if (elapsed(TimeStampsUpdateClock) < UPDATE_CLOCK) return;
+	// Update every History ...
 	updatePhoneLinkHistory();
 	updateHeartBeatHistory();
 	updateViewSelector();
+
+	// Display need to be updated only every minute change
+	if (DisplayedMinute == TimeInfos->tm_min) return;
+	updateTime(TimeInfos);
 }
