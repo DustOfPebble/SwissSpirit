@@ -30,10 +30,6 @@ int SecondsSinceTimeUpdate;
 bool isPhoneConnected;
 //#################################################################################
 void loading(Window *window) {
-	// Loading Basic shared colors Layers
-	TextColor = GColorImperialPurple;
-	BackgroundColor = GColorElectricBlue; // Not used
-
 	// Create Layers for content
 	timeDisplay = text_layer_create(TimeFrame);
 	dateDisplay = text_layer_create(DateFrame);
@@ -64,15 +60,15 @@ void loading(Window *window) {
 	layer_set_update_proc(heartDisplay, drawHeartBeat);
 
 	// Subscribe to events services
-	tick_timer_service_subscribe(SECOND_UNIT, eventTimeCatcher);
+	tick_timer_service_subscribe(SECOND_UNIT, updateClock);
 	battery_state_service_subscribe(updateBattery);
 	connection_service_subscribe((ConnectionHandlers) { .pebble_app_connection_handler = updatePhoneLink });
 
 	// Force initial refresh on all layers
 	updateBattery(battery_state_service_peek());
 	updatePhoneLink(connection_service_peek_pebble_app_connection());
-	updateTime(get_time());
-	
+	drawClock(get_time());
+
 }
 //#################################################################################
 void unLoading(Window *window) {
@@ -94,6 +90,10 @@ int main(void) {
 	SecondsSinceDisconnection = -1; // Unknown
 	SecondsSinceConnection = -1; // Unknown
 	isPhoneConnected=false; // Not Connected by default
+
+	// Loading Basic shared colors Layers
+	TextColor = GColorImperialPurple;
+	BackgroundColor = GColorElectricBlue; // Not used
 
 	// Loading and Applying settings
 	window = window_create();

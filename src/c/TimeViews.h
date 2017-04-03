@@ -6,5 +6,5 @@
 
 tm* get_time();
 void initLayoutClock();
-void updateTime(struct tm* TimeInfos);
-void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit);
+void updateClock(struct tm* TimeInfos, TimeUnits Unit);
+void drawClock(struct tm* TimeInfos);

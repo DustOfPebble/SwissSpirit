@@ -25,7 +25,7 @@ void initLayoutClock(){
 	text_layer_set_font(dateDisplay,fonts_get_system_font(DATE_FONT));
 }
 //#################################################################################
-void updateTime(struct tm* TimeInfos) {
+void drawClock(struct tm* TimeInfos) {
 
 	// Create strings to show
 	snprintf(TimeString,sizeof(TimeString), "%02d:%02d", TimeInfos->tm_hour, TimeInfos->tm_min);
@@ -39,7 +39,7 @@ void updateTime(struct tm* TimeInfos) {
 	layer_mark_dirty(text_layer_get_layer(dateDisplay));
 }
 //#################################################################################
-void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
+void updateClock(struct tm* TimeInfos, TimeUnits Unit) {
 	time(&TimeStampsUpdateClock);
 	if (elapsed(TimeStampsUpdateClock) < UPDATE_CLOCK) return;
 	// Update every History ...
@@ -49,5 +49,5 @@ void eventTimeCatcher(struct tm* TimeInfos, TimeUnits Unit) {
 
 	// Display need to be updated only every minute change
 	if (DisplayedMinute == TimeInfos->tm_min) return;
-	updateTime(TimeInfos);
+	drawClock(TimeInfos);
 }
