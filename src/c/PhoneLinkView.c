@@ -1,12 +1,4 @@
-#include <pebble.h>
-
-#include "Globals.h"
-#include "Constants.h"
-#include "utils.h"
-#include "ViewSelector.h"
-
 #include "PhoneLinkView.h"
-
 //#################################################################################
 GDrawCommandImage *Phone;
 GDrawCommandImage *isLinked;
@@ -18,38 +10,53 @@ GDrawCommandImage *Chrono;
 GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
 static int NbFrames;
-#define MaxSteps 5
-int ChronoSteps[MaxSteps] = { 8, 15, 24, 38, 60 };
+#define MaxSteps 7
+int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
 int UnconnectedMinutesDisplayed = -1;
 
-GPoint PhoneIconXY;
-GPoint ChronoIconXY;
+GRect IconPhone;
+GRect IconChrono;
+static GRect LayerBox;
+
+static GRect ValueContainer;
+static GRect UnitContainer;
+static char Unit[] = "min";
 
 time_t TimeStampsLastConnected;
 time_t TimeStampsStartConnected;
 //#################################################################################
 void initLayoutPhoneLink() {
+	// Set persistent vars
+	LayerBox = layer_get_bounds(phoneDisplay);
+	int Margin = LayerBox.size.w / 10;	
+
 	// Load Phone icons resources
 	Phone = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE);
 	isLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
 	isNotLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_NOT_LINKED);
+	
+	// Place Phone Icon
+	IconPhone = GRectFromSize(gdraw_command_image_get_bounds_size(Phone));
+	inCenterVrt(LayerBox , &IconPhone);
+	alignLeft(LayerBox, &IconPhone);
+	translate(GSize(Margin,0), &IconPhone);
 
 	// Load Chrono icons resources & vars
 	Chrono = gdraw_command_image_create_with_resource(RESOURCE_ID_CHRONO);
 	ChronoElapsed = gdraw_command_sequence_create_with_resource(RESOURCE_ID_CHRONO_ELAPSED);
 	NbFrames = gdraw_command_sequence_get_num_frames(ChronoElapsed);
 
-	GSize Box;
-	GRect LayerBox = layer_get_bounds(phoneDisplay);
-
-	// Place the Phone icon
-	Box = gdraw_command_image_get_bounds_size(Phone);
-	PhoneIconXY = GPoint(LayerBox.size.w * 0.1,(LayerBox.size.h - Box.h)/2);
-
 	// Place the Chrono icon
-	Box = gdraw_command_image_get_bounds_size(Chrono);
-	ChronoIconXY = GPoint((LayerBox.size.w * 0.9) - Box.w,(LayerBox.size.h - Box.h)/2);
-
+	IconChrono = GRectFromSize(gdraw_command_image_get_bounds_size(Chrono));
+	inCenterVrt(LayerBox, &IconChrono);
+	alignRight(LayerBox, &IconChrono);
+	translate(GSize(-Margin,0), &IconChrono);
+	
+	// Loading and place Unit Text
+	UnitContainer = GRectFromText(Unit,UnitFont,LayerBox);
+	inBetweenHrz(IconPhone, IconChrono, &UnitContainer);
+	alignBottom(IconPhone, &UnitContainer);
+	
 	// Useless at this time
 	calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 
@@ -65,19 +72,21 @@ void updatePhoneLinkHistory() {
 
 	// Do we need to refresh the Display ? (Called also by TimeView)
 	SecondsSinceDisconnection = elapsed(TimeStampsLastConnected);
-	int UnconnectedMinutes = SecondsSinceDisconnection / 60;
-
+	int UnconnectedMinutes = SecondsSinceDisconnection / 1;
+		
+	// Select matching index
 	int MatchingIndex = MaxSteps - 1;
-	for (int i = MaxSteps-1; i >=0 ; i --)
+	for (int i = MaxSteps-1; i >=0 ; i--)
 		if (UnconnectedMinutes < ChronoSteps[i] ) MatchingIndex = i;
+		
 	if (FrameIndex != MatchingIndex) {
-		layer_mark_dirty(phoneDisplay); //Icon is different --> redraw required
 		FrameIndex = MatchingIndex;
+		layer_mark_dirty(phoneDisplay); //Icon is different --> redraw required
 	}
 
 	if (UnconnectedMinutesDisplayed != UnconnectedMinutes ) {
-		layer_mark_dirty(phoneDisplay); //Value is different --> redraw required
 		UnconnectedMinutesDisplayed = UnconnectedMinutes;
+		layer_mark_dirty(phoneDisplay); //Value is different --> redraw required
 	}
 }
 //#################################################################################
@@ -100,26 +109,36 @@ void updatePhoneLink(bool connectedState) {
 }
 //#################################################################################
 void drawPhoneLink(Layer *frame, GContext* context) {
-	gdraw_command_image_draw(context, Phone, PhoneIconXY);
+	// Show Phone without status
+	gdraw_command_image_draw(context, Phone,  IconPhone.origin);
+	
 	if (isPhoneConnected)
 	{
-		gdraw_command_image_draw(context, isLinked, PhoneIconXY);
+		gdraw_command_image_draw(context, isLinked, IconPhone.origin);
 	}
 	else
 	{
-/*		// Calculate/Place String to display
-		static char Value[] = "000";
-		snprintf(Value, sizeof(Value), "%d", (int)displayedValue);
+		// Calculate and Place String to display
+		static char Value[] = "00";
+		if (UnconnectedMinutesDisplayed < 60) snprintf(Value, sizeof(Value), "%d", UnconnectedMinutesDisplayed);
+		else snprintf(Value, sizeof(Value), "--");
 
-		GSize TextSize =  graphics_text_layout_get_content_size(Value,ValueFont,LayerBox,GTextOverflowModeWordWrap,GTextAlignmentCenter);
-		int x_offset = (HeartIconXY.x + IconBox.w) + ((LayerBox.size.w - (HeartIconXY.x + IconBox.w)) - (TextSize.w)) / 2;
-		int y_offset = HeartIconXY.y;
-		ValueContainer = GRect( x_offset, y_offset, TextSize.w, TextSize.h);
-*/
-		gdraw_command_image_draw(context, isNotLinked, PhoneIconXY);
+		// Loading and place Value Text
+		ValueContainer = GRectFromText(Value,ValueFont,LayerBox);
+		inBetweenHrz(IconPhone, IconChrono, &ValueContainer);
+		alignTop(IconPhone, &ValueContainer);
+
+
+		// Draw Chrono icon and elapsed
+		gdraw_command_image_draw(context, isNotLinked, IconPhone.origin);
 		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
-		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, ChronoIconXY);
-		gdraw_command_image_draw(context, Chrono, ChronoIconXY);
+		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, IconChrono.origin);
+		gdraw_command_image_draw(context, Chrono, IconChrono.origin);
+		
+		// Draw text and unit values
+		graphics_context_set_text_color(context, TextColor);
+		graphics_draw_text(context,Value,ValueFont,ValueContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
+		graphics_draw_text(context,Unit,UnitFont,UnitContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 	}
 }
 

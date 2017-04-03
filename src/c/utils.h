@@ -25,3 +25,4 @@ void inBetweenVrt(GRect top, GRect bottom, GRect *in );
 GRect GRectFromSize(GSize size);
 GRect GRectFromPoint(GPoint point);
 GRect GRectFromText(char* text, GFont font, GRect box);
+GRect GRectFromInner(GRect outer, GRect inner);

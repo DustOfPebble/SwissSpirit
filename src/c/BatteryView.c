@@ -1,8 +1,4 @@
 #include <pebble.h>
-
-#include "Globals.h"
-#include "Constants.h"
-
 #include "BatteryView.h"
 //#################################################################################
 GDrawCommandSequence *BatteryLevels;
@@ -10,13 +6,22 @@ GDrawCommandImage *Battery;
 static int FrameIndex;
 static int NbFrames;
 
+static GRect LayerBox;
+static GRect IconBox;	
+
 GPoint BatteryIconXY;
 //#################################################################################
 void initLayoutBattery() {
-	GRect Bounds = layer_get_bounds(batteryDisplay);
+	// Persistent parameters
+	LayerBox = layer_get_bounds(batteryDisplay);
+	
+	//Load and Place Battery
 	Battery = gdraw_command_image_create_with_resource(RESOURCE_ID_BATTERY);
-	GSize BatteryBox = gdraw_command_image_get_bounds_size(Battery);
-	BatteryIconXY = GPoint((Bounds.size.w - BatteryBox.w)/2,(Bounds.size.h - BatteryBox.h)/2);
+	IconBox = GRectFromSize(gdraw_command_image_get_bounds_size(Battery));
+	inCenterHrz(LayerBox, &IconBox);
+	inCenterVrt(LayerBox, &IconBox);
+
+	//Load Battery levels
 	BatteryLevels = gdraw_command_sequence_create_with_resource(RESOURCE_ID_BATTERY_LEVELS);
 	NbFrames = gdraw_command_sequence_get_num_frames(BatteryLevels);
 }
@@ -29,7 +34,7 @@ void updateBattery(BatteryChargeState batteryInfos) {
 //#################################################################################
 void drawBattery(Layer *frame, GContext* context) {
    GDrawCommandFrame *Level = gdraw_command_sequence_get_frame_by_index(BatteryLevels, FrameIndex);
-   gdraw_command_frame_draw(context, BatteryLevels, Level, BatteryIconXY);
-   gdraw_command_image_draw(context, Battery, BatteryIconXY);
+   gdraw_command_frame_draw(context, BatteryLevels, Level, IconBox.origin);
+   gdraw_command_image_draw(context, Battery, IconBox.origin);
 }
 //#################################################################################

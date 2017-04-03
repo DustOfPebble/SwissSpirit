@@ -22,6 +22,8 @@ Layer *phoneDisplay = NULL;
 
 GColor TextColor;
 GColor BackgroundColor;
+GFont ValueFont;
+GFont UnitFont;
 
 int SecondsSinceSensorUpdate;
 int SecondsSinceDisconnection;
@@ -94,6 +96,9 @@ int main(void) {
 	// Loading Basic shared colors Layers
 	TextColor = GColorImperialPurple;
 	BackgroundColor = GColorElectricBlue; // Not used
+
+	ValueFont = fonts_get_system_font(VALUE_FONT);
+	UnitFont = fonts_get_system_font(UNIT_FONT);
 
 	// Loading and Applying settings
 	window = window_create();

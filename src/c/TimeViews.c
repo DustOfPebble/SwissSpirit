@@ -40,8 +40,9 @@ void drawClock(struct tm* TimeInfos) {
 }
 //#################################################################################
 void updateClock(struct tm* TimeInfos, TimeUnits Unit) {
-	time(&TimeStampsUpdateClock);
+
 	if (elapsed(TimeStampsUpdateClock) < UPDATE_CLOCK) return;
+	time(&TimeStampsUpdateClock);
 	// Update every History ...
 	updatePhoneLinkHistory();
 	updateHeartBeatHistory();

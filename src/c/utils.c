@@ -13,6 +13,7 @@ int elapsed(time_t past) {
 	return now - past;
 }
 //#################################################################################
+//#################################################################################
 GRect GRectFromSize(GSize size) {
 	return GRect(0,0, size.w, size.h);
 }
@@ -31,6 +32,15 @@ GRect GRectFromText(char* text, GFont font, GRect box) {
 				);
 	return GRect(0,0, size.w, size.h);
 }
+//#################################################################################
+GRect GRectFromInner(GRect outer, GRect inner) {
+	return GRect( inner.origin.x + inner.size.w, \
+				  inner.origin.y + inner.size.h, \
+				  outer.size.w - inner.origin.x - inner.size.w, \
+				  outer.size.h - inner.origin.y - inner.size.h \
+				);
+}
+//#################################################################################
 //#################################################################################
 void atLeft(GRect left, GRect *at) {
 	at->origin.x = left.origin.x - at->size.w ;

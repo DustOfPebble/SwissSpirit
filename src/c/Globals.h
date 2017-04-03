@@ -11,8 +11,8 @@ extern Layer *batteryDisplay;
 extern Layer *phoneDisplay;
 extern Layer *heartDisplay;
 
-extern GFont Font;
-
+extern GFont ValueFont;
+extern GFont UnitFont;
 extern GColor TextColor;
 extern GColor BackgroundColor;
 
