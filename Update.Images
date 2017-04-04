@@ -24,12 +24,14 @@ SVG_DIRECTORY=Design
 RESOURCES=resources/data
 
 makeFrame Heart
-makeFrame CallsMissed
 makeFrame Phone
 makeFrame isLinked
 makeFrame isNotLinked
-makeFrame Thermometer
 makeFrame Battery
 makeSequence Levels
 makeFrame Chrono
 makeSequence Elapsed
+makeFrame CallsMissed
+makeFrame MessagesMissed
+makeFrame Thermometer
+

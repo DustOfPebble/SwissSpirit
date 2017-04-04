@@ -53,6 +53,16 @@
                     "file": "data/CallsMissed.pdc",
                     "name": "CALLS_MISSED",
                     "type": "raw"
+                },
+                {
+                    "file": "data/MessagesMissed.pdc",
+                    "name": "MESSAGES_MISSED",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/Thermometer.pdc",
+                    "name": "THERMO",
+                    "type": "raw"
                 }
             ]
         },
