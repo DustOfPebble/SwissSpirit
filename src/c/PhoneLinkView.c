@@ -28,13 +28,13 @@ time_t TimeStampsStartConnected;
 void initLayoutPhoneLink() {
 	// Set persistent vars
 	LayerBox = layer_get_bounds(phoneDisplay);
-	int Margin = LayerBox.size.w / 10;	
+	int Margin = LayerBox.size.w / 10;
 
 	// Load Phone icons resources
 	Phone = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE);
 	isLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
 	isNotLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_NOT_LINKED);
-	
+
 	// Place Phone Icon
 	IconPhone = GRectFromSize(gdraw_command_image_get_bounds_size(Phone));
 	inCenterVrt(LayerBox , &IconPhone);
@@ -51,12 +51,12 @@ void initLayoutPhoneLink() {
 	inCenterVrt(LayerBox, &IconChrono);
 	alignRight(LayerBox, &IconChrono);
 	translate(GSize(-Margin,0), &IconChrono);
-	
+
 	// Loading and place Unit Text
 	UnitContainer = GRectFromText(Unit,UnitFont,LayerBox);
 	inBetweenHrz(IconPhone, IconChrono, &UnitContainer);
 	alignBottom(IconPhone, &UnitContainer);
-	
+
 	// Useless at this time
 	calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
 
@@ -72,13 +72,13 @@ void updatePhoneLinkHistory() {
 
 	// Do we need to refresh the Display ? (Called also by TimeView)
 	SecondsSinceDisconnection = elapsed(TimeStampsLastConnected);
-	int UnconnectedMinutes = SecondsSinceDisconnection / 1;
-		
+	int UnconnectedMinutes = SecondsSinceDisconnection / 60;
+
 	// Select matching index
 	int MatchingIndex = MaxSteps - 1;
 	for (int i = MaxSteps-1; i >=0 ; i--)
 		if (UnconnectedMinutes < ChronoSteps[i] ) MatchingIndex = i;
-		
+
 	if (FrameIndex != MatchingIndex) {
 		FrameIndex = MatchingIndex;
 		layer_mark_dirty(phoneDisplay); //Icon is different --> redraw required
@@ -111,7 +111,7 @@ void updatePhoneLink(bool connectedState) {
 void drawPhoneLink(Layer *frame, GContext* context) {
 	// Show Phone without status
 	gdraw_command_image_draw(context, Phone,  IconPhone.origin);
-	
+
 	if (isPhoneConnected)
 	{
 		gdraw_command_image_draw(context, isLinked, IconPhone.origin);
@@ -134,7 +134,7 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
 		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, IconChrono.origin);
 		gdraw_command_image_draw(context, Chrono, IconChrono.origin);
-		
+
 		// Draw text and unit values
 		graphics_context_set_text_color(context, TextColor);
 		graphics_draw_text(context,Value,ValueFont,ValueContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
