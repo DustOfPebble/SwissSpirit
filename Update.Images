@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 echo "Updating resources ..."
 
 function makeFrame() {
@@ -7,7 +7,7 @@ TARGET=$RESOURCES/$1.pdc
 
 echo "Processing Frame $FILE ..." 
 ./DrawCommands/SVG_to_PDC -p $FILE -o $TARGET
-
+echo -e "\n" 
 }
 
 
@@ -17,7 +17,7 @@ TARGET=$RESOURCES/$1.pdc
 
 echo "Processing Sequence directory $DIRECTORY ..." 
 ./DrawCommands/SVG_to_PDC -p -s $DIRECTORY -o $TARGET
-
+echo -e "\n" 
 }
 
 SVG_DIRECTORY=Design

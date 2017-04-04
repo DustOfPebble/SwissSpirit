@@ -72,8 +72,11 @@ def convert_to_pebble_coordinates(point, precise=False):
 
     valid = compare_points(point, nearest)
     if not valid:
-        print "Invalid point: ({}, {}). Closest supported coordinate: ({}, {})".format(point[0], point[1],
-                                                                                       nearest[0], nearest[1])
+    #    print "Invalid point: ({}, {}). Closest supported coordinate: ({}, {})".format(point[0], point[1], nearest[0], nearest[1])
+    	sys.stdout.write('x')
+    else:
+    	sys.stdout.write('o')
+
 
     translated = sum_points(point, (-0.5, -0.5))   # translate point by (-0.5, -0.5)
     if precise:
