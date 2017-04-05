@@ -1,25 +1,33 @@
 #include "PhoneLinkView.h"
 //#################################################################################
-GDrawCommandImage *Phone;
-GDrawCommandImage *isLinked;
-GDrawCommandImage *isNotLinked;
+static GDrawCommandImage *Phone;
+static GDrawCommandImage *isLinked;
+static GDrawCommandImage *isNotLinked;
 
-GDrawCommandImage *calls_missed;
+static GDrawCommandImage *CallsMissed;
+static GDrawCommandImage *MessagesMissed;
 
-GDrawCommandImage *Chrono;
-GDrawCommandSequence *ChronoElapsed;
+static GDrawCommandImage *Chrono;
+static GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
 static int NbFrames;
 #define MaxSteps 7
 int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
 int UnconnectedMinutesDisplayed = -1;
 
-GRect IconPhone;
-GRect IconChrono;
+int MissedMessageCounter = 0;
+int MissedCallsCounter = 0;
+
+static GRect PhoneBox;
+static GRect ChronoBox;
+static GRect CallsBox;
+static GRect MessagesBox;
 static GRect LayerBox;
 
-static GRect ValueContainer;
-static GRect UnitContainer;
+static GRect CallsCountBox;
+static GRect MessagesCountBox;
+static GRect ValueBox;
+static GRect UnitBox;
 static char Unit[] = "min";
 
 time_t TimeStampsLastConnected;
@@ -36,10 +44,10 @@ void initLayoutPhoneLink() {
 	isNotLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_NOT_LINKED);
 
 	// Place Phone Icon
-	IconPhone = GRectFromSize(gdraw_command_image_get_bounds_size(Phone));
-	inCenterVrt(LayerBox , &IconPhone);
-	alignLeft(LayerBox, &IconPhone);
-	translate(GSize(Margin,0), &IconPhone);
+	PhoneBox = GRectFromSize(gdraw_command_image_get_bounds_size(Phone));
+	inCenterVrt(LayerBox , &PhoneBox);
+	alignLeft(LayerBox, &PhoneBox);
+	translate(GSize(Margin,0), &PhoneBox);
 
 	// Load Chrono icons resources & vars
 	Chrono = gdraw_command_image_create_with_resource(RESOURCE_ID_CHRONO);
@@ -47,18 +55,30 @@ void initLayoutPhoneLink() {
 	NbFrames = gdraw_command_sequence_get_num_frames(ChronoElapsed);
 
 	// Place the Chrono icon
-	IconChrono = GRectFromSize(gdraw_command_image_get_bounds_size(Chrono));
-	inCenterVrt(LayerBox, &IconChrono);
-	alignRight(LayerBox, &IconChrono);
-	translate(GSize(-Margin,0), &IconChrono);
+	ChronoBox = GRectFromSize(gdraw_command_image_get_bounds_size(Chrono));
+	inCenterVrt(LayerBox, &ChronoBox);
+	alignRight(LayerBox, &ChronoBox);
+	translate(GSize(-Margin,0), &ChronoBox);
 
 	// Loading and place Unit Text
-	UnitContainer = GRectFromText(Unit,UnitFont,LayerBox);
-	inBetweenHrz(IconPhone, IconChrono, &UnitContainer);
-	alignBottom(IconPhone, &UnitContainer);
+	UnitBox = GRectFromText(Unit,UnitFont,LayerBox);
+	inBetweenHrz(PhoneBox, ChronoBox, &UnitBox);
+	alignBottom(PhoneBox, &UnitBox);
 
-	// Useless at this time
-	calls_missed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
+	// Load icons for calls and Messages
+	CallsMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
+	MessagesMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_MESSAGES_MISSED);
+
+	// Place Messages icon (at End)
+	MessagesBox = GRectFromSize(gdraw_command_image_get_bounds_size(MessagesMissed));
+	alignTop(PhoneBox , &MessagesBox);
+	alignRight(LayerBox, &MessagesBox);
+	translate(GSize(-Margin,0), &MessagesBox);
+
+	// Place Calls icon (in the Middle)
+	CallsBox = GRectFromSize(gdraw_command_image_get_bounds_size(CallsMissed));
+	alignTop(PhoneBox , &CallsBox);
+	inBetweenHrz(PhoneBox, MessagesBox, &CallsBox);
 
 	// Initialize vars
 	time(&TimeStampsLastConnected);
@@ -109,12 +129,36 @@ void updatePhoneLink(bool connectedState) {
 }
 //#################################################################################
 void drawPhoneLink(Layer *frame, GContext* context) {
+	// set Text color
+	graphics_context_set_text_color(context, TextColor);
+
 	// Show Phone without status
-	gdraw_command_image_draw(context, Phone,  IconPhone.origin);
+	gdraw_command_image_draw(context, Phone,  PhoneBox.origin);
 
 	if (isPhoneConnected)
 	{
-		gdraw_command_image_draw(context, isLinked, IconPhone.origin);
+		// Place Messages missed value
+		static char MessagesCount[] = "00";
+		snprintf(MessagesCount, sizeof(MessagesCount), "%d", MissedMessageCounter);
+		MessagesCountBox = GRectFromText(MessagesCount,ValueFont,LayerBox);
+		inCenterHrz(MessagesBox, &MessagesCountBox);
+		alignBottom(PhoneBox, &MessagesCountBox);
+
+		// Place Calls missed value
+		static char CallsCount[] = "00";
+		snprintf(CallsCount, sizeof(CallsCount), "%d", MissedCallsCounter);
+		CallsCountBox = GRectFromText(MessagesCount,ValueFont,LayerBox);
+		inCenterHrz(CallsBox, &CallsCountBox);
+		alignBottom(PhoneBox, &CallsCountBox);
+
+		// Draw icons ...
+		gdraw_command_image_draw(context, isLinked, PhoneBox.origin);
+		gdraw_command_image_draw(context, CallsMissed, CallsBox.origin);
+		gdraw_command_image_draw(context, MessagesMissed, MessagesBox.origin);
+
+		// Draw texts ...
+		graphics_draw_text(context,CallsCount,ValueFont,CallsCountBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
+		graphics_draw_text(context,MessagesCount,ValueFont,MessagesCountBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 	}
 	else
 	{
@@ -124,21 +168,19 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 		else snprintf(Value, sizeof(Value), "--");
 
 		// Loading and place Value Text
-		ValueContainer = GRectFromText(Value,ValueFont,LayerBox);
-		inBetweenHrz(IconPhone, IconChrono, &ValueContainer);
-		alignTop(IconPhone, &ValueContainer);
-
+		ValueBox = GRectFromText(Value,ValueFont,LayerBox);
+		inBetweenHrz(PhoneBox, ChronoBox, &ValueBox);
+		alignTop(PhoneBox, &ValueBox);
 
 		// Draw Chrono icon and elapsed
-		gdraw_command_image_draw(context, isNotLinked, IconPhone.origin);
+		gdraw_command_image_draw(context, isNotLinked, PhoneBox.origin);
 		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
-		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, IconChrono.origin);
-		gdraw_command_image_draw(context, Chrono, IconChrono.origin);
+		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, ChronoBox.origin);
+		gdraw_command_image_draw(context, Chrono, ChronoBox.origin);
 
 		// Draw text and unit values
-		graphics_context_set_text_color(context, TextColor);
-		graphics_draw_text(context,Value,ValueFont,ValueContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
-		graphics_draw_text(context,Unit,UnitFont,UnitContainer,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
+		graphics_draw_text(context,Value,ValueFont,ValueBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
+		graphics_draw_text(context,Unit,UnitFont,UnitBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 	}
 }
 
