@@ -14,7 +14,11 @@
 #define UPDATE_CLOCK 10
 
 typedef enum {
-  SensorValue = 0,
-
+  KeySensorValue = 0,
+  KeySensorTrend = 1,
+  KeyMissedCalls = 3,
+  KeyMissedMessages = 4,
+  KeyInstantSpeed = 5,
+  KeyMeanSpeed = 6,
 } AppKeys;
 
