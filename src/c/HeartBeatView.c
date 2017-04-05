@@ -1,6 +1,6 @@
 #include "HeartBeatView.h"
 //#################################################################################
-GDrawCommandImage *Heart;
+static GDrawCommandImage *Heart;
 static GRect LayerBox;
 static GRect IconBox;
 
@@ -9,7 +9,7 @@ static GRect UnitContainer;
 static char Unit[] = "b/m";
 
 static int32_t displayedValue;
-time_t TimeStampsUpdate;
+static time_t TimeStampsUpdate;
 //#################################################################################
 void initLayoutHeartBeat(){
 	// Graphic persistent parameters

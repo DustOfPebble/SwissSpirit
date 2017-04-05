@@ -12,10 +12,11 @@
 #include "ViewSelector.h"
 #include "DataExchanger.h"
 //#################################################################################
-Window *window = NULL;
+static Window *window = NULL;
+
+// Global vars
 TextLayer *timeDisplay = NULL;
 TextLayer *dateDisplay = NULL;
-
 Layer *batteryDisplay = NULL;
 Layer *heartDisplay = NULL;
 Layer *phoneDisplay = NULL;

@@ -11,12 +11,13 @@ static GDrawCommandImage *Chrono;
 static GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
 static int NbFrames;
-#define MaxSteps 7
-int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
-int UnconnectedMinutesDisplayed = -1;
 
-int MissedMessageCounter = 0;
-int MissedCallsCounter = 0;
+#define MaxSteps 7
+static int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
+static int UnconnectedMinutesDisplayed = -1;
+
+static int MissedMessageCounter = 0;
+static int MissedCallsCounter = 0;
 
 static GRect PhoneBox;
 static GRect ChronoBox;
@@ -30,8 +31,8 @@ static GRect ValueBox;
 static GRect UnitBox;
 static char Unit[] = "min";
 
-time_t TimeStampsLastConnected;
-time_t TimeStampsStartConnected;
+static time_t TimeStampsLastConnected;
+static time_t TimeStampsStartConnected;
 //#################################################################################
 void initLayoutPhoneLink() {
 	// Set persistent vars
@@ -111,15 +112,14 @@ void updatePhoneLinkHistory() {
 }
 //#################################################################################
 void updatePhoneLink(bool connectedState) {
-	// If switching from connected --> disconnect the save the time..
+	// If switching from connected --> disconnect ==> save the time..
 	if (!isPhoneConnected && connectedState) time(&TimeStampsStartConnected);
-
-	// Notify user about state change by vibration ...
-	if (connectedState) vibes_short_pulse();
-	else vibes_long_pulse();
-
 	// Store new state
 	isPhoneConnected = connectedState;
+
+	// Notify user about state change by vibration ...
+	if (isPhoneConnected) vibes_short_pulse();
+	else vibes_long_pulse();
 
 	// Update connection history
 	updatePhoneLinkHistory();

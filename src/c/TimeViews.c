@@ -5,12 +5,12 @@
 
 #include "TimeViews.h"
 //#################################################################################
-char TimeString[6];
-char DateString[40];
-const char *Days[] = {"Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"};
-const char *Months[] = {"Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"};
-time_t TimeStampsUpdateClock;
-int DisplayedMinute;
+static char TimeString[6];
+static char DateString[40];
+static const char *Days[] = {"Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"};
+static const char *Months[] = {"Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"};
+static time_t TimeStampsUpdateClock;
+static int DisplayedMinute;
 //#################################################################################
 void initLayoutClock(){
 	time(&TimeStampsUpdateClock);
