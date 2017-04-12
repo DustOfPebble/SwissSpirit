@@ -34,4 +34,7 @@ makeSequence Elapsed
 makeFrame CallsMissed
 makeFrame MessagesMissed
 makeFrame Thermometer
+makeFrame Trends
+makeFrame TrendsUp
+makeFrame TrendsDown
 
