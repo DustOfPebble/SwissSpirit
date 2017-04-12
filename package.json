@@ -70,12 +70,12 @@
                     "type": "raw"
                 },
                 {
-                    "file": "data/TrendsUp.pdc",
+                    "file": "data/Up.pdc",
                     "name": "TREND_UP",
                     "type": "raw"
                 },
                 {
-                    "file": "data/TrendsDown.pdc",
+                    "file": "data/Down.pdc",
                     "name": "TREND_DOWN",
                     "type": "raw"
                 }

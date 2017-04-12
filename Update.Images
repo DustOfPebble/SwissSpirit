@@ -2,31 +2,34 @@
 echo "Updating resources ..."
 
 function makeFrame() {
-FILE=$SVG_DIRECTORY/$1.svg
-TARGET=$RESOURCES/$1.pdc
+Name=$1
+SubDirectory=$2
+SVG=${Collection}${SubDirectory}${Name}.svg
+PDC=${Processed}${Name}.pdc
 
-echo "Processing Frame $FILE ..." 
-./DrawCommands/SVG_to_PDC -p $FILE -o $TARGET
+echo "Processing Frame $SVG ..." 
+./DrawCommands/SVG_to_PDC -p $SVG -o $PDC
 echo -e "\n" 
 }
 
 
 function makeSequence() {
-DIRECTORY=$SVG_DIRECTORY/$1
-TARGET=$RESOURCES/$1.pdc
+SubDirectory=$1
+Directory=${Collection}${SubDirectory}
+PDC=${Processed}${Name}.pdc
 
-echo "Processing Sequence directory $DIRECTORY ..." 
-./DrawCommands/SVG_to_PDC -p -s $DIRECTORY -o $TARGET
+echo "Processing Sequence directory $Directory ..." 
+./DrawCommands/SVG_to_PDC -p -s $Directory -o $PDC
 echo -e "\n" 
 }
 
-SVG_DIRECTORY=Design
-RESOURCES=resources/data
+Collection=Design/
+Processed=resources/data/
 
 makeFrame Heart
 makeFrame Phone
-makeFrame isLinked
-makeFrame isNotLinked
+makeFrame isLinked PhoneLink/
+makeFrame isNotLinked PhoneLink/
 makeFrame Battery
 makeSequence Levels
 makeFrame Chrono
@@ -35,6 +38,12 @@ makeFrame CallsMissed
 makeFrame MessagesMissed
 makeFrame Thermometer
 makeFrame Trends
-makeFrame TrendsUp
-makeFrame TrendsDown
+makeFrame Up Trends/
+makeFrame Down Trends/
+makeFrame Sunny Weather/
+makeFrame Cloudy Weather/
+makeFrame Rainy Weather/
+makeFrame SunnyRainy Weather/
+makeFrame SunnyCloudy Weather/
+makeFrame Stormy Weather/
 
