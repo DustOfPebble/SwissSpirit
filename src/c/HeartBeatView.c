@@ -8,7 +8,7 @@ static GRect ValueContainer;
 static GRect UnitContainer;
 static char Unit[] = "b/m";
 
-static int32_t displayedValue;
+static int8_t displayedValue;
 static time_t TimeStampsUpdate;
 //#################################################################################
 void initLayoutHeartBeat(){
@@ -38,7 +38,7 @@ void updateHeartBeatHistory() {
 	SecondsSinceSensorUpdate = elapsed(TimeStampsUpdate);
 }
 //#################################################################################
-void updateHeartBeat(int32_t value) {
+void updateHeartBeat(int8_t value) {
 	time(&TimeStampsUpdate);
 	updateHeartBeatHistory(); // Update elapsed time for ViewSelector
 

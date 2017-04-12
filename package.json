@@ -63,6 +63,21 @@
                     "file": "data/Thermometer.pdc",
                     "name": "THERMO",
                     "type": "raw"
+                },
+                {
+                    "file": "data/Trends.pdc",
+                    "name": "TREND_NONE",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/TrendsUp.pdc",
+                    "name": "TREND_UP",
+                    "type": "raw"
+                },
+                {
+                    "file": "data/TrendsDown.pdc",
+                    "name": "TREND_DOWN",
+                    "type": "raw"
                 }
             ]
         },

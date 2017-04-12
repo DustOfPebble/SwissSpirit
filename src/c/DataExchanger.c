@@ -2,28 +2,50 @@
 
 //#################################################################################
 void received_done(DictionaryIterator *PhoneDatas, void *context) {
-/*
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Message received !");
-  Tuple *Element = dict_find(PhoneDatas, KeySensorValue);
-  if(Element) {
-	  APP_LOG(APP_LOG_LEVEL_DEBUG, "searched key:SensorValue[%d] has value %ds",(int) SensorValue, (int)Element->value->int32);
-  	  updateHeartBeat(Element->value->int32);
-  	  updateHeartBeatHistory();
-  	  updateViewSelector();
-  }
-*/
+/**********************************
+ *  Local vars to monitor changes *
+ * ********************************/
+	int8_t NewCalls,NewMessages;
+	bool isPhoneChanged = false;
 
+	int8_t NewBeat;
+	bool isSensorChanged = false;
+/**********************************
+ *    Parse Dictionnary values    *
+ * ********************************/
     Tuple *Item = dict_read_first(PhoneDatas);
 	while (Item)
 	{
 //		APP_LOG(APP_LOG_LEVEL_DEBUG, "Found key[%d] with playload of %d bytes",(int) item->key, (int)item->length);
-		if (Item->key == KeySensorValue) {
-			updateHeartBeat(Item->value->int32);
+		// Phone events management
+		if (Item->key == CallsCount) {
+			NewCalls = Item->value->int8;
+			isPhoneChanged = true;
 		}
+		if (Item->key == MessagesCount) {
+			NewMessages = Item->value->int8;
+			isPhoneChanged = true;
+		}
+
+		// Beat sensor management
+		if (Item->key == SensorBeat) {
+			NewBeat = Item->value->int8;
+			isSensorChanged = true;
+		}
+
+		// Cycle informations management
+
+		// Trip informations management
+
 
 		// Loop over next Item
 		Item = dict_read_next(PhoneDatas);
 	}
+/**********************************
+ *           Update HMI           *
+ * ********************************/
+	if (isPhoneChanged) updatePhoneEvents(NewCalls, NewMessages);
+	if (isSensorChanged) updateHeartBeat(NewBeat);
 }
 
 void received_dropped(AppMessageResult reason, void *context) {

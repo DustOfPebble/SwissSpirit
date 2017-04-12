@@ -16,8 +16,8 @@ static int NbFrames;
 static int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
 static int UnconnectedMinutesDisplayed = -1;
 
-static int MissedMessageCounter = 0;
-static int MissedCallsCounter = 0;
+static int8_t MissedCallsCounter = 0;
+static int8_t MissedMessagesCounter = 0;
 
 static GRect PhoneBox;
 static GRect ChronoBox;
@@ -87,6 +87,16 @@ void initLayoutPhoneLink() {
 	FrameIndex = MaxSteps - 1;
 }
 //#################################################################################
+void updatePhoneEvents(int8_t Calls, int8_t Messages){
+		bool isChanged = false;
+		if (Calls != MissedCallsCounter) isChanged = true;
+		if (Messages != MissedMessagesCounter) isChanged = true;
+		if (!isChanged) return;
+		MissedCallsCounter = Calls;
+		MissedMessagesCounter = Messages;
+		layer_mark_dirty(phoneDisplay);
+	}
+//#################################################################################
 void updatePhoneLinkHistory() {
 	if (isPhoneConnected) time(&TimeStampsLastConnected);
 	SecondsSinceConnection = elapsed(TimeStampsStartConnected);
@@ -139,15 +149,15 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 	{
 		// Place Messages missed value
 		static char MessagesCount[] = "00";
-		snprintf(MessagesCount, sizeof(MessagesCount), "%d", MissedMessageCounter);
+		snprintf(MessagesCount, sizeof(MessagesCount), "%d", (int)MissedMessagesCounter);
 		MessagesCountBox = GRectFromText(MessagesCount,ValueFont,LayerBox);
 		inCenterHrz(MessagesBox, &MessagesCountBox);
 		alignBottom(PhoneBox, &MessagesCountBox);
 
 		// Place Calls missed value
 		static char CallsCount[] = "00";
-		snprintf(CallsCount, sizeof(CallsCount), "%d", MissedCallsCounter);
-		CallsCountBox = GRectFromText(MessagesCount,ValueFont,LayerBox);
+		snprintf(CallsCount, sizeof(CallsCount), "%d", (int)MissedCallsCounter);
+		CallsCountBox = GRectFromText(CallsCount,ValueFont,LayerBox);
 		inCenterHrz(CallsBox, &CallsCountBox);
 		alignBottom(PhoneBox, &CallsCountBox);
 
