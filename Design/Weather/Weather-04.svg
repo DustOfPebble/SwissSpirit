@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Stormy.svg">
+   sodipodi:docname="Weather-04.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="12.6875"
-     inkscape:cx="42.460466"
-     inkscape:cy="33.596603"
+     inkscape:cx="53.979401"
+     inkscape:cy="36.749312"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -72,22 +72,22 @@
      id="layer1"
      transform="translate(-0.48019445,-992.14282)">
     <path
-       style="fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:#555555;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 7.9801938,1010.1428 4.5000012,-1.4999 4.500001,0 3,-1.5 4.5,0 4.499999,2.9999 3.000001,4.5 3,-1.5 4.5,0 4.5,3 1.5,3 1.5,0 3,-1.5 6,0 4.5,3 1.5,3 3,0 3,1.5 3,4.5 0,4.5 -3,4.5 -3,1.5 -4.5,0 -3,1.5 -4.5,1.5 -6,0 -6,3 -6,0 -4.5,-1.5 -1.5,-1.5 -3.000001,0 -4.5,1.5 -3,0 -4.5,-3 -3,-6 0,-4.5 -6.0000012,-3 -2.999999,-4.5 0,-7.5 z"
-       id="path4252"
+       style="fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:#555555;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 7.9801939,1019.1428 1.5,-7.5 4.5000001,-4.4997 7.5,-3 4.500001,0 6,3 3,3 1.5,1.4997 6,-1.4997 4.5,0 6,2.9997 3,3 4.5,-1.5 4.5,0 6,3 3,3 1.5,3 1.5,6 -1.5,6 -3,4.5 -4.5,3 -6,1.5 -6,-1.5 -4.5,-3 -6,4.5 -6,1.5 -6,-1.5 -4.5,-3 -3,-4.5 -1.5,-3 -3.000001,0 -4.5,-1.5 -4.5,-3 -3.0000001,-4.5 z"
+       id="path6169"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccc" />
+       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccc" />
     <path
-       style="fill:#ffaaff;fill-rule:evenodd;stroke:#aa55aa;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
-       d="m 51.480196,1023.6428 -15,13.5 4.499999,1.5 -10.499999,12 18,-12 -4.500001,-1.5 z"
+       style="fill:#ffaaff;fill-opacity:1;fill-rule:evenodd;stroke:#aa55aa;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 42.480195,1022.1428 -22.499999,13.5 4.499999,1.5 -13.5,13.5 25.5,-13.5 -4.500001,-1.5 z"
        id="path4250"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
     <path
-       sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccc"
+       style="fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:#555555;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 24.480194,1008.6428 1.5,-7.5 4.5,-4.49976 7.5,-3 4.500001,0 6,3 3,3 1.5,1.49976 6,-1.49976 4.5,0 6,2.99976 3,3 4.5,-1.5 4.5,0 6,3 3,3 1.5,3 1.5,6 -1.5,6 -3,4.5 -4.5,3 -6,1.5 -6,-1.5 -4.5,-3 -6,4.5 -6,1.5 -6,-1.5 -4.5,-3 -3,-4.5 -1.5,-3 -3.000001,0 -4.5,-1.5 -4.5,-3 -3,-4.5 z"
+       id="path5552"
        inkscape:connector-curvature="0"
-       id="path4270"
-       d="m 31.980195,996.64286 4.5,-1.49998 4.500001,0 3,-1.5 4.5,0 4.499999,2.99998 3.000001,4.49994 3,-1.49996 4.5,0 4.5,2.99996 1.5,3 1.5,0 3,-1.5 6,0 4.5,3 1.5,3 3,0 3,1.5 3,4.5 0,4.5 -3,4.5 -3,1.5 -4.5,0 -3,1.5 -4.5,1.5 -6,0 -6,3 -6,0 -4.5,-1.5 -1.5,-1.5 -3.000001,0 -4.5,1.5 -3,0 -4.5,-3 -3,-6 0,-4.5 -6,-3 -2.999999,-4.5 0,-7.5 z"
-       style="fill:#aaaaaa;fill-opacity:1;fill-rule:evenodd;stroke:#555555;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccc" />
   </g>
 </svg>
