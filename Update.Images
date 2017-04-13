@@ -15,6 +15,7 @@ echo -e "\n"
 
 function makeSequence() {
 SubDirectory=$1
+Name=$SubDirectory
 Directory=${Collection}${SubDirectory}
 PDC=${Processed}${Name}.pdc
 
@@ -28,22 +29,15 @@ Processed=resources/data/
 
 makeFrame Heart
 makeFrame Phone
-makeFrame isLinked PhoneLink/
-makeFrame isNotLinked PhoneLink/
+makeSequence Link
 makeFrame Battery
 makeSequence Levels
 makeFrame Chrono
 makeSequence Elapsed
-makeFrame CallsMissed
-makeFrame MessagesMissed
+makeFrame Calls
+makeFrame Messages
 makeFrame Thermometer
-makeFrame Trends
-makeFrame Up Trends/
-makeFrame Down Trends/
-makeFrame Sunny Weather/
-makeFrame Cloudy Weather/
-makeFrame Rainy Weather/
-makeFrame SunnyRainy Weather/
-makeFrame SunnyCloudy Weather/
-makeFrame Stormy Weather/
+makeFrame Neutral
+makeSequence Trends
+makeSequence Weather
 

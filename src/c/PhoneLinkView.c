@@ -1,8 +1,9 @@
 #include "PhoneLinkView.h"
 //#################################################################################
 static GDrawCommandImage *Phone;
-static GDrawCommandImage *isLinked;
-static GDrawCommandImage *isNotLinked;
+static GDrawCommandSequence *PhoneLink;
+#define isLinked 0
+#define isNotLinked 1
 
 static GDrawCommandImage *CallsMissed;
 static GDrawCommandImage *MessagesMissed;
@@ -10,7 +11,6 @@ static GDrawCommandImage *MessagesMissed;
 static GDrawCommandImage *Chrono;
 static GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
-static int NbFrames;
 
 #define MaxSteps 7
 static int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
@@ -41,8 +41,7 @@ void initLayoutPhoneLink() {
 
 	// Load Phone icons resources
 	Phone = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE);
-	isLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_LINKED);
-	isNotLinked = gdraw_command_image_create_with_resource(RESOURCE_ID_PHONE_NOT_LINKED);
+	PhoneLink = gdraw_command_sequence_create_with_resource(RESOURCE_ID_PHONE_LINK);
 
 	// Place Phone Icon
 	PhoneBox = GRectFromSize(gdraw_command_image_get_bounds_size(Phone));
@@ -53,7 +52,6 @@ void initLayoutPhoneLink() {
 	// Load Chrono icons resources & vars
 	Chrono = gdraw_command_image_create_with_resource(RESOURCE_ID_CHRONO);
 	ChronoElapsed = gdraw_command_sequence_create_with_resource(RESOURCE_ID_CHRONO_ELAPSED);
-	NbFrames = gdraw_command_sequence_get_num_frames(ChronoElapsed);
 
 	// Place the Chrono icon
 	ChronoBox = GRectFromSize(gdraw_command_image_get_bounds_size(Chrono));
@@ -67,8 +65,8 @@ void initLayoutPhoneLink() {
 	alignBottom(PhoneBox, &UnitBox);
 
 	// Load icons for calls and Messages
-	CallsMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS_MISSED);
-	MessagesMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_MESSAGES_MISSED);
+	CallsMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS);
+	MessagesMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_MESSAGES);
 
 	// Place Messages icon (at End)
 	MessagesBox = GRectFromSize(gdraw_command_image_get_bounds_size(MessagesMissed));
@@ -144,6 +142,7 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 
 	// Show Phone without status
 	gdraw_command_image_draw(context, Phone,  PhoneBox.origin);
+	GDrawCommandFrame *linkState;
 
 	if (isPhoneConnected)
 	{
@@ -162,7 +161,8 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 		alignBottom(PhoneBox, &CallsCountBox);
 
 		// Draw icons ...
-		gdraw_command_image_draw(context, isLinked, PhoneBox.origin);
+		linkState = gdraw_command_sequence_get_frame_by_index(PhoneLink, isLinked);
+		gdraw_command_frame_draw(context, PhoneLink, linkState, PhoneBox.origin);
 		gdraw_command_image_draw(context, CallsMissed, CallsBox.origin);
 		gdraw_command_image_draw(context, MessagesMissed, MessagesBox.origin);
 
@@ -183,7 +183,8 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 		alignTop(PhoneBox, &ValueBox);
 
 		// Draw Chrono icon and elapsed
-		gdraw_command_image_draw(context, isNotLinked, PhoneBox.origin);
+		linkState = gdraw_command_sequence_get_frame_by_index(PhoneLink, isNotLinked);
+		gdraw_command_frame_draw(context, PhoneLink, linkState, PhoneBox.origin);
 		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
 		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, ChronoBox.origin);
 		gdraw_command_image_draw(context, Chrono, ChronoBox.origin);

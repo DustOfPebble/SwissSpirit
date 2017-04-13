@@ -6,6 +6,7 @@ extern TextLayer *dateDisplay;
 extern Layer *batteryDisplay;
 extern Layer *phoneDisplay;
 extern Layer *heartDisplay;
+extern Layer *weatherDisplay;
 
 extern GFont ValueFont;
 extern GFont UnitFont;

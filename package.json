@@ -25,13 +25,8 @@
                     "type": "raw"
                 },
                 {
-                    "file": "data/isLinked.pdc",
-                    "name": "PHONE_LINKED",
-                    "type": "raw"
-                },
-                {
-                    "file": "data/isNotLinked.pdc",
-                    "name": "PHONE_NOT_LINKED",
+                    "file": "data/Link.pdc",
+                    "name": "PHONE_LINK",
                     "type": "raw"
                 },
                 {
@@ -50,13 +45,13 @@
                     "type": "raw"
                 },
                 {
-                    "file": "data/CallsMissed.pdc",
-                    "name": "CALLS_MISSED",
+                    "file": "data/Calls.pdc",
+                    "name": "CALLS",
                     "type": "raw"
                 },
                 {
-                    "file": "data/MessagesMissed.pdc",
-                    "name": "MESSAGES_MISSED",
+                    "file": "data/Messages.pdc",
+                    "name": "MESSAGES",
                     "type": "raw"
                 },
                 {
@@ -65,18 +60,18 @@
                     "type": "raw"
                 },
                 {
+                    "file": "data/Neutral.pdc",
+                    "name": "TRENDS",
+                    "type": "raw"
+                },
+                {
                     "file": "data/Trends.pdc",
-                    "name": "TREND_NONE",
+                    "name": "TRENDS_SLOPE",
                     "type": "raw"
                 },
                 {
-                    "file": "data/Up.pdc",
-                    "name": "TREND_UP",
-                    "type": "raw"
-                },
-                {
-                    "file": "data/Down.pdc",
-                    "name": "TREND_DOWN",
+                    "file": "data/Weather.pdc",
+                    "name": "WEATHER",
                     "type": "raw"
                 }
             ]

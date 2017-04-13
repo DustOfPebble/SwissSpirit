@@ -8,6 +8,7 @@
 #include "BatteryView.h"
 #include "HeartBeatView.h"
 #include "PhoneLinkView.h"
+#include "WeatherView.h"
 
 #include "ViewSelector.h"
 #include "DataExchanger.h"
@@ -20,6 +21,7 @@ TextLayer *dateDisplay = NULL;
 Layer *batteryDisplay = NULL;
 Layer *heartDisplay = NULL;
 Layer *phoneDisplay = NULL;
+Layer *weatherDisplay = NULL;
 
 GColor TextColor;
 GColor BackgroundColor;
@@ -49,6 +51,10 @@ void loading(Window *window) {
 	layer_set_hidden(heartDisplay,true);
 	initLayoutHeartBeat();
 
+	weatherDisplay = layer_create(SharedFrame);
+	layer_set_hidden(weatherDisplay,true);
+	initLayoutWeather();
+
 	Layer *rootLayer = window_get_root_layer(window);
 	layer_add_child(rootLayer, text_layer_get_layer(timeDisplay));
 	layer_add_child(rootLayer, text_layer_get_layer(dateDisplay));
@@ -61,6 +67,9 @@ void loading(Window *window) {
 
 	layer_add_child(rootLayer, heartDisplay);
 	layer_set_update_proc(heartDisplay, drawHeartBeat);
+
+	layer_add_child(rootLayer, weatherDisplay);
+	layer_set_update_proc(weatherDisplay, drawWeather);
 
 	// Subscribe to events services
 	tick_timer_service_subscribe(SECOND_UNIT, updateClock);

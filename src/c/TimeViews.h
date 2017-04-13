@@ -2,6 +2,7 @@
 #include "Globals.h"
 
 #include "PhoneLinkView.h"
+#include "WeatherView.h"
 #include "DataExchanger.h"
 
 tm* get_time();

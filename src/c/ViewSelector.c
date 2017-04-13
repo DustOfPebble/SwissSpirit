@@ -3,34 +3,38 @@
 void updateViewSelector(){
 
 	/* Business logic :
+	 * - Default Display is Weather ==> Fallback
 	 * - Phone disconnection leads heart sensor --> Disconnection screen overides
-	 * - Phone reconnection --> schow screen connection for 30 secondes --> then allows HeartBeatDisplay.
-	 * - Sensor lost/recovery --> wait 30 seconds after phone reconnection until showing back sensorDisplay
+	 * - Phone reconnection --> schow screen connection for 30 secondes --> then allows other display.
+	 * - Sensor lost criteria --> wait 30 seconds without update to consider sensor lost
 	 */
 
 	//APP_LOG(APP_LOG_LEVEL_DEBUG, "Connected since:%d s Disconnected since:%d s SensorUpdate sinc %d s.",SecondsSinceConnection, SecondsSinceDisconnection, SecondsSinceSensorUpdate);
+	// Hide all customized layers
+	layer_set_hidden(heartDisplay,true);
+	layer_set_hidden(weatherDisplay,true);
+	layer_set_hidden(phoneDisplay,true);
 
 	// Disconnection --> Switch to Phone discconnected
 	if (SecondsSinceDisconnection > 0)	{
-		layer_set_hidden(heartDisplay,true);
 		layer_set_hidden(phoneDisplay,false);
 		return;
 	}
-	// Sensor Lost --> Switch to phone mode
+	// Sensor Lost --> Switch Weather Mode
 	if (SecondsSinceSensorUpdate > 30) {
-		layer_set_hidden(heartDisplay,true);
-		layer_set_hidden(phoneDisplay,false);
+		layer_set_hidden(weatherDisplay,false);
 		return;
 	}
 
-	// Wait 30 seconds of Phone connected history before displaying sensor
-	if ((SecondsSinceConnection > 15) && (SecondsSinceSensorUpdate < 5)) {
-		layer_set_hidden(heartDisplay,false);
-		layer_set_hidden(phoneDisplay,true);
-		return;
+	// Phone Connection --> Wait 15 seconds -> 2 options
+	if (SecondsSinceConnection > 15) {
+		// Sensor update < 5s --> Show sensors
+		if  (SecondsSinceSensorUpdate < 5) {
+			layer_set_hidden(heartDisplay,false);
+			return;
+		}
 	}
 
-	// None of previous case catch ==> Fallback mode 
-	layer_set_hidden(heartDisplay,true);
-	layer_set_hidden(phoneDisplay,false);
+	// None of previous case catch ==> Fallback mode
+	layer_set_hidden(weatherDisplay,false);
 }
