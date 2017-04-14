@@ -10,18 +10,18 @@ void updateViewSelector(){
 	 */
 
 	//APP_LOG(APP_LOG_LEVEL_DEBUG, "Connected since:%d s Disconnected since:%d s SensorUpdate sinc %d s.",SecondsSinceConnection, SecondsSinceDisconnection, SecondsSinceSensorUpdate);
-	// Hide all customized layers
-	layer_set_hidden(heartDisplay,true);
-	layer_set_hidden(weatherDisplay,true);
-	layer_set_hidden(phoneDisplay,true);
 
 	// Disconnection --> Switch to Phone discconnected
 	if (SecondsSinceDisconnection > 0)	{
+		layer_set_hidden(heartDisplay,true);
+		layer_set_hidden(weatherDisplay,true);
 		layer_set_hidden(phoneDisplay,false);
 		return;
 	}
 	// Sensor Lost --> Switch Weather Mode
 	if (SecondsSinceSensorUpdate > 30) {
+		layer_set_hidden(heartDisplay,true);
+		layer_set_hidden(phoneDisplay,true);
 		layer_set_hidden(weatherDisplay,false);
 		return;
 	}
@@ -30,11 +30,15 @@ void updateViewSelector(){
 	if (SecondsSinceConnection > 15) {
 		// Sensor update < 5s --> Show sensors
 		if  (SecondsSinceSensorUpdate < 5) {
+			layer_set_hidden(weatherDisplay,true);
+			layer_set_hidden(phoneDisplay,true);
 			layer_set_hidden(heartDisplay,false);
 			return;
 		}
 	}
 
 	// None of previous case catch ==> Fallback mode
+	layer_set_hidden(heartDisplay,true);
+	layer_set_hidden(phoneDisplay,true);
 	layer_set_hidden(weatherDisplay,false);
 }
