@@ -16,8 +16,8 @@ static int FrameIndex;
 static int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
 static int UnconnectedMinutesDisplayed = -1;
 
-static int8_t MissedCallsCounter = 0;
-static int8_t MissedMessagesCounter = 0;
+static uint8_t MissedCallsCounter = 0;
+static uint8_t MissedMessagesCounter = 0;
 
 static GRect PhoneBox;
 static GRect ChronoBox;
@@ -85,15 +85,15 @@ void initLayoutPhoneLink() {
 	FrameIndex = MaxSteps - 1;
 }
 //#################################################################################
-void updatePhoneEvents(int8_t Calls, int8_t Messages){
-		bool isChanged = false;
-		if (Calls != MissedCallsCounter) isChanged = true;
-		if (Messages != MissedMessagesCounter) isChanged = true;
-		if (!isChanged) return;
-		MissedCallsCounter = Calls;
-		MissedMessagesCounter = Messages;
-		layer_mark_dirty(phoneDisplay);
-	}
+void updatePhoneEvents(uint8_t Calls, uint8_t Messages){
+	bool isChanged = false;
+	if (Calls != MissedCallsCounter) isChanged = true;
+	if (Messages != MissedMessagesCounter) isChanged = true;
+	if (!isChanged) return;
+	MissedCallsCounter = Calls;
+	MissedMessagesCounter = Messages;
+	layer_mark_dirty(phoneDisplay);
+}
 //#################################################################################
 void updatePhoneLinkHistory() {
 	if (isPhoneConnected) time(&TimeStampsLastConnected);
@@ -132,8 +132,8 @@ void updatePhoneLink(bool connectedState) {
 	// Update connection history
 	updatePhoneLinkHistory();
 
-	// Call to this is triggered by a state change --> We force  a redraw ...
-	layer_mark_dirty(phoneDisplay);
+	// Call to this is triggered by a state change --> We force a view selection ...
+	updateViewSelector();
 }
 //#################################################################################
 void drawPhoneLink(Layer *frame, GContext* context) {

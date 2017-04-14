@@ -5,10 +5,10 @@ void received_done(DictionaryIterator *PhoneDatas, void *context) {
 /**********************************
  *  Local vars to monitor changes *
  * ********************************/
-	int8_t NewCalls,NewMessages;
+	uint8_t NewCalls,NewMessages;
 	bool isPhoneChanged = false;
 
-	int8_t NewBeat;
+	uint8_t NewBeat;
 	bool isSensorChanged = false;
 /**********************************
  *    Parse Dictionnary values    *
@@ -19,17 +19,17 @@ void received_done(DictionaryIterator *PhoneDatas, void *context) {
 //		APP_LOG(APP_LOG_LEVEL_DEBUG, "Found key[%d] with playload of %d bytes",(int) item->key, (int)item->length);
 		// Phone events management
 		if (Item->key == CallsCount) {
-			NewCalls = Item->value->int8;
+			NewCalls = Item->value->uint8;
 			isPhoneChanged = true;
 		}
 		if (Item->key == MessagesCount) {
-			NewMessages = Item->value->int8;
+			NewMessages = Item->value->uint8;
 			isPhoneChanged = true;
 		}
 
 		// Beat sensor management
 		if (Item->key == SensorBeat) {
-			NewBeat = Item->value->int8;
+			NewBeat = Item->value->uint8;
 			isSensorChanged = true;
 		}
 

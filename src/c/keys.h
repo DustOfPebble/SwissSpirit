@@ -2,19 +2,26 @@
  *  Key definition for messages *
  * ******************************/
 // Information about Phone events
-#define  CallsCount	5 // (Nb) Unsigned Byte [0,255]
-#define  MessagesCount 6 // (Nb) Unsigned Byte [0,255]
+#define  CallsCount 1 // (Nb) Unsigned Byte [0,255]
+#define  MessagesCount 2 // (Nb) Unsigned Byte [0,255]
+
+// Information about Weather events
+#define  WeatherSkyNow	4 // (Nb) Unsigned Byte [0,255]
+#define  WeatherTemperatureNow 5 // (Nb) Signed Byte [-127,127]
+#define  WeatherTemperatureMax 6 // (Nb) Signed Byte  [-127,127]
+#define  WeatherTemperatureMin 7 // (Nb) Signed Byte  [-127,127]
+#define  WeatherLocationName 8 // (Name) String  [40 chars]
 
 // Information about Heart beat sensor
 #define  SensorEnabled 10 // Boolean [true,false]
 #define  SensorBeat 11 // (Beat/sec) Unsigned Byte [0,255]
 #define  SensorTrendBeat 12 // (Beat/sec) Signed Byte [-127,+127]
 
-// Information about Speed
+// Information about Speed (
 #define  CycleEnabled 20 // Boolean [true,false]
-#define  CycleInstantSpeed 21 // (km/h) Unsigned Byte [0,255]
-#define  CycleMeanSpeed 22 // (km/h) Not defined
-#define  CycleTrendSpeed 23 // (km/h) Not defined
+#define  CycleInstantSpeed 21 // (m/s) Unsigned Byte [0,255]
+#define  CycleMeanSpeed 22 // ((m/s))  Unsigned Byte [0,255]
+#define  CycleTrendSpeed 23 // ((m/s))  Unsigned Byte [0,255]
 
 // Information about Trip
 #define  TripMode 30 // Boolean [true,false]

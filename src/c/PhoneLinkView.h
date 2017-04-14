@@ -6,6 +6,6 @@
 
 void updatePhoneLink(bool connected);
 void updatePhoneLinkHistory();
-void updatePhoneEvents(int8_t Calls, int8_t Messages);
+void updatePhoneEvents(uint8_t Calls, uint8_t Messages);
 void initLayoutPhoneLink();
 void drawPhoneLink(Layer *frame, GContext* context);
