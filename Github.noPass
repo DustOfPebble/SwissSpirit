@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git remote remove origin
-git remote add origin https://DustOfPebble:Pass4Pebble@github.com/DustOfPebble/HeartSpyWatch.git
+git remote add origin https://DustOfPebble:Pass4Pebble@github.com/DustOfPebble/SwissSpirit.git
