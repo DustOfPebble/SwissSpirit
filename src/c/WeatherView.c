@@ -14,7 +14,7 @@ static int FrameWeatherIndex;
 static int NbFramesWeather;
 
 static GDrawCommandImage *Thermometer;
-static int8_t Temperature = 0;
+static int8_t StoredTemperature = 0;
 
 
 static GRect WeatherBox;
@@ -54,23 +54,14 @@ void initLayoutWeather() {
 	time(&TimeStampsWeatherChanged);
 }
 //#################################################################################
-void updateWeather(int8_t Index){
-		if (Index >= NbFramesWeather) return;
-		if (Index == FrameWeatherIndex) return;
-		FrameWeatherIndex = Index;
+void updateWeather(uint8_t WeatherID, int8_t Temperature){
+		bool NoChange = true;
+		if (WeatherID != FrameWeatherIndex) NoChange = false;
+		if (Temperature != StoredTemperature) NoChange = false;
+		if (NoChange) return;
 
-		layer_mark_dirty(weatherDisplay);
-	}
-//#################################################################################
-void updateWeatherHistory(){
-		if (elapsed(TimeStampsWeatherChanged) < WeatherChangeDelay) return;
-		time(&TimeStampsWeatherChanged);
-		FrameWeatherIndex++;
-		if (FrameWeatherIndex >= NbFramesWeather) FrameWeatherIndex =0;
-
-		Temperature++;
-		if (Temperature > 50) Temperature = -30;
-//		APP_LOG(APP_LOG_LEVEL_DEBUG, "Simulated Temp. :%d °C",Temperature);
+		FrameWeatherIndex = WeatherID;
+		StoredTemperature = Temperature;
 
 		layer_mark_dirty(weatherDisplay);
 	}
@@ -87,16 +78,16 @@ void drawWeather(Layer *frame, GContext* context) {
 	gdraw_command_image_draw(context, Thermometer,  ThermometerBox.origin);
 
 	// Calculate and Place String to display
-	static char Text[] = "-99°";
-	snprintf(Text, sizeof(Text), "%d°", Temperature);
+	static char Text[] = "-99";
+	snprintf(Text, sizeof(Text), "%d", StoredTemperature);
 
 	// Loading and place Temperature Text
-	TemperatureBox = GRectFromText(Text,UnitFont,LayerBox);
+	TemperatureBox = GRectFromText(Text,ValueFont,LayerBox);
 	atCenter(Horizontal, ThermometerBox,  &TemperatureBox);
 	align(Bottom, WeatherBox, &TemperatureBox);
 
 	// Show Temperature value
-	graphics_draw_text(context,Text,UnitFont,TemperatureBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
+	graphics_draw_text(context,Text,ValueFont,TemperatureBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 
 }
 

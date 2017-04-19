@@ -46,7 +46,6 @@ void updateClock(struct tm* TimeInfos, TimeUnits Unit) {
 	// Update every History ...
 	updatePhoneLinkHistory();
 	updateHeartBeatHistory();
-	updateWeatherHistory();
 	updateViewSelector();
 
 	// Display need to be updated only every minute change

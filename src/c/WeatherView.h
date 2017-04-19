@@ -3,6 +3,5 @@
 #include "utils.h"
 
 void initLayoutWeather();
-void updateWeather(int8_t Index);
-void updateWeatherHistory();
+void updateWeather(uint8_t WeatherID, int8_t Temperature);
 void drawWeather(Layer *frame, GContext* context);

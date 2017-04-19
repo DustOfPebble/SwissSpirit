@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "HeartBeatView.h"
 #include "PhoneLinkView.h"
+#include "WeatherView.h"
 #include "ViewSelector.h"
 #include "keys.h"
 
