@@ -12,7 +12,7 @@ void updateViewSelector(){
 	//APP_LOG(APP_LOG_LEVEL_DEBUG, "Connected since:%d s Disconnected since:%d s SensorUpdate sinc %d s.",SecondsSinceConnection, SecondsSinceDisconnection, SecondsSinceSensorUpdate);
 
 	// Disconnection --> Switch to Phone discconnected
-	if (SecondsSinceDisconnection >= 0)	{
+	if (SecondsSinceDisconnection > 0)	{
 		layer_set_hidden(heartDisplay,true);
 		layer_set_hidden(weatherDisplay,true);
 		layer_set_hidden(phoneDisplay,false);

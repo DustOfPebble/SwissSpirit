@@ -1,10 +1,10 @@
 {
-    "author": "Dust in Cloud ",
+    "author": "Dust Ghost",
     "dependencies": {},
     "keywords": [],
-    "name": "heartspy",
+    "name": "SwissSpirit",
     "pebble": {
-        "displayName": "Heart Spy Watch",
+        "displayName": "Swiss Spirit",
         "enableMultiJS": true,
         "projectType": "native",
         "resources": {

@@ -6,23 +6,24 @@ tm* get_time();
 // Returning Elapsed seconds between now and provided time;
 int elapsed(time_t past);
 
-// Moving GRect from constraints
-void atLeft(GRect left, GRect *at);
-void atRight(GRect right, GRect *at);
-void atTop(GRect top, GRect *at);
-void atBottom(GRect bottom, GRect *at);
-void alignLeft(GRect left, GRect *align );
-void alignTop(GRect top, GRect *align );
-void alignRight(GRect right, GRect *align );
-void alignBottom(GRect bottom, GRect *align );
-void translate(GSize vector, GRect *moved);
-void inCenterHrz(GRect center, GRect *in );
-void inCenterVrt(GRect center, GRect *in );
-void inBetweenHrz(GRect left, GRect right, GRect *in );
-void inBetweenVrt(GRect top, GRect bottom, GRect *in );
-
 // Create GRect ...
 GRect GRectFromSize(GSize size);
 GRect GRectFromPoint(GPoint point);
 GRect GRectFromText(char* text, GFont font, GRect box);
-GRect GRectFromInner(GRect outer, GRect inner);
+
+
+// Mode defined & mixed values
+#define Horizontal 1
+#define Vertical 2
+
+#define Top 1
+#define Bottom 2
+#define Left 4
+#define Right 8
+// Moving GRect from constraints
+void translate(int Mode, int  offset, GRect *moved);
+void at(int Mode, GRect anchor, GRect *moved);
+void align(int Mode, GRect anchor, GRect *aligned);
+void atCenter(int Mode, GRect center, GRect *centered);
+void inMiddle( int Mode, GRect first, GRect second, GRect *middle);
+void remainsAt(int Mode, GRect outer, GRect inner, GRect *free);

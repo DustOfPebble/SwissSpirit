@@ -1,9 +1,9 @@
-# HeartSpyWatch Pebble App
+# SwissSpirit Pebble App
 "Pebble Time" watchface that works with Android companion application.
 
-**HeartSpy** (on Github)
+**MyGhostPartner** (on Github and soon in Play Store) _[Work in progress !]_
 
-**DailyRace** (on Github and Play Store) _[Work in progress !]_
+**PebbleServices** (on Github and maybe in Play Store) _[Work in progress !]_
 
 _The  Android applications are available as source code in this Github repository_ 
 

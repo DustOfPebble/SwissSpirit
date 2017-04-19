@@ -1,5 +1,4 @@
 #include "utils.h"
-
 //#################################################################################
 tm* get_time(){
 	time_t rawtime;
@@ -12,7 +11,6 @@ int elapsed(time_t past) {
 	time(&now);
 	return now - past;
 }
-//#################################################################################
 //#################################################################################
 GRect GRectFromSize(GSize size) {
 	return GRect(0,0, size.w, size.h);
@@ -33,64 +31,53 @@ GRect GRectFromText(char* text, GFont font, GRect box) {
 	return GRect(0,0, size.w, size.h);
 }
 //#################################################################################
-GRect GRectFromInner(GRect outer, GRect inner) {
-	return GRect( inner.origin.x + inner.size.w, \
-				  inner.origin.y + inner.size.h, \
-				  outer.size.w - inner.origin.x - inner.size.w, \
-				  outer.size.h - inner.origin.y - inner.size.h \
-				);
+void translate(int Mode, int  offset, GRect *moved) {
+	if (Mode & Horizontal) moved->origin.x = moved->origin.x + offset;
+	if (Mode & Vertical) moved->origin.y = moved->origin.y + offset;
 }
 //#################################################################################
-//#################################################################################
-void atLeft(GRect left, GRect *at) {
-	at->origin.x = left.origin.x - at->size.w ;
+void at(int Mode, GRect anchor, GRect *moved) {
+	if (Mode & Left) moved->origin.x = anchor.origin.x - moved->size.w ;
+	if (Mode & Right) moved->origin.x = anchor.origin.x + anchor.size.w ;
+	if (Mode & Top) moved->origin.y = anchor.origin.y - moved->size.h ;
+	if (Mode & Bottom) moved->origin.y = anchor.origin.y + anchor.size.h;
 }
 //#################################################################################
-void atRight(GRect right, GRect *at) {
-	at->origin.x = right.origin.x + right.size.w ;
+void align(int Mode, GRect anchor, GRect *aligned) {
+
+	if (Mode & Left)  aligned->origin.x = anchor.origin.x ;
+	if (Mode & Right) aligned->origin.x = anchor.origin.x + anchor.size.w - aligned->size.w ;
+	if (Mode & Top) aligned->origin.y = anchor.origin.y ;
+	if (Mode & Bottom) aligned->origin.y =  anchor.origin.y + anchor.size.h - aligned->size.h ;
 }
 //#################################################################################
-void atTop(GRect top, GRect *at) {
-	at->origin.y = top.origin.y - at->size.h ;
+void atCenter(int Mode, GRect anchor, GRect *centered) {
+	if (Mode & Horizontal) centered->origin.x = anchor.origin.x + (( anchor.size.w - centered->size.w) / 2);
+	if (Mode & Vertical) centered->origin.y = anchor.origin.y + (( anchor.size.h - centered->size.h) / 2);
 }
 //#################################################################################
-void atBottom(GRect bottom, GRect *at) {
-	at->origin.y = bottom.origin.y + bottom.size.h;
+void inMiddle( int Mode, GRect first, GRect second, GRect *middle) {
+	if (Mode & Horizontal) middle->origin.x = (first.origin.x + first.size.w + second.origin.x - middle->size.w) / 2;
+	if (Mode & Vertical) middle->origin.y = (first.origin.y + first.size.h + second.origin.y - middle->size.h) / 2;
 }
 //#################################################################################
-void alignLeft(GRect left, GRect *align ) {
-	align->origin.x = left.origin.x ;
+void remainsAt(int Mode, GRect outer, GRect inner, GRect *free) {
+	free->origin = outer.origin;
+	free->size = outer.size;
+
+	if (Mode & Left) {
+		free->size.w = outer.origin.x - inner.origin.x;
+	}
+	if (Mode & Right) {
+		free->origin.x = inner.origin.x + inner.size.w;
+		free->size.w = (outer.origin.x + outer.size.w) - free->origin.x;
+	}
+	if (Mode & Top) {
+		free->size.w = outer.origin.y - inner.origin.x;
+	}
+	if (Mode & Bottom) {
+		free->origin.y = inner.origin.y + inner.size.h;
+		free->size.h = (outer.origin.y + outer.size.h) - free->origin.y;
+	}
 }
 //#################################################################################
-void alignTop(GRect top, GRect *align ) {
-	align->origin.y = top.origin.y ;
-}
-//#################################################################################
-void alignRight(GRect right, GRect *align ) {
-	align->origin.x = right.origin.x + right.size.w - align->size.w ;
-}
-//#################################################################################
-void alignBottom(GRect bottom, GRect *align ) {
-	align->origin.y =  bottom.origin.y + bottom.size.h - align->size.h ;
-}
-//#################################################################################
-void translate(GSize vector, GRect *moved) {
-	moved->origin.x = moved->origin.x + vector.w;
-	moved->origin.y = moved->origin.y + vector.h;
-}
-//#################################################################################
-void inCenterHrz(GRect center, GRect *in ) {
-	in->origin.x = center.origin.x + (( center.size.w - in->size.w) / 2);
-}
-//#################################################################################
-void inCenterVrt(GRect center, GRect *in ) {
-	in->origin.y = center.origin.y + (( center.size.h - in->size.h) / 2);
-}
-//#################################################################################
-void inBetweenHrz(GRect left, GRect right, GRect *in ) {
-	in->origin.x = (left.origin.x + left.size.w + right.origin.x - in->size.w) / 2;
-}
-//#################################################################################
-void inBetweenVrt(GRect top, GRect bottom, GRect *in ) {
-	in->origin.y = (top.origin.y + top.size.h + bottom.origin.y - in->size.h) / 2;
-}

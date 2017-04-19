@@ -19,15 +19,16 @@ void initLayoutHeartBeat(){
 	// Loading and place Heart icon
 	Heart = gdraw_command_image_create_with_resource(RESOURCE_ID_HEART);
 	IconBox = GRectFromSize(gdraw_command_image_get_bounds_size(Heart));
-	inCenterVrt(LayerBox, &IconBox);
-	alignLeft(LayerBox,&IconBox);
-	translate( GSize(Margin,0), &IconBox);
+	atCenter(Vertical,LayerBox, &IconBox);
+	align(Left, LayerBox,&IconBox);
+	translate(Horizontal, Margin, &IconBox);
 
 	// Loading and place Unit Text
 	UnitContainer = GRectFromText(Unit,UnitFont,LayerBox);
-	GRect FreeSpaceBox = GRectFromInner(LayerBox, IconBox);
-	inCenterHrz(FreeSpaceBox, &UnitContainer);
-	alignBottom(IconBox, &UnitContainer);
+	GRect FreeSpaceBox;
+	remainsAt(Right, LayerBox, IconBox, &FreeSpaceBox);
+	atCenter(Horizontal, FreeSpaceBox, &UnitContainer);
+	align(Bottom, IconBox, &UnitContainer);
 
 	// Init static Vars
 	displayedValue = 0;
@@ -55,9 +56,10 @@ void drawHeartBeat(Layer *frame, GContext* context)
 
 	// Loading and place Value Text
 	ValueContainer = GRectFromText(Value,ValueFont,LayerBox);
-	GRect FreeSpaceBox = GRectFromInner(LayerBox, IconBox);
-	inCenterHrz(FreeSpaceBox, &ValueContainer);
-	alignTop(IconBox, &ValueContainer);
+	GRect FreeSpaceBox;
+	remainsAt(Right,LayerBox, IconBox, &FreeSpaceBox);
+	atCenter(Horizontal, FreeSpaceBox, &ValueContainer);
+	align(Top, IconBox, &ValueContainer);
 
 	gdraw_command_image_draw(context, Heart, IconBox.origin);
 

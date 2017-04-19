@@ -97,7 +97,9 @@ void unLoading(Window *window) {
 }
 //#################################################################################
 int main(void) {
-	// Shared vars initilization
+	APP_LOG(APP_LOG_LEVEL_DEBUG,"Entering main()");
+
+	// Shared vars initialization
 	SecondsSinceSensorUpdate = -1; // Unknown
 	SecondsSinceDisconnection = -1; // Unknown
 	SecondsSinceConnection = -1; // Unknown
