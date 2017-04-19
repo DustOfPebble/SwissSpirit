@@ -60,6 +60,7 @@ void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		if (Temperature != StoredTemperature) NoChange = false;
 		if (NoChange) return;
 
+		time(&TimeStampsWeatherChanged);
 		FrameWeatherIndex = WeatherID;
 		StoredTemperature = Temperature;
 
