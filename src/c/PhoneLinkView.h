@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "ViewSelector.h"
 
-void updatePhoneLink(bool connected);
+void updatePhoneLink(bool connectState);
 void updatePhoneLinkHistory();
 void updatePhoneEvents(uint8_t Calls, uint8_t Messages);
 void initLayoutPhoneLink();

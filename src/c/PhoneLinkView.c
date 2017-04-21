@@ -31,8 +31,7 @@ static GRect ValueBox;
 static GRect UnitBox;
 static char Unit[] = "min";
 
-static time_t TimeStampsLastConnected;
-static time_t TimeStampsStartConnected;
+static time_t TimeStampsConnectEvent;
 //#################################################################################
 void initLayoutPhoneLink() {
 	// Set persistent vars
@@ -80,9 +79,9 @@ void initLayoutPhoneLink() {
 	inMiddle(Horizontal, PhoneBox, MessagesBox, &CallsBox);
 
 	// Initialize vars
-	time(&TimeStampsLastConnected);
-	time(&TimeStampsStartConnected);
-	FrameIndex = MaxSteps - 1;
+	FrameIndex = -1;
+	TimeStampsConnectEvent=0;
+	time(&TimeStampsConnectEvent);
 }
 //#################################################################################
 void updatePhoneEvents(uint8_t Calls, uint8_t Messages){
@@ -96,14 +95,12 @@ void updatePhoneEvents(uint8_t Calls, uint8_t Messages){
 }
 //#################################################################################
 void updatePhoneLinkHistory() {
-	if (isPhoneConnected) time(&TimeStampsLastConnected);
-	SecondsSinceConnection = elapsed(TimeStampsStartConnected);
 
-	// Do we need to refresh the Display ? (Called also by TimeView)
-	SecondsSinceDisconnection = elapsed(TimeStampsLastConnected) + 1; // +1 force display
-	int UnconnectedMinutes = SecondsSinceDisconnection / 60;
+	// Updates timer for view selector
+	SecondsSinceConnectEvent = elapsed(TimeStampsConnectEvent);
+	int UnconnectedMinutes = SecondsSinceConnectEvent / 60;
 
-	// Select matching index
+	// Select/Check changed View for Chrono
 	int MatchingIndex = MaxSteps - 1;
 	for (int i = MaxSteps-1; i >=0 ; i--)
 		if (UnconnectedMinutes < ChronoSteps[i] ) MatchingIndex = i;
@@ -113,21 +110,23 @@ void updatePhoneLinkHistory() {
 		layer_mark_dirty(phoneDisplay); //Icon is different --> redraw required
 	}
 
+	// Check if displayed value have changed
 	if (UnconnectedMinutesDisplayed != UnconnectedMinutes ) {
 		UnconnectedMinutesDisplayed = UnconnectedMinutes;
 		layer_mark_dirty(phoneDisplay); //Value is different --> redraw required
 	}
 }
 //#################################################################################
-void updatePhoneLink(bool connectedState) {
-	// If switching from connected --> disconnect ==> save the time..
-	if (!isPhoneConnected && connectedState) time(&TimeStampsStartConnected);
+void updatePhoneLink(bool connectState) {
 	// Store new state
-	isPhoneConnected = connectedState;
+	isPhoneConnected = connectState;
 
 	// Notify user about state change by vibration ...
 	if (isPhoneConnected) vibes_short_pulse();
 	else vibes_long_pulse();
+
+	// save TimeStamps
+	time(&TimeStampsConnectEvent);
 
 	// Update connection history
 	updatePhoneLinkHistory();

@@ -4,6 +4,7 @@
 GDrawCommandSequence *BatteryLevels;
 GDrawCommandImage *Battery;
 static int FrameIndex;
+static int StoredFrameIndex;
 static int NbFrames;
 
 static GRect LayerBox;
@@ -23,11 +24,16 @@ void initLayoutBattery() {
 	//Load Battery levels
 	BatteryLevels = gdraw_command_sequence_create_with_resource(RESOURCE_ID_BATTERY_LEVELS);
 	NbFrames = gdraw_command_sequence_get_num_frames(BatteryLevels);
+
+	// Initialize vars
+	StoredFrameIndex = -1;
 }
 //#################################################################################
 void updateBattery(BatteryChargeState batteryInfos) {
 	FrameIndex = batteryInfos.charge_percent / 10;
 	if (FrameIndex > NbFrames)  FrameIndex = NbFrames;
+	if (FrameIndex == StoredFrameIndex) return;
+	StoredFrameIndex = FrameIndex;
 	layer_mark_dirty(batteryDisplay);
 }
 //#################################################################################

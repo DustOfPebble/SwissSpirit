@@ -30,18 +30,19 @@ void updateViewSelector(){
 	 ******************************************************************************************************/
 
 	// Disconnection ==> Higest priority
-	if (SecondsSinceDisconnection > 0)	{
+	if (!isPhoneConnected)	{
+		showPhoneLink();
+		return;
+	}
+
+	// Phone Connected ==> if connected since 15s
+	if (SecondsSinceConnectEvent < 15) {
 		showPhoneLink();
 		return;
 	}
 
 	// Heart Sensor connected ==> High priority
 	if (SecondsSinceSensorUpdate < 30) {
-		// Phone Connected ==>
-		if (SecondsSinceConnection < 15) {
-			showPhoneLink();
-			return;
-		}
 		showHeartSensor();
 		return;
 	}

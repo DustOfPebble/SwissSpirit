@@ -29,8 +29,7 @@ GFont ValueFont;
 GFont UnitFont;
 
 int SecondsSinceSensorUpdate;
-int SecondsSinceDisconnection;
-int SecondsSinceConnection;
+int SecondsSinceConnectEvent;
 int SecondsSinceTimeUpdate;
 bool isPhoneConnected;
 //#################################################################################
@@ -101,9 +100,8 @@ int main(void) {
 
 	// Shared vars initialization
 	SecondsSinceSensorUpdate = -1; // Unknown
-	SecondsSinceDisconnection = -1; // Unknown
-	SecondsSinceConnection = -1; // Unknown
-	isPhoneConnected=false; // Not Connected by default
+	SecondsSinceConnectEvent = -1; // Unknown
+	isPhoneConnected = false; // Not Connected by default
 
 	// Loading Basic shared colors Layers
 	TextColor = GColorImperialPurple;
