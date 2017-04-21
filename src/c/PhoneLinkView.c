@@ -12,8 +12,12 @@ static GDrawCommandImage *Chrono;
 static GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
 
-#define MaxSteps 7
-static int ChronoSteps[MaxSteps] = { 5, 8, 15, 24, 38, 45, 60 };
+#define MaxSteps 28
+static int ChronoSteps[MaxSteps] = { 1,  3,  5,  7, 10, 13, 15, \
+									17, 20, 23, 25, 27, 29, 30, \
+									31, 33, 35, 38, 40, 43, 45, \
+									47, 50, 52, 54, 56, 59, 60 };
+
 static int UnconnectedMinutesDisplayed = -1;
 
 static uint8_t MissedCallsCounter = 0;
