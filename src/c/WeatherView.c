@@ -6,6 +6,7 @@
 #define Rainy 3
 #define Stormy 4
 #define SunnyRainy 5
+#define Snowy 6
 
 #define WeatherChangeDelay 30
 
