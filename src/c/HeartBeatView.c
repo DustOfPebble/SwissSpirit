@@ -33,6 +33,7 @@ void initLayoutHeartBeat(){
 	// Init static Vars
 	displayedValue = 0;
 	TimeStampsUpdate = 0;
+	SecondsSinceSensorUpdate = elapsed(TimeStampsUpdate);
 }
 //#################################################################################
 void updateHeartBeatHistory() {
