@@ -39,10 +39,10 @@ void updateViewSelector(){
 	if (SecondsSinceSensorUpdate < 30) {
 		// Phone Connected ==>
 		if (SecondsSinceConnection < 15) {
-			showHeartSensor();
+			showPhoneLink();
 			return;
 		}
-		showWeather();
+		showHeartSensor();
 		return;
 	}
 

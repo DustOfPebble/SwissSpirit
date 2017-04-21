@@ -100,7 +100,7 @@ void updatePhoneLinkHistory() {
 	SecondsSinceConnection = elapsed(TimeStampsStartConnected);
 
 	// Do we need to refresh the Display ? (Called also by TimeView)
-	SecondsSinceDisconnection = elapsed(TimeStampsLastConnected);
+	SecondsSinceDisconnection = elapsed(TimeStampsLastConnected) + 1; // +1 force display
 	int UnconnectedMinutes = SecondsSinceDisconnection / 60;
 
 	// Select matching index
