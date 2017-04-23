@@ -57,6 +57,9 @@ void initLayoutWeather() {
 //#################################################################################
 void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		bool NoChange = true;
+		
+		vibes_double_pulse();
+		
 		if (WeatherID != FrameWeatherIndex) NoChange = false;
 		if (Temperature != StoredTemperature) NoChange = false;
 		if (NoChange) return;
