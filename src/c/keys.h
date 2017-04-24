@@ -1,6 +1,9 @@
 /********************************
  *  Key definition for messages *
  * ******************************/
+// Requesting information to phone
+#define  Request 0 //
+
 // Information about Phone events
 #define  CallsCount 1 // (Nb) Unsigned Byte [0,255]
 #define  MessagesCount 2 // (Nb) Unsigned Byte [0,255]

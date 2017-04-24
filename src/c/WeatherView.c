@@ -8,7 +8,8 @@
 #define SunnyRainy 5
 #define Snowy 6
 
-#define WeatherChangeDelay 30
+#define WeatherUpdateDelay 120  // in seconds
+
 
 static GDrawCommandSequence *Weather;
 static int FrameWeatherIndex;
@@ -23,7 +24,7 @@ static GRect LayerBox;
 static GRect ThermometerBox;
 static GRect TemperatureBox;
 
-static time_t TimeStampsWeatherChanged;
+static time_t TimeStampsWeatherUpdated;
 //#################################################################################
 void initLayoutWeather() {
 	// Set persistent vars
@@ -52,19 +53,24 @@ void initLayoutWeather() {
 
 	// Load default vars values...
 	FrameWeatherIndex = 0;
-	time(&TimeStampsWeatherChanged);
+	TimeStampsWeatherUpdated = 0;
 }
 //#################################################################################
+void updateWeatherHistory(){
+		if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
+		send();
+
+}//#################################################################################
 void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		bool NoChange = true;
-		
+
 		vibes_double_pulse();
-		
+
 		if (WeatherID != FrameWeatherIndex) NoChange = false;
 		if (Temperature != StoredTemperature) NoChange = false;
+		time(&TimeStampsWeatherUpdated);
 		if (NoChange) return;
 
-		time(&TimeStampsWeatherChanged);
 		FrameWeatherIndex = WeatherID;
 		StoredTemperature = Temperature;
 

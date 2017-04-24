@@ -3,9 +3,8 @@
 
 #include "PhoneLinkView.h"
 #include "WeatherView.h"
-#include "DataExchanger.h"
+#include "Receiver.h"
 
-tm* get_time();
 void initLayoutClock();
 void updateClock(struct tm* TimeInfos, TimeUnits Unit);
 void drawClock(struct tm* TimeInfos);

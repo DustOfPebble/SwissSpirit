@@ -11,7 +11,8 @@
 #include "WeatherView.h"
 
 #include "ViewSelector.h"
-#include "DataExchanger.h"
+#include "Sender.h"
+#include "Receiver.h"
 //#################################################################################
 static Window *window = NULL;
 
