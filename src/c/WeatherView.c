@@ -58,13 +58,13 @@ void initLayoutWeather() {
 //#################################################################################
 void updateWeatherHistory(){
 		if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
-		send();
+	//	send();
 
 }//#################################################################################
 void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		bool NoChange = true;
 
-		vibes_double_pulse();
+		//vibes_double_pulse();
 
 		if (WeatherID != FrameWeatherIndex) NoChange = false;
 		if (Temperature != StoredTemperature) NoChange = false;
