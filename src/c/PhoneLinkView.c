@@ -32,8 +32,6 @@ static GRect LayerBox;
 static GRect CallsCountBox;
 static GRect MessagesCountBox;
 static GRect ValueBox;
-static GRect UnitBox;
-static char Unit[] = "min";
 
 static time_t TimeStampsConnectEvent;
 //#################################################################################
@@ -62,11 +60,6 @@ void initLayoutPhoneLink() {
 	GRect FreeSpace;
 	remainsAt(Right,LayerBox,PhoneBox, &FreeSpace); 
 	atCenter(Horizontal, FreeSpace, &ChronoBox);
-
-	// Loading and place Unit Text
-	UnitBox = GRectFromText(Unit,UnitFont,LayerBox);
-	inMiddle(Horizontal, PhoneBox, ChronoBox, &UnitBox);
-	align(Bottom, PhoneBox, &UnitBox);
 
 	// Load icons for calls and Messages
 	CallsMissed = gdraw_command_image_create_with_resource(RESOURCE_ID_CALLS);
@@ -136,8 +129,9 @@ void updatePhoneLink(bool connectState) {
 	// Update connection history
 	updatePhoneLinkHistory();
 
-	// Call to this is triggered by a state change --> We force a view selection ...
+	// Call to this is triggered by a state change --> We force a view arbitration ...
 	updateViewSelector();
+	layer_mark_dirty(phoneDisplay); //Value is different --> redraw required
 }
 //#################################################################################
 void drawPhoneLink(Layer *frame, GContext* context) {
@@ -194,13 +188,10 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 
 		// Loading and place Value Text
 		ValueBox = GRectFromText(Value,ValueFont,LayerBox);
-		atCenter(Horizontal | Vertical , ChronoBox, &ValueBox);
-		at(Bottom, ValueBox, &UnitBox);
-
+		atCenter(Horizontal | Vertical, ChronoBox, &ValueBox);
 
 		// Draw text and unit values
 		graphics_draw_text(context,Value,ValueFont,ValueBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
-		graphics_draw_text(context,Unit,UnitFont,UnitBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
 	}
 }
 

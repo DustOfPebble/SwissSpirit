@@ -1,14 +1,16 @@
 #include "WeatherView.h"
 //#################################################################################
-#define Sunny 0
-#define SunnyCloudy 1
-#define Cloudy 2
-#define Rainy 3
-#define Stormy 4
-#define SunnyRainy 5
-#define Snowy 6
+#define NoWeather 0
+#define Sunny 1
+#define SunnyCloudy 2
+#define Cloudy 3
+#define Rainy 4
+#define Stormy 5
+#define SunnyRainy 6
+#define Snowy 7
 
 #define WeatherUpdateDelay 120  // in seconds
+#define InvalidTemperature -99
 
 
 static GDrawCommandSequence *Weather;
@@ -16,7 +18,7 @@ static int FrameWeatherIndex;
 static int NbFramesWeather;
 
 static GDrawCommandImage *Thermometer;
-static int8_t StoredTemperature = 0;
+static int8_t StoredTemperature;
 
 
 static GRect WeatherBox;
@@ -53,6 +55,7 @@ void initLayoutWeather() {
 
 	// Load default vars values...
 	FrameWeatherIndex = 0;
+	StoredTemperature = InvalidTemperature;
 	TimeStampsWeatherUpdated = 0;
 }
 //#################################################################################
@@ -89,8 +92,10 @@ void drawWeather(Layer *frame, GContext* context) {
 	gdraw_command_image_draw(context, Thermometer,  ThermometerBox.origin);
 
 	// Calculate and Place String to display
-	static char Text[] = "-99";
+	static char Text[] = "-??";
 	snprintf(Text, sizeof(Text), "%d", StoredTemperature);
+	
+	if (StoredTemperature == InvalidTemperature) snprintf(Text, sizeof(Text), "--");; // Invalid temprature
 
 	// Loading and place Temperature Text
 	TemperatureBox = GRectFromText(Text,ValueFont,LayerBox);
