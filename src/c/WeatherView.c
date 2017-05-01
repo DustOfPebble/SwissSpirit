@@ -9,7 +9,7 @@
 #define SunnyRainy 6
 #define Snowy 7
 
-#define WeatherUpdateDelay 120  // in seconds
+#define WeatherUpdateDelay 22*60 // in seconds
 #define InvalidTemperature -99
 
 
@@ -61,6 +61,9 @@ void initLayoutWeather() {
 //#################################################################################
 void updateWeatherHistory(){
 		if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
+		FrameWeatherIndex = 0;
+		StoredTemperature = InvalidTemperature;
+	
 	//	send();
 
 }//#################################################################################
