@@ -59,8 +59,9 @@ void initLayoutPhoneLink() {
 	// Place the Chrono icon
 	ChronoBox = GRectFromSize(gdraw_command_image_get_bounds_size(Chrono));
 	atCenter(Vertical, LayerBox, &ChronoBox);
-	align(Right, LayerBox, &ChronoBox);
-	translate(Horizontal, -Margin, &ChronoBox);
+	GRect FreeSpace;
+	remainsAt(Right,LayerBox,PhoneBox, &FreeSpace); 
+	atCenter(Horizontal, FreeSpace, &ChronoBox);
 
 	// Loading and place Unit Text
 	UnitBox = GRectFromText(Unit,UnitFont,LayerBox);
@@ -175,6 +176,17 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 	}
 	else
 	{
+		// Draw phone link icon 
+		linkState = gdraw_command_sequence_get_frame_by_index(PhoneLink, isNotLinked);
+		gdraw_command_frame_draw(context, PhoneLink, linkState, PhoneBox.origin);
+
+
+		// Draw Elapsed and Chrono  
+		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
+		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, ChronoBox.origin);
+		gdraw_command_image_draw(context, Chrono, ChronoBox.origin);
+
+
 		// Calculate and Place String to display
 		static char Value[] = "00";
 		if (UnconnectedMinutesDisplayed < 60) snprintf(Value, sizeof(Value), "%d", UnconnectedMinutesDisplayed);
@@ -182,15 +194,9 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 
 		// Loading and place Value Text
 		ValueBox = GRectFromText(Value,ValueFont,LayerBox);
-		inMiddle(Horizontal, PhoneBox, ChronoBox, &ValueBox);
-		align(Top, PhoneBox, &ValueBox);
+		atCenter(Horizontal | Vertical , ChronoBox, &ValueBox);
+		at(Bottom, ValueBox, &UnitBox);
 
-		// Draw Chrono icon and elapsed
-		linkState = gdraw_command_sequence_get_frame_by_index(PhoneLink, isNotLinked);
-		gdraw_command_frame_draw(context, PhoneLink, linkState, PhoneBox.origin);
-		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
-		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, ChronoBox.origin);
-		gdraw_command_image_draw(context, Chrono, ChronoBox.origin);
 
 		// Draw text and unit values
 		graphics_draw_text(context,Value,ValueFont,ValueBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
