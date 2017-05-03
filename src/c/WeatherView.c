@@ -14,12 +14,13 @@
 
 
 static GDrawCommandSequence *Weather;
+static GDrawCommandSequence *ThermometerRange;
 static int FrameWeatherIndex;
 static int NbFramesWeather;
 
 static GDrawCommandImage *Thermometer;
 static int8_t StoredTemperature;
-
+static int FrameTemperatureIndex;
 
 static GRect WeatherBox;
 static GRect LayerBox;
@@ -35,6 +36,7 @@ void initLayoutWeather() {
 
 	// Load thermometer icon resources
 	Thermometer = gdraw_command_image_create_with_resource(RESOURCE_ID_THERMO);
+	ThermometerRange = gdraw_command_sequence_create_with_resource(RESOURCE_ID_THERMO_RANGE);
 	ThermometerBox = GRectFromSize(gdraw_command_image_get_bounds_size(Thermometer));
 
 	// Load Weather icons resources
@@ -56,6 +58,7 @@ void initLayoutWeather() {
 	// Load default vars values...
 	FrameWeatherIndex = 0;
 	StoredTemperature = InvalidTemperature;
+	FrameTemperatureIndex = 2;
 	TimeStampsWeatherUpdated = 0;
 }
 //#################################################################################
@@ -63,7 +66,10 @@ void updateWeatherHistory(){
 		if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
 		FrameWeatherIndex = 0;
 		StoredTemperature = InvalidTemperature;
-	
+		FrameTemperatureIndex = 3;
+		if (StoredTemperature < 18) FrameTemperatureIndex = 2;
+		if (StoredTemperature < 5) FrameTemperatureIndex = 1;
+
 	//	send();
 
 }//#################################################################################
@@ -92,6 +98,10 @@ void drawWeather(Layer *frame, GContext* context) {
 	gdraw_command_frame_draw(context, Weather, SelectedWeather, WeatherBox.origin);
 
 	// Show Thermometer
+	GDrawCommandFrame *SelectedRange = gdraw_command_sequence_get_frame_by_index(ThermometerRange, FrameTemperatureIndex);
+	GDrawCommandFrame *Background = gdraw_command_sequence_get_frame_by_index(ThermometerRange, 0);
+	gdraw_command_frame_draw(context, ThermometerRange, Background, ThermometerBox.origin);
+	gdraw_command_frame_draw(context, ThermometerRange, SelectedRange, ThermometerBox.origin);
 	gdraw_command_image_draw(context, Thermometer,  ThermometerBox.origin);
 
 	// Calculate and Place String to display

@@ -60,6 +60,11 @@
                     "type": "raw"
                 },
                 {
+                    "file": "data/Temperatures.pdc",
+                    "name": "THERMO_RANGE",
+                    "type": "raw"
+                },
+                {
                     "file": "data/Neutral.pdc",
                     "name": "TRENDS",
                     "type": "raw"

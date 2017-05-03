@@ -12,11 +12,8 @@ static GDrawCommandImage *Chrono;
 static GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
 
-#define MaxSteps 28
-static int ChronoSteps[MaxSteps] = { 1,  3,  5,  7, 10, 13, 15, \
-									17, 20, 23, 25, 27, 29, 30, \
-									31, 33, 35, 38, 40, 43, 45, \
-									47, 50, 52, 54, 56, 59, 60 };
+#define MaxSteps 13
+static int ChronoSteps[MaxSteps] = { 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 };
 
 static int UnconnectedMinutesDisplayed = -1;
 
@@ -176,7 +173,9 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 
 
 		// Draw Elapsed and Chrono  
+		GDrawCommandFrame *Background = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, 0);
 		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
+		gdraw_command_frame_draw(context, ChronoElapsed, Background, ChronoBox.origin);
 		gdraw_command_frame_draw(context, ChronoElapsed, Elapsed, ChronoBox.origin);
 		gdraw_command_image_draw(context, Chrono, ChronoBox.origin);
 

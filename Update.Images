@@ -40,4 +40,4 @@ makeFrame Thermometer
 makeFrame Neutral
 makeSequence Trends
 makeSequence Weather
-
+makeSequence Temperatures
