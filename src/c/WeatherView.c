@@ -8,6 +8,7 @@
 #define Stormy 5
 #define SunnyRainy 6
 #define Snowy 7
+#define Foggy 8
 
 #define WeatherUpdateDelay 22*60 // in seconds
 #define InvalidTemperature -99
@@ -63,16 +64,16 @@ void initLayoutWeather() {
 }
 //#################################################################################
 void updateWeatherHistory(){
-		if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
-		FrameWeatherIndex = 0;
-		StoredTemperature = InvalidTemperature;
-		FrameTemperatureIndex = 3;
-		if (StoredTemperature < 18) FrameTemperatureIndex = 2;
-		if (StoredTemperature < 5) FrameTemperatureIndex = 1;
+	FrameWeatherIndex = 0;
+	StoredTemperature = InvalidTemperature;
+	FrameTemperatureIndex = 3;
+	if (StoredTemperature < 18) FrameTemperatureIndex = 2;
+	if (StoredTemperature < 5) FrameTemperatureIndex = 1;
 
+	//	if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
 	//	send();
-
-}//#################################################################################
+}
+//#################################################################################
 void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		bool NoChange = true;
 
@@ -87,7 +88,7 @@ void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		StoredTemperature = Temperature;
 
 		layer_mark_dirty(weatherDisplay);
-	}
+}
 //#################################################################################
 void drawWeather(Layer *frame, GContext* context) {
 	// set Text color
@@ -101,13 +102,12 @@ void drawWeather(Layer *frame, GContext* context) {
 	GDrawCommandFrame *SelectedRange = gdraw_command_sequence_get_frame_by_index(ThermometerRange, FrameTemperatureIndex);
 	GDrawCommandFrame *Background = gdraw_command_sequence_get_frame_by_index(ThermometerRange, 0);
 	gdraw_command_frame_draw(context, ThermometerRange, Background, ThermometerBox.origin);
-	gdraw_command_frame_draw(context, ThermometerRange, SelectedRange, ThermometerBox.origin);
+	if (StoredTemperature != InvalidTemperature) gdraw_command_frame_draw(context, ThermometerRange, SelectedRange, ThermometerBox.origin);
 	gdraw_command_image_draw(context, Thermometer,  ThermometerBox.origin);
 
 	// Calculate and Place String to display
 	static char Text[] = "-??";
 	snprintf(Text, sizeof(Text), "%d", StoredTemperature);
-	
 	if (StoredTemperature == InvalidTemperature) snprintf(Text, sizeof(Text), "--");; // Invalid temprature
 
 	// Loading and place Temperature Text
@@ -117,8 +117,6 @@ void drawWeather(Layer *frame, GContext* context) {
 
 	// Show Temperature value
 	graphics_draw_text(context,Text,ValueFont,TemperatureBox,GTextOverflowModeWordWrap,GTextAlignmentCenter, NULL);
-
 }
-
 
 

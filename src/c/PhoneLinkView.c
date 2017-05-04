@@ -97,7 +97,7 @@ void updatePhoneLinkHistory() {
 
 	// Select/Check changed View for Chrono
 	int MatchingIndex = MaxSteps - 1;
-	for (int i = MaxSteps-1; i >=0 ; i--)
+	for (int i = MaxSteps-1; i >= 1 ; i--)
 		if (UnconnectedMinutes < ChronoSteps[i] ) MatchingIndex = i;
 
 	if (FrameIndex != MatchingIndex) {
