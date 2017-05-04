@@ -64,11 +64,6 @@ void initLayoutWeather() {
 }
 //#################################################################################
 void updateWeatherHistory(){
-	FrameWeatherIndex = 0;
-	StoredTemperature = InvalidTemperature;
-	FrameTemperatureIndex = 3;
-	if (StoredTemperature < 18) FrameTemperatureIndex = 2;
-	if (StoredTemperature < 5) FrameTemperatureIndex = 1;
 
 	//	if (elapsed(TimeStampsWeatherUpdated) < WeatherUpdateDelay) return;
 	//	send();
@@ -81,11 +76,14 @@ void updateWeather(uint8_t WeatherID, int8_t Temperature){
 
 		if (WeatherID != FrameWeatherIndex) NoChange = false;
 		if (Temperature != StoredTemperature) NoChange = false;
-		time(&TimeStampsWeatherUpdated);
 		if (NoChange) return;
 
+		time(&TimeStampsWeatherUpdated);
 		FrameWeatherIndex = WeatherID;
 		StoredTemperature = Temperature;
+		FrameTemperatureIndex = 3;
+		if (StoredTemperature < 18) FrameTemperatureIndex = 2;
+		if (StoredTemperature < 5) FrameTemperatureIndex = 1;
 
 		layer_mark_dirty(weatherDisplay);
 }
