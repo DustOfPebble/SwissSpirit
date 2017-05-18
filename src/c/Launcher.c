@@ -72,7 +72,7 @@ void loading(Window *window) {
 	layer_set_update_proc(weatherDisplay, drawWeather);
 
 	// Subscribe to events services
-	tick_timer_service_subscribe(SECOND_UNIT, updateClock);
+	tick_timer_service_subscribe(MINUTE_UNIT, updateClock);
 	battery_state_service_subscribe(updateBattery);
 	connection_service_subscribe((ConnectionHandlers) { .pebble_app_connection_handler = updatePhoneLink });
 

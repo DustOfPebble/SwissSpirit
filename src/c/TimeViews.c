@@ -10,11 +10,9 @@ static char DateString[40];
 static const char *Days[] = {"Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"};
 static const char *Months[] = {"Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"};
 static time_t TimeStampsUpdateClock;
-static int DisplayedMinute;
 //#################################################################################
 void initLayoutClock(){
 	time(&TimeStampsUpdateClock);
-	DisplayedMinute = -1; // Force update on first call...
 
 	text_layer_set_text_color(timeDisplay, TextColor);
 	text_layer_set_text_alignment(timeDisplay,GTextAlignmentCenter);
@@ -41,7 +39,6 @@ void drawClock(struct tm* TimeInfos) {
 //#################################################################################
 void updateClock(struct tm* TimeInfos, TimeUnits Unit) {
 
-	if (elapsed(TimeStampsUpdateClock) < UPDATE_CLOCK) return;
 	time(&TimeStampsUpdateClock);
 	// Update every History ...
 	updatePhoneLinkHistory();
@@ -50,6 +47,5 @@ void updateClock(struct tm* TimeInfos, TimeUnits Unit) {
 	updateViewSelector();
 
 	// Display need to be updated only every minute change
-	if (DisplayedMinute == TimeInfos->tm_min) return;
 	drawClock(TimeInfos);
 }

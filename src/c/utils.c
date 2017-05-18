@@ -12,6 +12,13 @@ int elapsed(time_t past) {
 	return now - past;
 }
 //#################################################################################
+int indexOf( int values[], int nb, int value) {
+	int index = nb - 1;
+	for (int i = nb - 1; i >= 0 ; i--)
+		if (value < values[i] ) index = i;
+	return index ;
+}
+//#################################################################################
 GRect GRectFromSize(GSize size) {
 	return GRect(0,0, size.w, size.h);
 }

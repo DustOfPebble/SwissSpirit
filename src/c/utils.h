@@ -6,6 +6,9 @@ tm* get_time();
 // Returning Elapsed seconds between now and provided time;
 int elapsed(time_t past);
 
+// Returning index from range Array
+int indexOf( int values[], int nb, int value);
+
 // Create GRect ...
 GRect GRectFromSize(GSize size);
 GRect GRectFromPoint(GPoint point);

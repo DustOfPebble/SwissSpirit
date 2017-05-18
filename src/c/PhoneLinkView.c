@@ -12,8 +12,8 @@ static GDrawCommandImage *Chrono;
 static GDrawCommandSequence *ChronoElapsed;
 static int FrameIndex;
 
-#define MaxSteps 13
-static int ChronoSteps[MaxSteps] = { 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 };
+#define NbChrono 13
+static int ChronoSteps[NbChrono] = { 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60 };
 
 static int UnconnectedMinutesDisplayed = -1;
 
@@ -55,7 +55,7 @@ void initLayoutPhoneLink() {
 	ChronoBox = GRectFromSize(gdraw_command_image_get_bounds_size(Chrono));
 	atCenter(Vertical, LayerBox, &ChronoBox);
 	GRect FreeSpace;
-	remainsAt(Right,LayerBox,PhoneBox, &FreeSpace); 
+	remainsAt(Right,LayerBox,PhoneBox, &FreeSpace);
 	atCenter(Horizontal, FreeSpace, &ChronoBox);
 
 	// Load icons for calls and Messages
@@ -96,9 +96,10 @@ void updatePhoneLinkHistory() {
 	int UnconnectedMinutes = SecondsSinceConnectEvent / 60;
 
 	// Select/Check changed View for Chrono
-	int MatchingIndex = MaxSteps - 1;
+	/*int MatchingIndex = MaxSteps - 1;
 	for (int i = MaxSteps-1; i >= 1 ; i--)
-		if (UnconnectedMinutes < ChronoSteps[i] ) MatchingIndex = i;
+		if (UnconnectedMinutes < ChronoSteps[i] ) MatchingIndex = i; */
+	int MatchingIndex = indexOf(ChronoSteps,NbChrono,UnconnectedMinutes) + 1;
 
 	if (FrameIndex != MatchingIndex) {
 		FrameIndex = MatchingIndex;
@@ -167,12 +168,12 @@ void drawPhoneLink(Layer *frame, GContext* context) {
 	}
 	else
 	{
-		// Draw phone link icon 
+		// Draw phone link icon
 		linkState = gdraw_command_sequence_get_frame_by_index(PhoneLink, isNotLinked);
 		gdraw_command_frame_draw(context, PhoneLink, linkState, PhoneBox.origin);
 
 
-		// Draw Elapsed and Chrono  
+		// Draw Elapsed and Chrono
 		GDrawCommandFrame *Background = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, 0);
 		GDrawCommandFrame *Elapsed = gdraw_command_sequence_get_frame_by_index(ChronoElapsed, FrameIndex);
 		gdraw_command_frame_draw(context, ChronoElapsed, Background, ChronoBox.origin);

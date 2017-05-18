@@ -13,6 +13,9 @@
 #define WeatherUpdateDelay 22*60 // in seconds
 #define InvalidTemperature -99
 
+#define NbTemps 2
+static int TempsSteps[NbTemps] = { 5, 18 };
+
 
 static GDrawCommandSequence *Weather;
 static GDrawCommandSequence *ThermometerRange;
@@ -81,9 +84,10 @@ void updateWeather(uint8_t WeatherID, int8_t Temperature){
 		time(&TimeStampsWeatherUpdated);
 		FrameWeatherIndex = WeatherID;
 		StoredTemperature = Temperature;
-		FrameTemperatureIndex = 3;
+		/*FrameTemperatureIndex = 3;
 		if (StoredTemperature < 18) FrameTemperatureIndex = 2;
-		if (StoredTemperature < 5) FrameTemperatureIndex = 1;
+		if (StoredTemperature < 5) FrameTemperatureIndex = 1; */
+		FrameTemperatureIndex = indexOf(TempsSteps, NbTemps, StoredTemperature) + 1;
 
 		layer_mark_dirty(weatherDisplay);
 }
